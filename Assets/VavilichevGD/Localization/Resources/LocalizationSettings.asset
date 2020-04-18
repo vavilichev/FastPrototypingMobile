@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be09561f4ec64da49a5944beb0948525, type: 3}
+  m_Name: LocalizationSettings
+  m_EditorClassIdentifier: 
+  languageSettings:
+  - m_language: 30
+    m_languageTitle: "\u0420\u0443\u0441\u0441\u043A\u0438\u0439"
+    m_tableAsset: {fileID: 4900000, guid: 5d6d03385282e2c45ae33dce6d39fa25, type: 3}
+    m_urlGoogleSpreadsheet: https://docs.google.com/spreadsheets/d/19A5ertRuHb5WNXWkclKSU4q-yil8HLT9ZXq3_F__5mk
+  - m_language: 10
+    m_languageTitle: English
+    m_tableAsset: {fileID: 4900000, guid: 4ecf10987723f9948af660afa73802ca, type: 3}
+    m_urlGoogleSpreadsheet: https://docs.google.com/spreadsheets/d/1OKMoSG7yCJ47Ae4NVPpB1OI7HG6uNH8cdDsb7Vnmu3g
