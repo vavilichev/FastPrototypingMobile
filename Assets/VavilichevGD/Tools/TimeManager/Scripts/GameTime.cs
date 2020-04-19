@@ -9,8 +9,9 @@ namespace VavilichevGD.Tools.Time {
 		public delegate void GamePauseHandler(bool paused);
 		public static event GamePauseHandler OnGamePausedEvent;
 		
-		public delegate void GameTimeInitializeHandler();
-		public static event GameTimeInitializeHandler OnGameTimeInitializedEvent;
+		public delegate void GameTimeEventHandler();
+		public static event GameTimeEventHandler OnGameTimeInitializedEvent;
+		public static event GameTimeEventHandler OnOneSecondTickEvent;
 
 		#endregion
 		
@@ -30,6 +31,7 @@ namespace VavilichevGD.Tools.Time {
 		private static GameTime instance { get; set; }
 		
 		private GameTimeInteractor interactor;
+		private float timer;
 
 
 		#region INITIALIZING
@@ -55,7 +57,17 @@ namespace VavilichevGD.Tools.Time {
 
 		
 		private void Update() {
-			interactor.Update(UnityEngine.Time.unscaledDeltaTime);
+			float deltaTimeUnscaled = unscaledDeltaTime;
+			interactor.Update(deltaTimeUnscaled);
+			this.TimerWork(deltaTimeUnscaled);
+		}
+
+		private void TimerWork(float deltaTimeUnscaled) {
+			this.timer += deltaTimeUnscaled;
+			if (this.timer >= 1f) {
+				this.timer = Mathf.Max(1f - this.timer, 0f);
+				OnOneSecondTickEvent?.Invoke();
+			}
 		}
 
 		
