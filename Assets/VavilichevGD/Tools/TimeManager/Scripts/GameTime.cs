@@ -1,37 +1,47 @@
 ﻿using System;
 using UnityEngine;
 
-namespace VavilichevGD.Tools {
-	[ScriptOrder(-100)]
+namespace VavilichevGD.Tools.Time {
 	public class GameTime : MonoBehaviour {
-		private static GameTime instance { get; set; }
-		private static GameTimeInteractor interactor;
 
-		public static bool isInitialized => interactor != null;
-		public static float unscaledDeltaTime { get; private set; }
-		public static float deltaTime { get; private set; }
-		public static bool isPaused { get; private set; }
-		public static DateTime now => interactor.now;
-		public static GameSessionTimeData gameTimeDataCurrentSession => interactor.gameSettionTimeDataCurrentSession;
-		public static GameSessionTimeData gameTimeDataLastSession => interactor.gameSettionTimeDataLastSession;
-		public static double timeSinceLastSessionEndedToCurrentSessionStarted =>
-			interactor.timeSinceLastSessionEndedToCurrentSessionStarted;
-		public static double timeSinceGameStarted => isInitialized ? interactor.timeSinceGameStarted : 0;
+		#region DELEGATES
 
 		public delegate void GamePauseHandler(bool paused);
-		public static event GamePauseHandler OnGamePaused;
+		public static event GamePauseHandler OnGamePausedEvent;
 		
 		public delegate void GameTimeInitializeHandler();
-		public static event GameTimeInitializeHandler OnGameTimeInitialized;
+		public static event GameTimeInitializeHandler OnGameTimeInitializedEvent;
 
-		public static void Initialize(GameTimeInteractor _interactor) {
-			if (instance != null)
+		#endregion
+		
+		public static bool isInitialized => instance != null && instance.interactor != null;
+		public static float unscaledDeltaTime => UnityEngine.Time.unscaledDeltaTime;
+		public static float deltaTime => UnityEngine.Time.deltaTime;
+		public static DateTime now => isInitialized ? instance.interactor.now : DateTime.MinValue;
+		public static DateTime nowDevice => isInitialized ? instance.interactor.nowDevice : DateTime.MinValue;
+		public static DateTime firstPlayTime => isInitialized ? instance.interactor.firstPlayTime : DateTime.MinValue;
+		public static double lifeTimeHourse => isInitialized ? instance.interactor.lifeTimeHours : 0;
+		public static GameSessionTimeData gameSessionCurrenctTimeData => isInitialized ? instance.interactor.gameSessionCurrentTimeData : null;
+		public static GameSessionTimeData gameSessionPreviousTimeData => isInitialized ? instance.interactor.gameSessionPreviousTimeData : null;
+		public static double timeBetweenSessionsSec => isInitialized ? instance.interactor.timeBetweenSessionsSec : 0;
+		public static double timeSinceGameStarted => isInitialized ? instance.interactor.timeSinceGameStartedSec : 0;
+		public static bool isPaused => deltaTime == 0f;
+
+		private static GameTime instance { get; set; }
+		
+		private GameTimeInteractor interactor;
+
+
+		#region INITIALIZING
+
+		public static void Initialize(GameTimeInteractor interactor) {
+			if (isInitialized)
 				return;
 
-			interactor = _interactor;
 			CreateSingleton();
+			instance.interactor = interactor;
 			Logging.Log("GAME TIME: is initialized.");
-			OnGameTimeInitialized?.Invoke();
+			OnGameTimeInitializedEvent?.Invoke();
 		}
 
 		private static void CreateSingleton() {
@@ -40,38 +50,25 @@ namespace VavilichevGD.Tools {
 			DontDestroyOnLoad(gameTimeGO);
 		}
 
+		#endregion
 		
+
 		
 		private void Update() {
-			unscaledDeltaTime = 0f;
-			deltaTime = 0f;
-
-			interactor.Update(Time.unscaledDeltaTime);
-			
-			if (!isPaused) {
-				unscaledDeltaTime = Time.unscaledDeltaTime;
-				deltaTime = Time.deltaTime;
-			}
+			interactor.Update(UnityEngine.Time.unscaledDeltaTime);
 		}
 
-		
 		
 		public static void Pause() {
-			Time.timeScale = 0f;
-			isPaused = true;
+			UnityEngine.Time.timeScale = 0f;
 			NotifyAboutGamePauseStateChanged();
 		}
-
-		private static void NotifyAboutGamePauseStateChanged() {
-			OnGamePaused?.Invoke(isPaused);
-		}
-
+		
 		public static void Unpause() {
-			Time.timeScale = 1f;
-			isPaused = false;
+			UnityEngine.Time.timeScale = 1f;
 			NotifyAboutGamePauseStateChanged();
 		}
-
+		
 		public static void SwitchPauseState() {
 			if (isPaused)
 				Unpause();
@@ -80,26 +77,8 @@ namespace VavilichevGD.Tools {
 		}
 
 		
-		
-		public static void Save() {
-			interactor.Save();
-		}
-
-		
-		
-		private void OnDisable() {
-			Save();
-		}
-
-
-		public static bool Equals(DateTime lastTime, DateTime previousTime, TimeSpan infelicity) {
-			if (lastTime < previousTime) {
-				DateTime tempDateTime = lastTime;
-				lastTime = previousTime;
-				previousTime = tempDateTime;
-			}
-
-			return (lastTime - previousTime).TotalSeconds <= infelicity.TotalSeconds;
+		private static void NotifyAboutGamePauseStateChanged() {
+			OnGamePausedEvent?.Invoke(isPaused);
 		}
 	}
 }

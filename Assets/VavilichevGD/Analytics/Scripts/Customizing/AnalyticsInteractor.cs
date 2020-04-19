@@ -8,19 +8,19 @@ namespace VavilichevGD.Analytics {
         private List<AnalyticsSender> senders;
 
         protected override IEnumerator InitializeRoutine() {
-            InitSenders();
+            this.InitSenders();
             yield return null;
             
             AnalyticsEngine.Initialize(this);
-            CompleteInitializing();
+            this.CompleteInitializing();
         }
 
         private void InitSenders() {
-            senders = new List<AnalyticsSender>();
+            this.senders = new List<AnalyticsSender>();
             
             // TODO: Create different senders
-            CreateSender<AnalyticsSenderFirebase>();
-            CreateSender<AnalyticsSenderAppMetrica>();
+            this.CreateSender<AnalyticsSenderFirebase>();
+            this.CreateSender<AnalyticsSenderAppMetrica>();
         }
 
         private void CreateSender<T>() where T : AnalyticsSender, new() {

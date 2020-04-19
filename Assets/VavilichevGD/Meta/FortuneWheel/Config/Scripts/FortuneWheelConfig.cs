@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using VavilichevGD.Meta.FortuneWheel;
 using Random = UnityEngine.Random;
 
-namespace VavilichevGD.Meta {
+namespace VavilichevGD.Meta.FortuneWheel {
     [CreateAssetMenu(fileName = "FortuneWheelConfig", menuName = "Meta/FortuneWheel/Config", order = 0)]
     public class FortuneWheelConfig : ScriptableObject {
 
@@ -20,8 +19,18 @@ namespace VavilichevGD.Meta {
         }
 
         public float GetRandomAngle() {
-            var rIndex = Random.Range(0, this.sectorsCount);
-            return this.sectorsDataList[rIndex].angle;
+            var chance = 0f;
+            var rChance = Random.Range(0f, 100f);
+            var count = this.sectorsDataList.Count;
+
+            for (int i = 0; i < count; i++) {
+                FortuneWheelSectorData data = this.sectorsDataList[i];
+                chance += data.chance;
+                if (chance >= rChance)
+                    return data.angle;
+            }
+            
+            throw new Exception("Something went wrong");
         }
 
         public FortuneWheelSectorData GetSectorDataByAngle(float angle) {
@@ -55,20 +64,31 @@ namespace VavilichevGD.Meta {
                 var difference = this.sectorsDataList.Count - this.m_sectorsCount;
                 this.sectorsDataList.RemoveRange(this.m_sectorsCount, difference);    
             }
-            
+
+            float averageChance = 100f / this.m_sectorsCount;
             for (int i = 0; i < this.m_sectorsCount; i++) {
                 var angle = i * sectorAndleSize;
                 
                 if (i >= this.sectorsDataList.Count) {
                     var sectorData = new FortuneWheelSectorData();
                     sectorData.angle = angle;
+                    sectorData.chance = averageChance;
                     this.sectorsDataList.Add(sectorData);
                 }
                 else {
                     var sectorData = sectorsDataList[i];
                     sectorData.angle = angle;
+                    sectorData.chance = averageChance;
                 }
             }
+        }
+        
+        public bool IsChancesValid() {
+            float sumChances = 0f;
+            foreach (var sectorData in this.sectorsDataList)
+                sumChances += sectorData.chance;
+
+            return Math.Abs(sumChances - 100f) < Mathf.Epsilon;
         }
 #endif
 

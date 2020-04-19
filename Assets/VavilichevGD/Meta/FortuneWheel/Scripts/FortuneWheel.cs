@@ -5,7 +5,7 @@ namespace VavilichevGD.Meta.FortuneWheel {
 
 		#region CONSTANTS
 
-		protected float CIRCLE_ANGLE = 360f;
+		private float CIRCLE_ANGLE = 360f;
 
 		#endregion
 
@@ -20,17 +20,17 @@ namespace VavilichevGD.Meta.FortuneWheel {
 
 		#endregion
 
-		[SerializeField] protected FortuneWheelConfig m_config;
+		[SerializeField] private FortuneWheelConfig m_config;
 
-		[SerializeField] protected int fullCircles = 5;
-		[SerializeField] protected float maxLerpRotationTime = 4f;
-		[SerializeField] protected Transform transformCircle;
-		[SerializeField] protected AnimationCurve curveRotating;
+		[SerializeField] private int fullCircles = 5;
+		[SerializeField] private float maxLerpRotationTime = 4f;
+		[SerializeField] private Transform transformCircle;
+		[SerializeField] private AnimationCurve curveRotating;
 
-		protected float[] sectorAngles;
-		protected float currentLerpRotationTime;
-		protected float finalAngle;
-		protected float startAngle;
+		private float[] sectorAngles;
+		private float currentLerpRotationTime;
+		private float finalAngle;
+		private float startAngle;
 
 		public bool isRotating { get; protected set; }
 		public FortuneWheelConfig config => this.m_config;
@@ -58,7 +58,7 @@ namespace VavilichevGD.Meta.FortuneWheel {
 			}
 		}
 
-		void Update() {
+		private void Update() {
 			if (!isRotating)
 				return;
 

@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using UnityEditor;
 using UnityEngine;
-using VavilichevGD.Timing;
 using VavilichevGD.Tools;
+using VavilichevGD.Tools.Time;
 
 namespace VavilichevGD.Meta.Examples {
     public class DailyRewardsSystemExample : MonoBehaviour {

@@ -4,11 +4,16 @@ using UnityEngine;
 namespace VavilichevGD.Meta {
     [Serializable]
     public abstract class RewardInfo : ScriptableObject {
+        [SerializeField] protected string m_id;
         [SerializeField] protected string m_title;
         [SerializeField] protected string m_description;
         [SerializeField] protected Sprite m_spriteIcon;
         [SerializeField] protected int m_count = 1;
 
+        public string GetId() {
+            return m_id;
+        }
+        
         public virtual string GetTitle() {
             return m_title;
         }
@@ -30,5 +35,7 @@ namespace VavilichevGD.Meta {
         }
         
         public abstract RewardHandler CreateRewardHandler(Reward reward);
+        public abstract RewardState CreateState();
+        public abstract RewardState CreateState(string stateJson);
     }
 }

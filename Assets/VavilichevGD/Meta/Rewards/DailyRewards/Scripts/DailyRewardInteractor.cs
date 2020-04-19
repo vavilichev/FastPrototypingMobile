@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using VavilichevGD.Architecture;
 using VavilichevGD.Tools;
+using VavilichevGD.Tools.Time;
 
 namespace VavilichevGD.Meta {
     public class DailyRewardInteactor : Interactor {
@@ -43,21 +44,21 @@ namespace VavilichevGD.Meta {
 
             if (needToReward) {
                 int nextDayIndex = dailyRewardRepository.GetNextRewardDayIndex(lastData);
-                DailyRewardInfo nextDailyRewardInfo = dailyRewardRepository.GetRewardInfo(nextDayIndex);
+                RewardInfo nextDailyRewardInfo = dailyRewardRepository.GetRewardInfo(nextDayIndex);
 
                 if (nextDailyRewardInfo == null) {
                     AllRewardsAlreadyReceived();
                     return;
                 }
 
-                Reward reward = new DailyReward(nextDailyRewardInfo);
-                reward.OnReceived += RewardOnOnRewardReceived;
+                Reward reward = new Reward(nextDailyRewardInfo);
+                reward.OnReceivedEvent += RewardOnOnRewardReceivedEvent;
                 reward.Apply();
             }
         }
 
-        private void RewardOnOnRewardReceived(Reward reward, bool success) {
-            reward.OnReceived -= RewardOnOnRewardReceived;
+        private void RewardOnOnRewardReceivedEvent(Reward reward, bool success) {
+            reward.OnReceivedEvent -= RewardOnOnRewardReceivedEvent;
             if (success) {
                 DailyRewardsData lastData = dailyRewardRepository.lastDailyRewardsData;
                 int nextDayIndex = dailyRewardRepository.GetNextRewardDayIndex(lastData);

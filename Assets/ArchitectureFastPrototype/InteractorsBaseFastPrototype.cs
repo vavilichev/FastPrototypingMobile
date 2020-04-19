@@ -1,6 +1,7 @@
 ﻿using VavilichevGD.Architecture;
 using VavilichevGD.Monetization;
 using VavilichevGD.Tools;
+using VavilichevGD.Tools.Time;
 
 namespace FastPrototype.Architecture {
     public class InteractorsBaseFastPrototype : InteractorsBase {

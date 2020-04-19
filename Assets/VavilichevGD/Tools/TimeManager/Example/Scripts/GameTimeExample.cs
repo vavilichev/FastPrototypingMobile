@@ -2,77 +2,75 @@
 using System.Globalization;
 using UnityEngine;
 using UnityEngine.UI;
+using VavilichevGD.UI;
 
-namespace VavilichevGD.Tools.Example {
+namespace VavilichevGD.Tools.Time.Example {
     public class GameTimeExample : MonoBehaviour {
 
         [SerializeField] private Text textGameSessionInfoPrevous;
         [SerializeField] private Text textGameSessionInfoCurrent;
         [SerializeField] private Text textGameSessionTime;
+        [SerializeField] private Text textLifeTimeHours;
         [SerializeField] private Text textUnscaledDeltaTime;
         [SerializeField] private Text textTimeBtwSessions;
         [Space] 
         [SerializeField] private Button btnPause;
         [SerializeField] private Text textBtnPause;
-        
-        
-        
-        private void Start() {
-            StartCoroutine(StartRoutine());
-        }
+        [Space] 
+        [SerializeField] private Text textFirstPlayTime;
 
-        private IEnumerator StartRoutine() {
-            GameTimeRepository repository = new GameTimeRepository();
-            yield return repository.Initialize();
-            
-            GameTimeInteractor interactor = new GameTimeInteractor();
+        private GameTimeInteractor interactor;
+        
+        private IEnumerator Start() {
+            this.interactor = new GameTimeInteractor();
             yield return interactor.Initialize();
         }
 
-
         private void OnEnable() {
-            GameTime.OnGameTimeInitialized += OnGameTimeInitialized;
-            btnPause.onClick.AddListener(OnPauseBtnClicked);
+            GameTime.OnGameTimeInitializedEvent += this.OnGameTimeInitialized;
+            btnPause.AddListener(OnPauseBtnClicked);
         }
 
         private void OnGameTimeInitialized() {
-            UpdateView();
+            this.UpdateView();
+            this.textFirstPlayTime.text = GameTime.firstPlayTime.ToString();
         }
 
         private void UpdateView() {
-            textGameSessionInfoPrevous.text =
-                GameTime.isInitialized ?  $"{GameTime.gameTimeDataLastSession}" : "None";
-            textGameSessionInfoCurrent.text =
-                GameTime.isInitialized ? GameTime.gameTimeDataCurrentSession.ToString() : "None";
+            this.textGameSessionInfoPrevous.text =
+                GameTime.isInitialized ?  $"{GameTime.gameSessionPreviousTimeData}" : "None";
+            
+            this.textGameSessionInfoCurrent.text =
+                GameTime.isInitialized ? GameTime.gameSessionCurrenctTimeData.ToString() : "None";
 
-           
-
-            textTimeBtwSessions.text = GameTime.isInitialized
-                ? GameTime.timeSinceLastSessionEndedToCurrentSessionStarted.ToString()
+            this.textTimeBtwSessions.text = GameTime.isInitialized
+                ? GameTime.timeBetweenSessionsSec.ToString()
                 : "None";
 
-            UpdateBtnPauseView();
+            this.UpdateBtnPauseView();
         }
 
         private void UpdateBtnPauseView() {
-            btnPause.interactable = GameTime.isInitialized;
-            textBtnPause.text = GameTime.isPaused ? "Unpause" : "Pause";
+            this.btnPause.interactable = GameTime.isInitialized;
+            this.textBtnPause.text = GameTime.isPaused ? "Unpause" : "Pause";
         }
         
 
         private void OnPauseBtnClicked() {
             GameTime.SwitchPauseState();
-            UpdateBtnPauseView();
+            this.UpdateBtnPauseView();
         }
 
         private void Update() {
-            textUnscaledDeltaTime.text = GameTime.unscaledDeltaTime.ToString(CultureInfo.InvariantCulture);
-            textGameSessionTime.text = GameTime.timeSinceGameStarted.ToString(CultureInfo.InvariantCulture);
+            this.textUnscaledDeltaTime.text = GameTime.unscaledDeltaTime.ToString(CultureInfo.InvariantCulture);
+            this.textGameSessionTime.text = GameTime.timeSinceGameStarted.ToString(CultureInfo.InvariantCulture);
+            this.textLifeTimeHours.text = GameTime.lifeTimeHourse.ToString();
         }
 
         private void OnDisable() {
-            GameTime.OnGameTimeInitialized -= OnGameTimeInitialized;
-            btnPause.onClick.RemoveListener(OnPauseBtnClicked);
+            GameTime.OnGameTimeInitializedEvent -= this.OnGameTimeInitialized;
+            this.btnPause.RemoveListener(OnPauseBtnClicked);
+            this.interactor.Save();
         }
     }
 }

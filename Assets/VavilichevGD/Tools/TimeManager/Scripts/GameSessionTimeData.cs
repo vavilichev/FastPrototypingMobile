@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace VavilichevGD.Tools {
+namespace VavilichevGD.Tools.Time {
 	[Serializable]
 	public class GameSessionTimeData {
 		public DateTimeSerialized sessionStartSerializedFromServer;
@@ -9,36 +9,36 @@ namespace VavilichevGD.Tools {
 		public long timeValueActiveDeviceAtEnd;
 		public double sessionDuration;
 
-		public bool timeReceivedFromServer { get { return sessionStartSerializedFromServer.GetDateTime() != new DateTime(); } }
-		
-		public DateTime sessionStart => GetSessionStartTime();
-		public DateTime sessionOver => GetSessionOverTime();
+		public bool timeReceivedFromServer => this.sessionStartSerializedFromServer.GetDateTime() != new DateTime();
+
+		public DateTime sessionStartTime => this.GetSessionStartTime();
+		public DateTime sessionOverTime => this.GetSessionOverTime();
 
 		public GameSessionTimeData() {
-			sessionStartSerializedFromServer = new DateTimeSerialized();
-			sessionStartSerializedFromDevice = new DateTimeSerialized();
+			this.sessionStartSerializedFromServer = new DateTimeSerialized();
+			this.sessionStartSerializedFromDevice = new DateTimeSerialized();
 		}
 
 		private DateTime GetSessionStartTime() {
-			if (timeReceivedFromServer)
-				return sessionStartSerializedFromServer.GetDateTime();
-			return sessionStartSerializedFromDevice.GetDateTime();
+			if (this.timeReceivedFromServer)
+				return this.sessionStartSerializedFromServer.GetDateTime();
+			return this.sessionStartSerializedFromDevice.GetDateTime();
 		}
 
 		private DateTime GetSessionOverTime() {
-			DateTime start = sessionStart;
-			return start.AddSeconds(sessionDuration);
+			DateTime start = this.sessionStartTime;
+			return start.AddSeconds(this.sessionDuration);
 		}
 
 		public override string ToString() {
-			return $"Time start from server: {sessionStartSerializedFromServer}\n" +
-			       $"Time start from device: {sessionStartSerializedFromDevice}\n" +
-			       $"Active device time at start: {timeValueActiveDeviceAtStart}\n" +
-			       $"Active device time at end: {timeValueActiveDeviceAtEnd}\n" +
-			       $"Session duration: {sessionDuration}\n" +
-			       $"Time received from server: {sessionStart}\n" +
-			       $"Session start: {sessionStart}\n" +
-			       $"Session over: {sessionOver}";
+			return $"Time start from server: {this.sessionStartSerializedFromServer}\n" +
+			       $"Time start from device: {this.sessionStartSerializedFromDevice}\n" +
+			       $"Active device time at start: {this.timeValueActiveDeviceAtStart}\n" +
+			       $"Active device time at end: {this.timeValueActiveDeviceAtEnd}\n" +
+			       $"Session duration: {this.sessionDuration}\n" +
+			       $"Time received from server: {this.sessionStartTime}\n" +
+			       $"Session start: {this.sessionStartTime}\n" +
+			       $"Session over: {this.sessionOverTime}";
 		}
 	}
 }

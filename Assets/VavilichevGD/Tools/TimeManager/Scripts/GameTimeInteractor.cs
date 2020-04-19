@@ -3,58 +3,65 @@ using System.Collections;
 using UnityEngine;
 using VavilichevGD.Architecture;
 
-namespace VavilichevGD.Tools {
+namespace VavilichevGD.Tools.Time {
     public class GameTimeInteractor : Interactor {
-        
+
+        #region DELEGATES
+
         public delegate void GameTimeInitializeHandler();
         public static event GameTimeInitializeHandler OnGameTimeInitialized;
 
-        public GameSessionTimeData gameSettionTimeDataLastSession => gameTimeRepository.gameSettionTimeDataLastSession;
-        public GameSessionTimeData gameSettionTimeDataCurrentSession { get; }
-        public double timeSinceLastSessionEndedToCurrentSessionStarted { get; private set; }
-        public double timeSinceGameStarted { get; private set; }
-        public DateTime now => GetNowDateTime();
+        #endregion
+       
 
-
-        private DateTime GetNowDateTime() {
-            DateTime gameStartTime = gameSettionTimeDataCurrentSession.sessionStart;
-            DateTime curerntTime = gameStartTime.AddSeconds(timeSinceGameStarted);
-            return curerntTime;
-        }
+        public GameSessionTimeData gameSessionPreviousTimeData => this.gameTimeRepository.gameSessionPreviousTimeData;
+        public GameSessionTimeData gameSessionCurrentTimeData { get; set; }
+        public double timeBetweenSessionsSec { get; private set; }
+        public double timeSinceGameStartedSec { get; private set; }
+        public DateTime nowDevice => DateTime.Now.ToUniversalTime();
+        public DateTime now => this.GetNowDateTime();
+        public DateTime firstPlayTime => this.gameTimeRepository.firstPlayTime;
+        public double lifeTimeHours => (now - firstPlayTime).TotalHours;
         
         private GameTimeRepository gameTimeRepository;
 
-
-        public GameTimeInteractor() {
-            gameSettionTimeDataCurrentSession = new GameSessionTimeData();
-        }
+        #region INITIALIZING
 
         protected override IEnumerator InitializeRoutine() {
-            gameTimeRepository = GetGameRepository<GameTimeRepository>();
+            this.gameTimeRepository = new GameTimeRepository();
+            yield return this.gameTimeRepository.Initialize();
             
             TimeLoader timeLoader = new TimeLoader();
-            timeLoader.OnTimeDownloaded += TimeLoader_OnTimeDownloaded;
+            timeLoader.OnTimeDownloadedEvent += this.OnTimeDownloaded;
             yield return timeLoader.LoadTime();
 
             GameTime.Initialize(this);
-            CompleteInitializing();
-            Logging.Log($"GAME TIME INTERACTOR: Initialized successful. \n{ToString()}");
+            this.CompleteInitializing();
+            Logging.Log($"GAME TIME INTERACTOR: Initialized successful. \n{this}");
         }
         
-        private void TimeLoader_OnTimeDownloaded(TimeLoader timeLoader, DownloadedTimeArgs e) {
-            timeLoader.OnTimeDownloaded -= TimeLoader_OnTimeDownloaded;
+        private void OnTimeDownloaded(TimeLoader timeLoader, DownloadedTimeArgs e) {
+            timeLoader.OnTimeDownloadedEvent -= OnTimeDownloaded;
 
-            InitGameTimeSessionCurrent(e.downloadedTime);
-            CalculateTimeLeftSinceLastSession(gameSettionTimeDataLastSession, gameSettionTimeDataCurrentSession);
+            this.gameSessionCurrentTimeData = this.InitGameTimeSessionCurrent(e.downloadedTime);
+            this.CalculateTimeBetweenSessions(this.gameSessionPreviousTimeData, this.gameSessionCurrentTimeData);
             OnGameTimeInitialized?.Invoke();
         }
 
-        private void InitGameTimeSessionCurrent(DateTime downloadedTime) {
-            gameSettionTimeDataCurrentSession.sessionStartSerializedFromServer.SetDateTime(downloadedTime);
+        private GameSessionTimeData InitGameTimeSessionCurrent(DateTime downloadedTime) {
+            var currentSessionTimeData = new GameSessionTimeData();
+            currentSessionTimeData.sessionStartSerializedFromServer.SetDateTime(downloadedTime);
 			
-            DateTime deviceTime = DateTime.Now.ToUniversalTime();
-            gameSettionTimeDataCurrentSession.sessionStartSerializedFromDevice.SetDateTime(deviceTime);
-            gameSettionTimeDataCurrentSession.timeValueActiveDeviceAtStart = GetDeviceWorkTimeInSeconds();
+            DateTime deviceTime = this.nowDevice;
+            currentSessionTimeData.sessionStartSerializedFromDevice.SetDateTime(deviceTime);
+            currentSessionTimeData.timeValueActiveDeviceAtStart = this.GetDeviceWorkTimeInSeconds();
+            return currentSessionTimeData;
+        }
+        
+        private DateTime GetNowDateTime() {
+            DateTime gameStartTime = this.gameSessionCurrentTimeData.sessionStartTime;
+            DateTime curerntTime = gameStartTime.AddSeconds(timeSinceGameStartedSec);
+            return curerntTime;
         }
         
         private long GetDeviceWorkTimeInSeconds() {
@@ -70,40 +77,37 @@ namespace VavilichevGD.Tools {
 #endif
         }
         
-        private void CalculateTimeLeftSinceLastSession(GameSessionTimeData timeDataLastSession, GameSessionTimeData timeDataCurrentSession) {
-            if (timeDataLastSession == null) {
-                timeSinceLastSessionEndedToCurrentSessionStarted = 0;
+        private void CalculateTimeBetweenSessions(GameSessionTimeData timeDataPreviousSession, GameSessionTimeData timeDataCurrentSession) {
+            if (timeDataPreviousSession == null) {
+                timeBetweenSessionsSec = 0;
                 return;
             }
 
-            timeSinceLastSessionEndedToCurrentSessionStarted = timeDataCurrentSession.timeValueActiveDeviceAtStart - timeDataLastSession.timeValueActiveDeviceAtEnd;
-            if (timeSinceLastSessionEndedToCurrentSessionStarted < 0f) {
-                timeSinceLastSessionEndedToCurrentSessionStarted = Mathf.FloorToInt((float)(timeDataCurrentSession.sessionStart - timeDataLastSession.sessionOver).TotalSeconds);
-                timeSinceLastSessionEndedToCurrentSessionStarted = Mathf.Max((float)timeSinceLastSessionEndedToCurrentSessionStarted, 0f);
+            timeBetweenSessionsSec = timeDataCurrentSession.timeValueActiveDeviceAtStart - timeDataPreviousSession.timeValueActiveDeviceAtEnd;
+            if (timeBetweenSessionsSec < 0f) {
+                timeBetweenSessionsSec = Mathf.FloorToInt((float)(timeDataCurrentSession.sessionStartTime - timeDataPreviousSession.sessionOverTime).TotalSeconds);
+                timeBetweenSessionsSec = Mathf.Max((float)timeBetweenSessionsSec, 0f);
             }
         }
+
+        #endregion
         
         
+        public override void Save() {
+            this.gameSessionCurrentTimeData.sessionDuration = this.timeSinceGameStartedSec;
+            this.gameSessionCurrentTimeData.timeValueActiveDeviceAtEnd = this.GetDeviceWorkTimeInSeconds();
+            this.gameTimeRepository.SetGameSessionPreviousTimeData(this.gameSessionCurrentTimeData);
+            this.gameTimeRepository.Save();
+        }
+
+        public void Update(float unscaledDeltaTime) {
+            this.timeSinceGameStartedSec += unscaledDeltaTime;
+        }
         
         public override string ToString() {
-            return $"Last session: {gameSettionTimeDataLastSession}\n\n" +
-                   $"Current session: {gameSettionTimeDataCurrentSession}\n\n" +
-                   $"Time between sessions: {timeSinceLastSessionEndedToCurrentSessionStarted}";
-        }
-
-        
-        
-        public void Save() {
-            gameSettionTimeDataCurrentSession.sessionDuration = timeSinceGameStarted;
-            gameSettionTimeDataCurrentSession.timeValueActiveDeviceAtEnd = GetDeviceWorkTimeInSeconds();
-            gameTimeRepository.SetGameSessionTimeData(gameSettionTimeDataCurrentSession);
-            gameTimeRepository.Save();
-        }
-
-        
-        
-        public void Update(float unscaledDeltaTime) {
-            timeSinceGameStarted += unscaledDeltaTime;
+            return $"Last session: {gameSessionPreviousTimeData}\n\n" +
+                   $"Current session: {gameSessionCurrentTimeData}\n\n" +
+                   $"Time between sessions: {timeBetweenSessionsSec}";
         }
     }
 }

@@ -2,7 +2,7 @@
 using VavilichevGD.Meta.FortuneWheel.Examples;
 
 namespace VavilichevGD.Meta.FortuneWheel {
-    public class FortuneWheelExampleBoot : GameBoot {
+    public class FortuneWheelExampleManager : GameManager {
         protected override void OnStart() {
             GameFortuneWheelExample.Run();
         }

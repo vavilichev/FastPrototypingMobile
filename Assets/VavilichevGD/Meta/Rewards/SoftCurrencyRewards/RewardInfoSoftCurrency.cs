@@ -18,5 +18,13 @@ namespace VavilichevGD.Meta {
         public override RewardHandler CreateRewardHandler(Reward reward) {
             return new RewardHandlerSoftCurrency(reward);
         }
+
+        public override RewardState CreateState() {
+            return new RewardState(this.GetId());
+        }
+
+        public override RewardState CreateState(string stateJson) {
+            return JsonUtility.FromJson<RewardState>(stateJson);
+        }
     }
 }

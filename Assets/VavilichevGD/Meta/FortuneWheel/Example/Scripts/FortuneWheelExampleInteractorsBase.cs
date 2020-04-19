@@ -1,6 +1,5 @@
 ﻿using VavilichevGD.Architecture;
 using VavilichevGD.Monetization;
-using VavilichevGD.Tools;
 
 namespace VavilichevGD.Meta.FortuneWheel.Examples {
     public class FortuneWheelExampleInteractorsBase : InteractorsBase {

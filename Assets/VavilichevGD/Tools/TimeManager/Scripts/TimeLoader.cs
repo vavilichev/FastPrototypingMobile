@@ -4,34 +4,51 @@ using System.Globalization;
 using UnityEngine;
 using UnityEngine.Networking;
 
-namespace VavilichevGD.Tools {
+namespace VavilichevGD.Tools.Time {
 	public class TimeLoader {
 
-		public bool isLoading { get; private set; }
+		#region CONSTANTS
 
 		private const bool LOADED_FROM_LOCAL = false;
 		private const bool LOADED_FROM_INTERNET = true;
-		private const int BREAK_TIME_DEFAULT = 3;
+		private const bool HAS_ERROR = true;
+		private const bool NO_ERROR = false;
+		private const int BREAK_TIME_DEFAULT = 2;
 		private const string SERVER_URL = "https://www.microsoft.com";
 
-		public delegate void DownloadTimeHandler(TimeLoader timeLoader, DownloadedTimeArgs e);
-		public event DownloadTimeHandler OnTimeDownloaded;
+		#endregion
 
+		#region DELEGATES
+
+		public delegate void DownloadTimeHandler(TimeLoader timeLoader, DownloadedTimeArgs e);
+		public event DownloadTimeHandler OnTimeDownloadedEvent;
+
+		#endregion
+
+
+		public bool isLoading => this.routineLoadTime.isActive;
+
+		private RoutineWithArg<int> routineLoadTime;
+
+		
+		public TimeLoader() {
+			this.routineLoadTime = new RoutineWithArg<int>(this.LoadTimeRoutine);
+		}
+		
 		public Coroutine LoadTime(int breakTime = BREAK_TIME_DEFAULT) {
-			if (!isLoading)
-				return Coroutines.StartRoutine(LoadTimeRoutine(breakTime));
+			if (!this.isLoading)
+				return this.routineLoadTime.Start(breakTime);
 			return null;
 		}
 
 		private IEnumerator LoadTimeRoutine(int breakTime) {
-			isLoading = true;
-
-			UnityWebRequest request = new UnityWebRequest(SERVER_URL);
+			
+			var request = new UnityWebRequest(SERVER_URL);
 			request.downloadHandler = new DownloadHandlerBuffer();
 			request.timeout = breakTime;
 
 			yield return request.SendWebRequest();
-			if (NotValidResponse(request))
+			if (this.NotValidResponse(request))
 				yield break;
 			
 			var todaysDates = request.GetResponseHeaders()["date"];
@@ -40,8 +57,7 @@ namespace VavilichevGD.Tools {
 									   CultureInfo.InvariantCulture.DateTimeFormat,
 									   DateTimeStyles.AdjustToUniversal);
 
-			NotifyAboutDownloadedTime(downloadedTime, false, null, LOADED_FROM_INTERNET);
-			isLoading = false;
+			this.NotifyAboutDownloadedTime(downloadedTime, NO_ERROR, null, LOADED_FROM_INTERNET);
 		}
 
 		private bool NotValidResponse(UnityWebRequest request) {
@@ -57,13 +73,13 @@ namespace VavilichevGD.Tools {
 			if (string.IsNullOrEmpty(errorText))
 				return false;
 
-			NotifyAboutDownloadedTime(new DateTime(), true, errorText, LOADED_FROM_LOCAL);
+			this.NotifyAboutDownloadedTime(new DateTime(), HAS_ERROR, errorText, LOADED_FROM_LOCAL);
 			return true;
 		}
 
 		private void NotifyAboutDownloadedTime(DateTime downloadedTime, bool error, string errorText, bool downloadedFromServer) {
 			DownloadedTimeArgs downloadedTimeArgs = new DownloadedTimeArgs(downloadedTime, error, errorText, downloadedFromServer);
-			OnTimeDownloaded?.Invoke(this, downloadedTimeArgs);
+			OnTimeDownloadedEvent?.Invoke(this, downloadedTimeArgs);
 		}
 	}
 }

@@ -22,7 +22,7 @@ namespace VavilichevGD.Meta {
         }
 
         protected virtual void InitDailyRewardInfoFileNames() {
-            DailyRewardInfo[] rewardsInfo = Resources.LoadAll<DailyRewardInfo>(RESOURCES_PATH);
+            RewardInfo[] rewardsInfo = Resources.LoadAll<RewardInfo>(RESOURCES_PATH);
             dailyRewardInfoFileNames = new string[rewardsInfo.Length];
             for (int index = 0; index < rewardsInfo.Length; index++)
                 dailyRewardInfoFileNames[index] = rewardsInfo[index].name;
@@ -53,7 +53,7 @@ namespace VavilichevGD.Meta {
                       $"{lastDailyRewardsData.dailyRewardsDayIndex}");
         }
 
-        public DailyRewardInfo GetRewardInfo(int index) {
+        public RewardInfo GetRewardInfo(int index) {
             Resources.UnloadUnusedAssets();
             if (index < 0 || index >= dailyRewardInfoFileNames.Length) {
                 Logging.LogError($"REPOSITORY DAILY REWARD: There is no deaily reward info scriptable object " +
@@ -62,7 +62,7 @@ namespace VavilichevGD.Meta {
             }
 
             string fileName = dailyRewardInfoFileNames[index];
-            DailyRewardInfo loadedInfo = Resources.Load<DailyRewardInfo>($"{RESOURCES_PATH}/{fileName}");
+            RewardInfo loadedInfo = Resources.Load<RewardInfo>($"{RESOURCES_PATH}/{fileName}");
             return loadedInfo;
         }
         

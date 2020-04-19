@@ -15,29 +15,6 @@
           <e p="InteractorsBaseFastPrototype.cs" t="Include" />
           <e p="RepositoriesBaseFastProrotype.cs" t="Include" />
         </e>
-        <e p="FortuneWheel" t="Include">
-          <e p="Example" t="Include">
-            <e p="Config" t="Include">
-              <e p="Scripts" t="Include">
-                <e p="FortuneWheelConfig.cs" t="Include" />
-              </e>
-            </e>
-            <e p="Scripts" t="Include">
-              <e p="FortuneWheelExampleBoot.cs" t="Include" />
-              <e p="FortuneWheelExampleInteractorsBase.cs" t="Include" />
-              <e p="FortuneWheelExampleRepositoriesBase.cs" t="Include" />
-              <e p="GameFortuneWheelExample.cs" t="Include" />
-            </e>
-          </e>
-          <e p="README.txt" t="Include" />
-          <e p="Scripts" t="Include">
-            <e p="FortuneWheel.cs" t="Include" />
-            <e p="FortuneWheelInteractor.cs" t="Include" />
-            <e p="FortuneWheelInteractorFreeAndAD.cs" t="Include" />
-            <e p="FortuneWheelRepositotyFreeAndAD.cs" t="Include" />
-            <e p="FortuneWheelSectorData.cs" t="Include" />
-          </e>
-        </e>
         <e p="Plugins" t="Include">
           <e p="UDP" t="Include">
             <e p="Editor" t="Include">
@@ -238,7 +215,7 @@
             <e p="Game" t="Include">
               <e p="Scripts" t="Include">
                 <e p="Game.cs" t="Include" />
-                <e p="GameBoot.cs" t="Include" />
+                <e p="GameManager.cs" t="Include" />
                 <e p="GameVersionStorage.cs" t="Include" />
               </e>
             </e>
@@ -291,6 +268,32 @@
             </e>
           </e>
           <e p="Meta" t="Include">
+            <e p="FortuneWheel" t="Include">
+              <e p="Config" t="Include">
+                <e p="Scripts" t="Include">
+                  <e p="Editor" t="Include">
+                    <e p="FortuneWheelConfigEditor.cs" t="Include" />
+                  </e>
+                  <e p="FortuneWheelConfig.cs" t="Include" />
+                </e>
+              </e>
+              <e p="Example" t="Include">
+                <e p="Scripts" t="Include">
+                  <e p="FortuneWheelExampleInteractorsBase.cs" t="Include" />
+                  <e p="FortuneWheelExampleManager.cs" t="Include" />
+                  <e p="FortuneWheelExampleRepositoriesBase.cs" t="Include" />
+                  <e p="GameFortuneWheelExample.cs" t="Include" />
+                </e>
+              </e>
+              <e p="README.txt" t="Include" />
+              <e p="Scripts" t="Include">
+                <e p="FortuneWheel.cs" t="Include" />
+                <e p="FortuneWheelInteractor.cs" t="Include" />
+                <e p="FortuneWheelInteractorFreeAndAD.cs" t="Include" />
+                <e p="FortuneWheelRepositotyFreeAndAD.cs" t="Include" />
+                <e p="FortuneWheelSectorData.cs" t="Include" />
+              </e>
+            </e>
             <e p="Quests" t="Include">
               <e p="Example" t="Include">
                 <e p="Scripts" t="Include">
@@ -326,9 +329,7 @@
                   </e>
                 </e>
                 <e p="Scripts" t="Include">
-                  <e p="DailyReward.cs" t="Include" />
                   <e p="DailyRewardHandler.cs" t="Include" />
-                  <e p="DailyRewardInfo.cs" t="Include" />
                   <e p="DailyRewardInteractor.cs" t="Include" />
                   <e p="DailyRewardRepository.cs" t="Include" />
                   <e p="DailyRewardsData.cs" t="Include" />
@@ -338,6 +339,8 @@
                 <e p="Reward.cs" t="Include" />
                 <e p="RewardHandler.cs" t="Include" />
                 <e p="RewardInfo.cs" t="Include" />
+                <e p="RewardState.cs" t="Include" />
+                <e p="RewardStatesData.cs" t="Include" />
               </e>
               <e p="SoftCurrencyRewards" t="Include">
                 <e p="RewardHandlerSoftCurrency.cs" t="Include" />
@@ -517,6 +520,7 @@
                 <e p="DownloadedTimeArgs.cs" t="Include" />
                 <e p="GameSessionTimeData.cs" t="Include" />
                 <e p="GameTime.cs" t="Include" />
+                <e p="GameTimeDataSaving.cs" t="Include" />
                 <e p="GameTimeInteractor.cs" t="Include" />
                 <e p="GameTimeRepository.cs" t="Include" />
                 <e p="IOSTime.cs" t="Include" />
