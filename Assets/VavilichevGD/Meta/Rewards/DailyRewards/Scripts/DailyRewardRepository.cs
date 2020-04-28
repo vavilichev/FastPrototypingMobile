@@ -1,45 +1,41 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using System;
+using System.Collections;
+using System.Runtime.CompilerServices;
 using VavilichevGD.Architecture;
+using VavilichevGD.Meta.DailyRewards;
 using VavilichevGD.Tools;
 
 namespace VavilichevGD.Meta {
     public class DailyRewardRepository : Repository {
 
-        protected const string RESOURCES_PATH = "DailyRewards";
+        #region CONSTANTS
+
         protected const string PREF_KEY_LAST_REWARD_DATA = "DAILY_REWARD_DATA";
 
-        protected string[] dailyRewardInfoFileNames;
-        
-        
-        public DailyRewardsData lastDailyRewardsData { get; protected set; }
-        public int rewardsCount => dailyRewardInfoFileNames.Length;
+        #endregion
+
+        private DailyRewardsData dailyRewardsData;
+
+        public DateTime lastDailyRewardReceivedTime => this.dailyRewardsData.lastDailyRewardReceivedTime;
+        public int lastRewardDayIndex => this.dailyRewardsData.dailyRewardsDayIndex;
+        public bool lastRewardExist => this.dailyRewardsData.lastRewardExist;
         
         protected override IEnumerator InitializeRoutine() {
-            InitDailyRewardInfoFileNames();
-            LoadFromStorage();
-            yield break;
-        }
-
-        protected virtual void InitDailyRewardInfoFileNames() {
-            RewardInfo[] rewardsInfo = Resources.LoadAll<RewardInfo>(RESOURCES_PATH);
-            dailyRewardInfoFileNames = new string[rewardsInfo.Length];
-            for (int index = 0; index < rewardsInfo.Length; index++)
-                dailyRewardInfoFileNames[index] = rewardsInfo[index].name;
-            Resources.UnloadUnusedAssets();
-            Logging.Log($"REPOSITORY DAILY REWARD: initialized {dailyRewardInfoFileNames.Length} names of daily reward info");
+            this.LoadFromStorage();
+            yield return null;
+            this.CompleteInitializing();
         }
 
         protected override void LoadFromStorage() {
-            lastDailyRewardsData = Storage.GetCustom(PREF_KEY_LAST_REWARD_DATA, DailyRewardsData.defaultValue);
+            this.dailyRewardsData = Storage.GetCustom(PREF_KEY_LAST_REWARD_DATA, DailyRewardsData.defaultValue);
             Logging.Log($"REPOSITORY DAILY REWARD: loaded data. Last date = " +
-                      $"{lastDailyRewardsData.dailyRewardReceivedTimeSerialized}, the day index is " +
-                      $"{lastDailyRewardsData.dailyRewardsDayIndex}");
+                      $"{this.lastDailyRewardReceivedTime}, the day index is " +
+                      $"{this.lastRewardDayIndex}");
         }
 
 
         public void SetLastDailyRewardData(DailyRewardsData newDailyRewardDate) {
-            lastDailyRewardsData = newDailyRewardDate;
+            this.dailyRewardsData = newDailyRewardDate;
         }
 
         public override void Save() {
@@ -47,36 +43,10 @@ namespace VavilichevGD.Meta {
         }
 
         protected override void SaveToStorage() {
-            Storage.SetCustom(PREF_KEY_LAST_REWARD_DATA, lastDailyRewardsData);
+            Storage.SetCustom(PREF_KEY_LAST_REWARD_DATA, this.dailyRewardsData);
             Logging.Log($"REPOSITORY DAILY REWARD: Saved data. Last date = " +
-                      $"{lastDailyRewardsData.dailyRewardReceivedTimeSerialized}, the day index is " +
-                      $"{lastDailyRewardsData.dailyRewardsDayIndex}");
-        }
-
-        public RewardInfo GetRewardInfo(int index) {
-            Resources.UnloadUnusedAssets();
-            if (index < 0 || index >= dailyRewardInfoFileNames.Length) {
-                Logging.LogError($"REPOSITORY DAILY REWARD: There is no deaily reward info scriptable object " +
-                               $"in the DailyRewards folder with index ({index})");
-                return null;
-            }
-
-            string fileName = dailyRewardInfoFileNames[index];
-            RewardInfo loadedInfo = Resources.Load<RewardInfo>($"{RESOURCES_PATH}/{fileName}");
-            return loadedInfo;
-        }
-        
-        public virtual int GetNextRewardDayIndex(DailyRewardsData lastRewardData) {
-            int totalRewardsCount = dailyRewardInfoFileNames.Length;
-            int nextDayIndex = lastRewardData.dailyRewardsDayIndex + 1;
-//            if (nextDayIndex >= totalRewardsCount)
-//                nextDayIndex = 0;
-            return nextDayIndex;
-        }
-
-        public override void Clean() {
-            Storage.ClearKey(PREF_KEY_LAST_REWARD_DATA);
-            Logging.Log($"REPOSITORY DAILY REWARD: The pref key ({PREF_KEY_LAST_REWARD_DATA}) was cleaned");
+                      $"{this.lastDailyRewardReceivedTime}, the day index is " +
+                      $"{this.lastRewardDayIndex}");
         }
     }
 }

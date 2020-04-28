@@ -11,7 +11,8 @@ namespace VavilichevGD.Tools.Time {
 		
 		public delegate void GameTimeEventHandler();
 		public static event GameTimeEventHandler OnGameTimeInitializedEvent;
-		public static event GameTimeEventHandler OnOneSecondTickEvent;
+		public delegate void GameTimeTickHandler(DateTime nowDevice);
+		public static event GameTimeTickHandler OnOneSecondTickEvent;
 
 		#endregion
 		
@@ -66,7 +67,7 @@ namespace VavilichevGD.Tools.Time {
 			this.timer += deltaTimeUnscaled;
 			if (this.timer >= 1f) {
 				this.timer = Mathf.Max(1f - this.timer, 0f);
-				OnOneSecondTickEvent?.Invoke();
+				OnOneSecondTickEvent?.Invoke(nowDevice);
 			}
 		}
 

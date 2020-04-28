@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
-namespace VavilichevGD.Meta {
-    [CreateAssetMenu(fileName = DailyRewardInteactor.DAILY_REWARD_NAME_PREFIX, menuName = "Reward/" + DailyRewardInteactor.DAILY_REWARD_NAME_PREFIX)]
+namespace VavilichevGD.Meta.DailyRewards {
+    [CreateAssetMenu(fileName = "DailyRewardInfoExample", menuName = "Meta/Rewards/Example")]
     public class DailyRewardInfoExample : RewardInfo {
         public override RewardHandler CreateRewardHandler(Reward reward) {
             Reward dailyReward = reward;

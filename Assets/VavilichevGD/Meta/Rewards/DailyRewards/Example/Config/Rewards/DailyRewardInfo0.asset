@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e9949033afde404c87b35854f6030e6, type: 3}
-  m_Name: DailyRewardInfo3
+  m_Name: DailyRewardInfo0
   m_EditorClassIdentifier: 
-  m_title: Title 3
-  m_description: Desc 3
+  m_id: DWE_0
+  m_title: Title 0
+  m_description: Desc 0
   m_spriteIcon: {fileID: 0}
-  m_id: DW3
+  m_count: 1

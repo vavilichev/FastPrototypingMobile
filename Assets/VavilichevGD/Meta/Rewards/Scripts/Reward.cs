@@ -10,7 +10,8 @@ namespace VavilichevGD.Meta {
         public event RewardReceiveEventHandler OnReceivedEvent;
 
         #endregion
-        
+
+        public string id => this.info.GetId();
         public RewardInfo info { get; }
         public RewardState state { get; }
         public bool isViewed => this.state.isViewed;

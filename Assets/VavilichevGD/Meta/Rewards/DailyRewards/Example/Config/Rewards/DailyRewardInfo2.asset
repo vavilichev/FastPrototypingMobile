@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e9949033afde404c87b35854f6030e6, type: 3}
   m_Name: DailyRewardInfo2
   m_EditorClassIdentifier: 
+  m_id: DWE_3
   m_title: Title 2
   m_description: Desc 2
   m_spriteIcon: {fileID: 0}
-  m_id: DW2
+  m_count: 1

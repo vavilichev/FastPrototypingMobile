@@ -5,98 +5,158 @@ using VavilichevGD.Architecture;
 using VavilichevGD.Tools;
 using VavilichevGD.Tools.Time;
 
-namespace VavilichevGD.Meta {
+namespace VavilichevGD.Meta.DailyRewards {
     public class DailyRewardInteactor : Interactor {
         
         #region Constants
-        
-        protected const string PATH_REWARDS_FOLDER = "DailyRewards";
-        protected const string PREF_KEY_LAST_REWARD_DATA = "LAST_REWARD_DATA";
 
-        public const string DAILY_REWARD_NAME_PREFIX = "DailyRewardInfo";
-        public const int TIME_DIFF_BETWEEN_REWARDS_HOURS = 24;
+        private const string PATH_CONFIG = "DailyRewardsConfig";
+        private const int HOURS_24 = 24;
 
         #endregion
 
-        protected DailyRewardRepository dailyRewardRepository;
+        public int totalRewardDaysCount {
+            get {
+                int count = this.config.rewards.Length;
+                this.UnloadConfig();
+                return count;
+            }
+        }
+        
+        protected DailyRewardRepository repository;
+
+        protected DailyRewardsConfig config {
+            get {
+                if (this.m_config == null)
+                    this.m_config = Resources.Load<DailyRewardsConfig>(PATH_CONFIG);
+                return m_config;
+            }
+        }
+
+        private DailyRewardsConfig m_config;
 
         protected override IEnumerator InitializeRoutine() {
-            Logging.Log("DAILY REWARD INTERACTOR: Starts initializing.");
-            
             if (!GameTime.isInitialized)
                 yield return Game.WaitForInteractor<GameTimeInteractor>(this);
             
-            Logging.Log("DAILY REWARD INTERACTOR: Initialized successfully.");
-        }
-
-        public void TryToGetReward() {
-            if (!GameTime.isInitialized) {
-                Debug.LogError("GameTime is not initialized yet");
-                return;
-            }
+            this.repository = new DailyRewardRepository();
+            this.m_config = Resources.Load<DailyRewardsConfig>(PATH_CONFIG);
+            yield return this.repository.Initialize();
             
-            DailyRewardsData lastData = dailyRewardRepository.lastDailyRewardsData;
-            double hoursDifference = (GameTime.now - lastData.dailyRewardReceivedTime).TotalHours;
-            bool needToReward = hoursDifference >= TIME_DIFF_BETWEEN_REWARDS_HOURS;
-            Logging.Log($"DAILY REWARD INTERACTOR: loaded data = {lastData.dailyRewardReceivedTime}, " +
-                $"need to reward = {needToReward}, difference is: {hoursDifference} hours, " +
-                $"index: {lastData.dailyRewardsDayIndex}");
-
-            if (needToReward) {
-                int nextDayIndex = dailyRewardRepository.GetNextRewardDayIndex(lastData);
-                RewardInfo nextDailyRewardInfo = dailyRewardRepository.GetRewardInfo(nextDayIndex);
-
-                if (nextDailyRewardInfo == null) {
-                    AllRewardsAlreadyReceived();
-                    return;
-                }
-
-                Reward reward = new Reward(nextDailyRewardInfo);
-                reward.OnReceivedEvent += RewardOnOnRewardReceivedEvent;
-                reward.Apply();
-            }
+            this.CompleteInitializing();
         }
 
-        private void RewardOnOnRewardReceivedEvent(Reward reward, bool success) {
-            reward.OnReceivedEvent -= RewardOnOnRewardReceivedEvent;
-            if (success) {
-                DailyRewardsData lastData = dailyRewardRepository.lastDailyRewardsData;
-                int nextDayIndex = dailyRewardRepository.GetNextRewardDayIndex(lastData);
-                DailyRewardsData data = new DailyRewardsData();
-                data.dailyRewardsDayIndex = nextDayIndex;
-                data.dailyRewardReceivedTimeSerialized = new DateTimeSerialized(GameTime.now);
-                dailyRewardRepository.SetLastDailyRewardData(data);
-                dailyRewardRepository.Save();
-            }
-        }
+        public bool AllRewardsReceived() {
+            if (this.config.loop)
+                return false;
 
-        protected virtual void AllRewardsAlreadyReceived() {
-            // TODO: Do any actions when all rewards was received or something went wrong;
-            Logging.Log($"DAILY REWARD INTERACTOR: all rewards was received or something went wrong");
+            return this.repository.lastRewardDayIndex >= this.config.rewards.Length - 1;
         }
         
-        public void ForgetLastDate() {
-            Storage.ClearKey(PREF_KEY_LAST_REWARD_DATA);
-            Logging.Log("DAILY REWARD INTERACTOR: info about last date was cleaned");
+        public bool CanReceiveReward(out int nextRewardDayIndex) {
+            bool lastRewardExist = this.repository.lastRewardExist;
+            if (!lastRewardExist) {
+                nextRewardDayIndex = 0;
+                return true;
+            }
+            
+            if (this.AllRewardsReceived()) {
+                Logging.Log("DAILY REWARD INTERACTOR: CanReceive: false (all rewards received)");
+                nextRewardDayIndex = -1;
+                return false;
+            }
+            
+            var nowDeviceUTC = GameTime.now;;
+            var lastRewardUTC = this.repository.lastDailyRewardReceivedTime;
+            var daysCount = this.config.rewards.Length;
+
+            if (this.config.nextAtMidnight) {
+                DateTime nowDeviceTime = nowDeviceUTC.ToLocalTime();
+                DateTime lastRewardToLocal = lastRewardUTC.ToLocalTime();
+                if (nowDeviceTime.Date == lastRewardToLocal.Date) {
+                    nextRewardDayIndex = -1;
+                    this.UnloadConfig();
+                    Logging.Log("DAILY REWARD INTERACTOR: CanReceive: false (Midnight, same date)");
+                    return false;
+                }
+
+                if (this.config.resetAfter24HoursOfMissing) {
+                    if ((nowDeviceUTC.Date - lastRewardUTC.Date).TotalDays > 1) {
+                        nextRewardDayIndex = 0;
+                        return true;
+                    }
+
+                    nextRewardDayIndex = this.GetNextDayIndex();
+                    return true;
+                }
+
+                nextRewardDayIndex = this.GetNextDayIndex();
+                return true;
+            }
+
+            double hoursPassed = (nowDeviceUTC - lastRewardUTC).TotalHours;
+            if (this.config.resetAfter24HoursOfMissing) {
+                if (hoursPassed <= HOURS_24) {
+                    nextRewardDayIndex = -1;
+                    this.UnloadConfig();
+                    Logging.Log("DAILY REWARD INTERACTOR: CanReceive: false (same date with reset)");
+                    return false;
+                }
+
+                if (hoursPassed > HOURS_24 * 2) {
+                    nextRewardDayIndex = 0;
+                    return true;
+                }
+
+                nextRewardDayIndex = this.GetNextDayIndex();
+                return true;
+            }
+
+            if (hoursPassed > HOURS_24) {
+                nextRewardDayIndex = this.GetNextDayIndex();
+                return true;
+            }
+
+            nextRewardDayIndex = -1;
+            this.UnloadConfig();
+            Logging.Log("DAILY REWARD INTERACTOR: CanReceive: false (same date)");
+
+            return false;
         }
 
-        public void CleanRepository() {
-            dailyRewardRepository.Clean();
+        private void UnloadConfig() {
+            this.m_config = null;
+            Resources.UnloadUnusedAssets();
         }
 
-        public void PrepareForNextRewardTest() {
-            DailyRewardsData lastDayData = dailyRewardRepository.lastDailyRewardsData;
-            DateTime lastDateTime = lastDayData.dailyRewardReceivedTime;
+        private int GetNextDayIndex() {
+            var currentDayIndex = this.repository.lastRewardDayIndex;
+            var nextDayIndex = currentDayIndex + 1;
+            var totalRewardsCount = this.totalRewardDaysCount;
+            if (this.config.loop && nextDayIndex >= totalRewardsCount)
+                nextDayIndex = nextDayIndex % totalRewardsCount;
+            return nextDayIndex;
+        }
 
-            if (lastDateTime != new DateTime()) {
-                DateTime lastDateTimeMinusOnePeriod = lastDateTime - new TimeSpan(TIME_DIFF_BETWEEN_REWARDS_HOURS, 0, 0);
-                lastDayData.dailyRewardReceivedTimeSerialized.SetDateTime(lastDateTimeMinusOnePeriod);
-                Storage.SetCustom(PREF_KEY_LAST_REWARD_DATA, lastDayData);
-                Logging.Log($"DAILY REWARD INTERACTOR: next reward was prepared.");
-            }
-            else {
-                Logging.LogError($"DAILY REWARD INTERACTOR: cannot prepare next reward because current one was not initialized yet");
-            }
+        public RewardInfo GetDayRewardInfo(int dayIndex) {
+            if (this.config.loop && dayIndex >= this.config.rewards.Length)
+                dayIndex = dayIndex % this.config.rewards.Length;
+
+            var rewardInfo = this.config.rewards[dayIndex];
+
+            this.UnloadConfig();
+            return rewardInfo;
+        }
+
+        public void MarkRewardAsReceived(int newDayIndex) {
+            DailyRewardsData newData = new DailyRewardsData();
+            newData.dailyRewardsDayIndex = newDayIndex;
+            newData.lastDailyRewardReceivedTime = GameTime.now;
+            this.repository.SetLastDailyRewardData(newData);
+        }
+        
+        public override void Save() {
+            this.repository.Save();
         }
     }
 }

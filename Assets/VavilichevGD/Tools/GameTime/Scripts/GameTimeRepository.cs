@@ -21,6 +21,7 @@ namespace VavilichevGD.Tools.Time {
         protected override IEnumerator InitializeRoutine() {
             this.LoadFromStorage();
             yield return null;
+            this.CompleteInitializing();
         }
 
         protected override void LoadFromStorage() {
