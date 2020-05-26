@@ -18,7 +18,7 @@ namespace VavilichevGD.LocalizationFramework {
 
         protected override IEnumerator InitializeRoutine() {
             entities = new Dictionary<string, string>();
-            localizationRepository = this.GetGameRepository<LocalizationRepository>();
+            localizationRepository = this.GetRepository<LocalizationRepository>();
             
             SystemLanguage language = localizationRepository.GetLanguage();
             settings = LoadSettings(language);

@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using VavilichevGD.Monetization;
 using VavilichevGD.Tools.Time;
-using VavilichevGD.UI;
+using VavilichevGD.UI.Extentions;
 
 namespace VavilichevGD.Meta.DefferedRewards.Example {
     [Serializable]

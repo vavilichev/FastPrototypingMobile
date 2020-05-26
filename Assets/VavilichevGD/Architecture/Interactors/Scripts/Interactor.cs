@@ -33,13 +33,16 @@ namespace VavilichevGD.Architecture {
 
         protected virtual IEnumerator InitializeRoutine() {
             CompleteInitializing();
-            yield break;
+            yield return null;
         }
         
         protected void CompleteInitializing() {
             state = State.Initialized;
+            this.OnInitialzied();
             NotifyAboutInteractorInitialized();
         }
+        
+        protected virtual void OnInitialzied() { }
 
         private void NotifyAboutInteractorInitialized() {
             OnInteractorInitialized?.Invoke(this);
@@ -56,26 +59,18 @@ namespace VavilichevGD.Architecture {
 
         public virtual void Reset() { }
 
-        public T GetGameInteractor<T>() where T : Interactor {
+        public T GetInteractor<T>() where T : Interactor {
             return Game.GetInteractor<T>();
         }
 
-        public T GetGameRepository<T>() where T : Repository {
+        public T GetRepository<T>() where T : Repository {
             return Game.GetRepository<T>();
         }
         
-        protected IEnumerable<T> GetGameInteractors<T>() where T : IInteractor
+        protected IEnumerable<T> GetInteractors<T>() where T : IInteractor
         {
             return Game.GetInteractors<T>();
         }
 
-        public T GetSceneInteractor<T>() where T : Interactor {
-            return GameScene.GetInteractor<T>();
-        }
-
-        public T GetSceneRepository<T>() where T : Repository {
-            return GameScene.GetRepository<T>();
-        }
-        
     }
 }

@@ -2,7 +2,7 @@
 using System.Globalization;
 using UnityEngine;
 using UnityEngine.UI;
-using VavilichevGD.UI;
+using VavilichevGD.UI.Extentions;
 
 namespace VavilichevGD.Tools.Time.Example {
     public class GameTimeExample : MonoBehaviour {

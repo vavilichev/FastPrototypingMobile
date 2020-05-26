@@ -35,11 +35,7 @@ namespace VavilichevGD.Architecture {
 
         public Game() {
             state = State.NotInitialized;
-            GameScene.OnGameSceneInitialized += OnGameSceneInitialized;
-            GameScene.OnGameSceneUnloaded += OnGameSceneUnloaded;
         }
-
-        
 
         public void Initialize() {
             GameVersionStorage.Initialize();
@@ -78,7 +74,6 @@ namespace VavilichevGD.Architecture {
             
             repositoriesBase.SendOnGameInitializedEvent();
             interactorsBase.SendOnGameInitializedEvent();
-            GameScene.SendOnGameInitializedEvent();
             
             NotifyAboutGameInitialized();
         }
@@ -91,16 +86,6 @@ namespace VavilichevGD.Architecture {
         
         
         #region Events
-        
-        private void OnGameSceneInitialized(GameScene gameScene) {
-            repositoriesBase.SendOnGameSceneInitializedEvent();
-            interactorsBase.SendOnGameSceneInitializedEvent();
-        }
-        
-        private void OnGameSceneUnloaded(GameScene gameScene) {
-            repositoriesBase.SendOnGameSceneUnloadedEvent();
-            interactorsBase.SendOnGameSceneUnloadedEvent();
-        }
         
         private void OnRepositoryBaseStatusChanged(string statusText) {
             NotifyAboutStatusChanged(statusText);

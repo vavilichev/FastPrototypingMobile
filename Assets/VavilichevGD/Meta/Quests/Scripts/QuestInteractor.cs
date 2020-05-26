@@ -13,7 +13,7 @@ namespace VavilichevGD.Meta.Quests {
 
         protected override IEnumerator InitializeRoutine() {
             Logging.Log("QUEST INTERACTOR: Start initializing.");
-            QuestRepository questRepository = GetGameRepository<QuestRepository>();
+            QuestRepository questRepository = GetRepository<QuestRepository>();
             if (!questRepository.IsInitialized())
                 yield return questRepository.Initialize();
             
@@ -55,7 +55,7 @@ namespace VavilichevGD.Meta.Quests {
             foreach (Quest quest in questsMap.Values)
                 states.Add(quest.state);
 
-            QuestRepository questRepository =this.GetGameRepository<QuestRepository>();
+            QuestRepository questRepository =this.GetRepository<QuestRepository>();
             questRepository.SetStates(states.ToArray());
             questRepository.Save();
         }

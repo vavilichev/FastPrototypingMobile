@@ -28,7 +28,7 @@ namespace VavilichevGD.Monetization {
         private void InitProductsMap() {
             this.productsMap = new Dictionary<string, Product>();
             
-            ShopRepository shopRepository = this.GetGameRepository<ShopRepository>();
+            ShopRepository shopRepository = this.GetRepository<ShopRepository>();
             var stateJsons = shopRepository.stateJsons;
             var allProductsInfo = this.GetAllProductsInfo();
             Logging.Log($"PRODUCT INTERACTOR: Loaded products info. Count = {allProductsInfo?.Length}");
@@ -99,7 +99,7 @@ namespace VavilichevGD.Monetization {
             foreach (KeyValuePair<string,Product> pair in productsMap)
                 states.Add(pair.Value.state);
 
-            var shopRepository = this.GetGameRepository<ShopRepository>();
+            var shopRepository = this.GetRepository<ShopRepository>();
             shopRepository.SetProductStates(states.ToArray());
             shopRepository.Save();
             Logging.Log("PURCHASE INTERACTOR: All products saved");

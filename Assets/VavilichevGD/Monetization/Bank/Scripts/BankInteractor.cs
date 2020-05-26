@@ -11,7 +11,7 @@ namespace VavilichevGD.Monetization {
         protected BankRepository bankRepository;
 
         protected override IEnumerator InitializeRoutine() {
-            this.bankRepository = this.GetGameRepository<BankRepository>();
+            this.bankRepository = this.GetRepository<BankRepository>();
             
             Bank.Initialize(this);
             yield return null;

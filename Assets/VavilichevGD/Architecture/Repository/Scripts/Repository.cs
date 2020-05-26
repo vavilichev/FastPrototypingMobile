@@ -62,22 +62,13 @@ namespace VavilichevGD.Architecture {
             throw new NotSupportedException($"Type: {this.GetType()}");
         }
         
-        public T GetGameInteractor<T>() where T : Interactor {
+        public T GetInteractor<T>() where T : Interactor {
             return Game.GetInteractor<T>();
         }
 
-        public T GetSceneInteractor<T>() where T : Interactor {
-            return GameScene.GetInteractor<T>();
-        }
-
-        public T GetGameRepository<T>() where T : Repository {
+        public T GetRepository<T>() where T : Repository {
             return Game.GetRepository<T>();
         }
-
-        public T GetSceneRepository<T>() where T : Repository {
-            return GameScene.GetRepository<T>();
-        }
-
         
     }
 }
