@@ -249,6 +249,9 @@
                 <e p="RepositoryUpdater.cs" t="Include" />
               </e>
             </e>
+            <e p="Utils" t="Include">
+              <e p="ArchitectureExtentions.cs" t="Include" />
+            </e>
           </e>
           <e p="Core" t="Include">
             <e p="Levels" t="Include">

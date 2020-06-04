@@ -2,36 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0a837fd0-d632-4c9c-b5dd-8086dd6314b0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.FastProrotype/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FastProrotype/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.FastProrotype/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FastProrotype/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/Resources/[INTERFACE].prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI/Resources/[INTERFACE].prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Core/Levels/Example/Resources/LevelsList/LevelInfo0.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Core/Levels/Example/Resources/LevelsList/LevelInfo0.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Core/Levels/Example/Resources/LevelsList/LevelInfo1.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Core/Levels/Example/Resources/LevelsList/LevelInfo1.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Core/Levels/Example/Resources/LevelsList/LevelInfo2.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Core/Levels/Example/Resources/LevelsList/LevelInfo2.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Core/Levels/Example/Resources/LevelsList/LevelInfo3.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Core/Levels/Example/Resources/LevelsList/LevelInfo3.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Core/Levels/Example/Resources/LevelsList/LevelInfo4.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Core/Levels/Example/Resources/LevelsList/LevelInfo4.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Core/Levels/Example/Resources/LevelsList/LevelInfo5.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Core/Levels/Example/Resources/LevelsList/LevelInfo5.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Core/Levels/Example/Resources/LevelsList/LevelInfo6.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Core/Levels/Example/Resources/LevelsList/LevelInfo6.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Core/Levels/Example/Scenes/ExampleLevels.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Core/Levels/Example/Scenes/ExampleLevels.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Core/Levels/Example/Scripts/ExampleLevels.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Core/Levels/Example/Scripts/ExampleLevels.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Core/Levels/Scripts/AllLevelStates.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Core/Levels/Scripts/AllLevelStates.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Core/Levels/Scripts/Level.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Core/Levels/Scripts/Level.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Core/Levels/Scripts/LevelInfo.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Core/Levels/Scripts/LevelInfo.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Core/Levels/Scripts/LevelState.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Core/Levels/Scripts/LevelState.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Core/Levels/Scripts/LevelsInteractor.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Core/Levels/Scripts/LevelsInteractor.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Core/Levels/Scripts/LevelsRepository.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Core/Levels/Scripts/LevelsRepository.cs.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Tools/Storage/Scripts/Storage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Tools/Storage/Scripts/Storage.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/Argumets/UIPopupArgs.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/Argumets/UIPopupArgs.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/UIWidgetAnim.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/UIWidgetAnim.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/UIController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/UIController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -202,6 +174,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Monetization/Shop/Scripts/Shop.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/Scripts/RewardStatesData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Monetization/Shop/Scripts/ShopInteractor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Architecture/Utils/ArchitectureExtentions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Sounds/SFX/Scripts/SFXUI.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/DeferredReward/Scripts/DefferedRewardInfo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Monetization/Shop/Products/Scripts/ProductState.cs" root0="FORCE_HIGHLIGHTING" />
@@ -218,7 +191,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/VavilichevGD/UI/Utils/ScrollRectOptimized/Example/Scripts/UIWidgetScrollRectOptimizedItem.cs" />
         <option value="$PROJECT_DIR$/Assets/VavilichevGD/UI/Utils/ScrollRectOptimized/Scripts/UIWidgetScrollRectOptimizedItemProperties.cs" />
         <option value="$PROJECT_DIR$/Assets/VavilichevGD/UI/Utils/ScrollRectOptimized/Example/Scripts/UIWidgetScrollRectOptimizedItemExample.cs" />
         <option value="$PROJECT_DIR$/Assets/VavilichevGD/UI/Utils/ScrollRectOptimized/Scripts/UIWidgetScrollRectOptimizedProperties.cs" />
@@ -268,6 +240,7 @@
         <option value="$PROJECT_DIR$/Assets/VavilichevGD/Core/Levels/Scripts/Architecture/LevelInfo.cs" />
         <option value="$PROJECT_DIR$/Assets/VavilichevGD/Core/Levels/Scripts/Architecture/LevelState.cs" />
         <option value="$PROJECT_DIR$/Assets/VavilichevGD/Core/Levels/Scripts/Architecture/LevelsInteractor.cs" />
+        <option value="$PROJECT_DIR$/Assets/VavilichevGD/Architecture/Utils/ArchitectureExtentions.cs" />
         <option value="$PROJECT_DIR$/Assets/VavilichevGD/Core/Levels/Example/Scripts/ExampleLevels.cs" />
       </list>
     </option>
@@ -361,7 +334,7 @@
       <workItem from="1591164891921" duration="4640000" />
       <workItem from="1591212135140" duration="3356000" />
       <workItem from="1591250927026" duration="7142000" />
-      <workItem from="1591285524549" duration="838000" />
+      <workItem from="1591285524549" duration="1407000" />
     </task>
     <servers />
   </component>

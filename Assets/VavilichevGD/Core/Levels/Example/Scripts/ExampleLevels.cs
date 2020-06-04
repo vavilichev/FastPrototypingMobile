@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using VavilichevGD.Architecture;
+using VavilichevGD.Architecture.Extentions;
 using VavilichevGD.Core.Loadging;
 
 namespace VavilichevGD.Core.Levels.Example {
@@ -13,7 +14,8 @@ namespace VavilichevGD.Core.Levels.Example {
 
         private void OnGameInitialized() {
             Game.OnGameInitializedEvent -= this.OnGameInitialized;
-            LevelsInteractor levelsInteractor = Game.GetInteractor<LevelsInteractor>();
+            LevelsInteractor levelsInteractor = this.GetInteractor<LevelsInteractor>();
+            
             Level firstLevel = levelsInteractor.GetLevel(0);
             levelsInteractor.levelsLoader.LoadLevel(firstLevel);
         }
@@ -21,7 +23,7 @@ namespace VavilichevGD.Core.Levels.Example {
 
         [ContextMenu("Test")]
         private void Test() {
-            var levelsInteractor = Game.GetInteractor<LevelsInteractor>();
+            var levelsInteractor = this.GetInteractor<LevelsInteractor>();
             var loader = levelsInteractor.levelsLoader;
 
             Level currentLevel = loader.GetLoadedLevel();
