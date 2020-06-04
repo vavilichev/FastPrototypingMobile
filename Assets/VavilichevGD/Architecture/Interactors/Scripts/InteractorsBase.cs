@@ -47,21 +47,9 @@ namespace VavilichevGD.Architecture {
         public void SendOnGameInitializedEvent() {
             IInteractor[] allInteractors = interactorsMap.Values.ToArray();
             foreach (IInteractor interactor in allInteractors)
-                interactor.OnGameInitialized();
+                interactor.OnReady();
         }
 
-        public void SendOnGameSceneInitializedEvent() {
-            IInteractor[] allInteractors = interactorsMap.Values.ToArray();
-            foreach (IInteractor interactor in allInteractors)
-                interactor.OnGameSceneInitialized();
-        }
-
-        public void SendOnGameSceneUnloadedEvent() {
-            IInteractor[] allInteractors = interactorsMap.Values.ToArray();
-            foreach (IInteractor interactor in allInteractors)
-                interactor.OnGameSceneUnloaded();
-        }
-        
         #endregion
         
         

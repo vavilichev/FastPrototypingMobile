@@ -41,7 +41,7 @@ namespace VavilichevGD.Architecture {
             OnRepositoryInitialized?.Invoke(this);
         }
         
-        public virtual void OnGameInitialized() { }
+        public virtual void OnReady() { }
         
         public virtual void OnGameSceneInitialized() { }
         

@@ -49,7 +49,7 @@ namespace VavilichevGD.Architecture {
         }
 
         
-        public virtual void OnGameInitialized() { }
+        public virtual void OnReady() { }
 
         public virtual void OnGameSceneInitialized() { }
 

@@ -48,21 +48,9 @@ namespace VavilichevGD.Architecture {
         public void SendOnGameInitializedEvent() {
             IRepository[] allRepositories = repositoriesMap.Values.ToArray();
             foreach (IRepository repository in allRepositories)
-                repository.OnGameInitialized();
+                repository.OnReady();
         }
 
-        public void SendOnGameSceneInitializedEvent() {
-            IRepository[] allRepositories = repositoriesMap.Values.ToArray();
-            foreach (IRepository repository in allRepositories)
-                repository.OnGameSceneInitialized();
-        }
-
-        public void SendOnGameSceneUnloadedEvent() {
-            IRepository[] allRepositories = repositoriesMap.Values.ToArray();
-            foreach (IRepository repository in allRepositories)
-                repository.OnGameSceneUnloaded();
-        }
-        
         #endregion
         
         protected void NotifyAboutStatusChanged(string statusText) {
