@@ -124,6 +124,15 @@
               <e p="UIPopupAreYouSureProperties.cs" t="Include" />
             </e>
           </e>
+          <e p="PopupLevels" t="Include">
+            <e p="Scripts" t="Include">
+              <e p="UIPopupLevelsList.cs" t="Include" />
+              <e p="UIPopupLevelsListProperties.cs" t="Include" />
+              <e p="UIWidgetLevelsItem.cs" t="Include" />
+              <e p="UIWIdgetLevelsItemProperties.cs" t="Include" />
+              <e p="UIWidgetScrollRectOptimizedLevels.cs" t="Include" />
+            </e>
+          </e>
           <e p="PopupLose" t="Include">
             <e p="Scripts" t="Include">
               <e p="UIPopupLose.cs" t="Include" />
@@ -175,6 +184,13 @@
             <e p="Scripts" t="Include">
               <e p="UIPopupWin.cs" t="Include" />
               <e p="UIPopupWinProperties.cs" t="Include" />
+            </e>
+          </e>
+          <e p="Prefabs" t="Include">
+            <e p="WidgetSwitcherOnOff" t="Include">
+              <e p="Scripts" t="Include">
+                <e p="UIWidgetSwitcherOnOff.cs" t="Include" />
+              </e>
             </e>
           </e>
           <e p="ScreenGameplay" t="Include">
@@ -245,12 +261,25 @@
                 </e>
               </e>
               <e p="Scripts" t="Include">
-                <e p="AllLevelStates.cs" t="Include" />
-                <e p="Level.cs" t="Include" />
-                <e p="LevelInfo.cs" t="Include" />
-                <e p="LevelsInteractor.cs" t="Include" />
-                <e p="LevelsRepository.cs" t="Include" />
-                <e p="LevelState.cs" t="Include" />
+                <e p="Architecture" t="Include">
+                  <e p="AllLevelStates.cs" t="Include" />
+                  <e p="Level.cs" t="Include" />
+                  <e p="LevelInfo.cs" t="Include" />
+                  <e p="LevelsInteractor.cs" t="Include" />
+                  <e p="LevelsRepository.cs" t="Include" />
+                  <e p="LevelState.cs" t="Include" />
+                </e>
+                <e p="LevelBuilder" t="Include">
+                  <e p="ILevelBuilder.cs" t="Include" />
+                  <e p="LevelBuilderSimple.cs" t="Include" />
+                </e>
+                <e p="LevelEnvironment" t="Include">
+                  <e p="LevelEnvironment.cs" t="Include" />
+                </e>
+                <e p="LevelLoader" t="Include">
+                  <e p="ILevelsLoader.cs" t="Include" />
+                  <e p="LevelsLoaderSimple.cs" t="Include" />
+                </e>
               </e>
             </e>
           </e>

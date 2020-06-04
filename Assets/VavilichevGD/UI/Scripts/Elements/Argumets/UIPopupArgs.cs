@@ -13,5 +13,9 @@
             this.iUIPopup = iUIPopup;
             this.result = result;
         }
+
+        public T GetPopup<T>() {
+            return (T) this.iUIPopup;
+        }
     }
 }

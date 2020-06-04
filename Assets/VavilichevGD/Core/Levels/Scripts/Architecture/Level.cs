@@ -14,16 +14,36 @@
         public Level(LevelInfo levelInfo) {
             this.info = levelInfo;
             this.state = new LevelState(this.info.levelIndex, this.info.id);
+            
+            this.state.OnLevelStateCompleteEvent += this.OnLevelStateComplete;
         }
 
         public Level(LevelInfo levelInfo, LevelState levelState) {
             this.info = levelInfo;
             this.state = levelState;
+            
+            this.state.OnLevelStateCompleteEvent += this.OnLevelStateComplete;
         }
 
-        public void Complete() {
-            this.state.isCompleted = true;
+        ~Level() {
+            this.state.OnLevelStateCompleteEvent -= this.OnLevelStateComplete;
+        }
+
+        public T GetLevelInfo<T>() where T : LevelInfo {
+            return (T) this.info;
+        }
+
+        public T GetLevelState<T>() where T : LevelState {
+            return (T) this.state;
+        }
+
+
+        #region EVENTS
+
+        private void OnLevelStateComplete(LevelState levelState) {
             OnLevelCompleteEvent?.Invoke(this);
         }
+
+        #endregion
     }
 }

@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_id: level_3
   m_levelIndex: 3
+  levelEnvironmentPrefabName: LevelEnvironment4

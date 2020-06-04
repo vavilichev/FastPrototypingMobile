@@ -59,12 +59,13 @@ namespace VavilichevGD.Core {
                     levelState = new LevelState(info.levelIndex, info.id);
                 matchedStates.Add(levelState);
             }
+            
             Logging.Log($"LEVELS REPOSITORY: Rematched. OldStatesCount: {this.allLevelsStates.allStates.Count} and new Count: {matchedStates.Count}");
             this.allLevelsStates.Resetup(matchedStates.ToArray());
         }
 
         public LevelInfo GetLevelInfo(int levelIndex) {
-            string path = $"{PATH_LEVELINFO}/Level{levelIndex}";
+            string path = $"{PATH_LEVELINFO}/LevelInfo{levelIndex}";
             return Resources.Load<LevelInfo>(path);
         }
 
