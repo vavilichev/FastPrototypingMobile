@@ -1,104 +1,82 @@
 ﻿using System;
-using System.Collections.Generic;
 using UnityEngine;
 using System.Numerics;
 using System.Security.Cryptography;
 
-namespace VavilichevGD.Tools {
-	
-	public enum NumberOrder {
-		Singles = 0,
-		Thousands = 1,
-		Millions = 2,
-		Billions = 3,
-		Trillions = 4,
-		AA = 5,
-		BB = 6,
-		CC = 7,
-		DD = 8,
-		EE = 9,
-		FF = 10,
-		GG = 11,
-		HH = 12,
-		II = 13,
-		JJ = 14,
-		KK = 15,
-		LL = 16,
-		MM = 17,
-		NN = 18,
-		OO = 19,
-		PP = 20,
-		QQ = 21,
-		RR = 22,
-		SS = 23,
-		TT = 24,
-		UU = 25,
-		VV = 26,
-		WW = 27,
-		XX = 28,
-		YY = 29,
-		ZZ = 30
-	}
-	
+namespace VavilichevGD.Tools.Numerics {
 	[Serializable]
-	public class BigNumber {
+	public struct BigNumber {
 
-		[SerializeField] private float value;
-		[SerializeField] private NumberOrder order;
+		#region CONSTANTS
 
-		private BigInteger bigIntegerValue;
-		private bool isInitialized { get; set; }
-
+		private const string FORMAT_FULL = "FULL";
+		private const string FORMAT_XXX_C = "XXX C";
+		private const string FORMAT_XXXC = "XXXC";
+		private const string FORMAT_XXX_XX_C = "XXX.XX C";
+		private const string FORMAT_XXX_XXC = "XXX.XXC";
+		private const string FORMAT_XXX_X_C = "XXX.X C";
+		private const string FORMAT_XXX_XC = "XXX.XC";
+		private const string FORMAT_DYNAMIC_3_C = "DYNAMIC3 C";
+		private const string FORMAT_DYNAMIC_3C = "DYNAMIC3C";
+		private const string FORMAT_DYNAMIC_4_C = "DYNAMIC4 C";
+		private const string FORMAT_DYNAMIC_4C = "DYNAMIC4C";
 		
-		public static BigNumber GetMax() {
-			int countOfOrders = Enum.GetNames(typeof(NumberOrder)).Length;
-			string finalValueString = "";
-			for (int i = 0; i < countOfOrders; i++)
-				finalValueString = $"{finalValueString}999";
-
-			BigInteger result = BigInteger.Parse(finalValueString);
-			return new BigNumber(result);
-		}
-		
-
-		public BigNumber(BigInteger bigInteger) {
-			bigIntegerValue = bigInteger;
-			isInitialized = true;
-		}
-
-		public BigNumber(int value) {
-			bigIntegerValue = value;
-			isInitialized = true;
-		}
-
-		public BigNumber(string strValue) {
-			bigIntegerValue = BigInteger.Parse(strValue);
-			isInitialized = true;
-		}
-
+		#endregion
 		
 		
-		private void InitializeIfNeed() {
-			if (!isInitialized) {
-				int intValue = Mathf.FloorToInt(value);
-				int decValue = Mathf.RoundToInt((value - intValue) * 1000);
-				int addZeroBlockCount = decValue == 0 ? (int) order : (int) order - 1;
-				string strValue = intValue.ToString();
-				if (decValue > 0)
-					strValue = $"{strValue}{decValue}";
 
-				if ((int) order >= (int) NumberOrder.Thousands) {
-					for (int i = 0; i < addZeroBlockCount; i++)
-						strValue = $"{strValue}000";
-				}
+		private BigInteger _bigIntegerIntValue;
 
-				bigIntegerValue = BigInteger.Parse(strValue);
-				Debug.Log($"BigInteger: {bigIntegerValue}");
 
-				isInitialized = true;
+		
+		public static BigNumber maxValue {
+			get {
+				int countOfOrders = Enum.GetNames(typeof(BigNumberOrder)).Length;
+				string finalValueString = "";
+				for (int i = 0; i < countOfOrders; i++)
+					finalValueString = $"{finalValueString}999";
+
+				BigInteger result = BigInteger.Parse(finalValueString);
+				return new BigNumber(result);
 			}
 		}
 
+		public static BigNumber zero => new BigNumber(0);
+
+
+		#region CONSTRUCTORS
+
+		public BigNumber(BigInteger bigIntegerInt) {
+			this._bigIntegerIntValue = bigIntegerInt;
+		}
+
+		public BigNumber(int intValue) {
+			this._bigIntegerIntValue = intValue;
+		}
+
+		public BigNumber(string strValue) {
+			this._bigIntegerIntValue = BigInteger.Parse(strValue);
+		}
+
+		public BigNumber(BigNumberOrder order, float cutFloat) {
+			var intValue = Mathf.FloorToInt(cutFloat);
+			var decValue = Mathf.RoundToInt((cutFloat - intValue) * 1000);
+			var addZeroBlockCount = decValue == 0 ? (int) order : (int) order - 1;
+			var strValue = intValue.ToString();
+
+			if (decValue > 0)
+				strValue = $"{strValue}{decValue}";
+
+			if ((int) order >= 1) {
+				for (int i = 0; i < addZeroBlockCount; i++)
+					strValue = $"{strValue}000";
+			}
+
+			this._bigIntegerIntValue = BigInteger.Parse(strValue);
+		}
+
+		#endregion
+		
 
 		#region Calculations
 
@@ -107,31 +85,22 @@ namespace VavilichevGD.Tools {
 
 
 		public static BigNumber operator +(BigNumber num1, BigNumber num2) {
-			num1.InitializeIfNeed();
-			num2.InitializeIfNeed();
-			BigInteger bigSum = num1.bigIntegerValue + num2.bigIntegerValue;
+			BigInteger bigSum = num1._bigIntegerIntValue + num2._bigIntegerIntValue;
 			return Clamp(new BigNumber(bigSum));
 		}
 
 		public static BigNumber operator -(BigNumber num1, BigNumber num2) {
-			num1.InitializeIfNeed();
-			num2.InitializeIfNeed();
-
-			BigInteger result = num1.bigIntegerValue - num2.bigIntegerValue;
+			BigInteger result = num1._bigIntegerIntValue - num2._bigIntegerIntValue;
 			return Clamp(new BigNumber(result));
 		}
 
 		public static BigNumber operator /(BigNumber dividedNumb, BigNumber divider) {
-			dividedNumb.InitializeIfNeed();
-			divider.InitializeIfNeed();
-			BigInteger result = dividedNumb.bigIntegerValue / divider.bigIntegerValue;
+			BigInteger result = dividedNumb._bigIntegerIntValue / divider._bigIntegerIntValue;
 			return Clamp(new BigNumber(result));
 		}
 
 		public static BigNumber operator *(BigNumber num1, BigNumber num2) {
-			num1.InitializeIfNeed();
-			num2.InitializeIfNeed();
-			BigInteger result = num1.bigIntegerValue * num2.bigIntegerValue;
+			BigInteger result = num1._bigIntegerIntValue * num2._bigIntegerIntValue;
 			return Clamp(new BigNumber(result));
 		}
 
@@ -143,28 +112,22 @@ namespace VavilichevGD.Tools {
 
 
 		public static BigNumber operator +(BigNumber num, int value) {
-			num.InitializeIfNeed();
-			BigInteger result = num.bigIntegerValue + value;
+			BigInteger result = num._bigIntegerIntValue + value;
 			return Clamp(new BigNumber(result));
 		}
 		
 		public static BigNumber operator -(BigNumber num, int value) {
-			num.InitializeIfNeed();
-			BigInteger result = num.bigIntegerValue - value;
-			if (result < 0)
-				return new BigNumber(0);
+			BigInteger result = num._bigIntegerIntValue - value;
 			return Clamp(new BigNumber(result));
 		}
 
 		public static BigNumber operator *(BigNumber num1, int value) {
-			num1.InitializeIfNeed();
-			BigInteger result = num1.bigIntegerValue * value;
+			BigInteger result = num1._bigIntegerIntValue * value;
 			return Clamp(new BigNumber(result));
 		}
 		
 		public static BigNumber operator /(BigNumber dividedNumb, int value) {
-			dividedNumb.InitializeIfNeed();
-			BigInteger result = dividedNumb.bigIntegerValue / value;
+			BigInteger result = dividedNumb._bigIntegerIntValue / value;
 			return Clamp(new BigNumber(result));
 		}
 		
@@ -178,133 +141,138 @@ namespace VavilichevGD.Tools {
 		public static BigNumber operator *(BigNumber num, float mul) {
 			if (mul < 0)
 				throw new Exception(string.Format("Multiplicator cannot be negative: {0}", mul));
-
-			num.InitializeIfNeed();
-
-			if (num.bigIntegerValue < 100) {
-				int intValue = (int) num.bigIntegerValue;
+			
+			if (num._bigIntegerIntValue < 100) {
+				int intValue = (int) num._bigIntegerIntValue;
 				int result = Mathf.CeilToInt((intValue * mul));
 				BigInteger bigIntResult = new BigInteger(result);
-				return new BigNumber(bigIntResult);
+				return Clamp(new BigNumber(bigIntResult));
 			}
-			else {
-				float roundedMul = (float) Math.Round(mul, 2);
-				int mul100 = Mathf.RoundToInt(roundedMul * 100);
-				BigInteger bitIntResult = (num.bigIntegerValue * mul100) / 100;
-				return new BigNumber(bitIntResult);
-			}
+
+			float roundedMul = (float) Math.Round(mul, 2);
+			int mul100 = Mathf.RoundToInt(roundedMul * 100);
+			BigInteger bitIntResult = (num._bigIntegerIntValue * mul100) / 100;
+			return Clamp(new BigNumber(bitIntResult));
 		}
 
 		public static BigNumber operator /(BigNumber num, float div) {
-			num.InitializeIfNeed();
 			int div100 = Mathf.RoundToInt((float) Math.Round(div, 2) * 100);
-			BigInteger num100 = num.bigIntegerValue * 100;
+			BigInteger num100 = num._bigIntegerIntValue * 100;
 			BigInteger result = num100 / div100;
-			return new BigNumber(result);
+			return Clamp(new BigNumber(result));
 		}
 		
 
 		#endregion
 
+		
+		#region BigNumber && double
+
+		public static BigNumber operator +(BigNumber num, double value) {
+			BigInteger result = num._bigIntegerIntValue + new BigInteger(value);
+			return Clamp(new BigNumber(result));
+		}
+		
+		public static BigNumber operator -(BigNumber num, double value) {
+			BigInteger result = num._bigIntegerIntValue - new BigInteger(value);
+			return Clamp(new BigNumber(result));
+		}
+
+		public static BigNumber operator *(BigNumber num1, double value) {
+			BigInteger result = num1._bigIntegerIntValue * new BigInteger(value);
+			return Clamp(new BigNumber(result));
+		}
+		
+		public static BigNumber operator /(BigNumber dividedNumb, double value) {
+			BigInteger result = dividedNumb._bigIntegerIntValue / new BigInteger(value);
+			return Clamp(new BigNumber(result));
+		}
+
+		#endregion
+		
 
 		private static BigNumber Clamp(BigNumber clampingValue) {
-			if (clampingValue.bigIntegerValue < 0)
+			if (clampingValue._bigIntegerIntValue < 0)
 				return new BigNumber(0);
 
 
-			int countOfOrders = Enum.GetNames(typeof(NumberOrder)).Length;
-			int maxValueLength = countOfOrders * 3;		// Every order contains 3 digits.
-			int clampingValueLength = clampingValue.ToStringFull().Length;
+			var countOfOrders = Enum.GetNames(typeof(BigNumberOrder)).Length;
+			var maxValueLength = countOfOrders * 3;		// Every order contains 3 digits.
+			var clampingValueLength = clampingValue.ToString().Length;
 
 			if (clampingValueLength > maxValueLength)
-				return GetMax();
+				return maxValue;
 
 			return clampingValue;
 		}
 
 		public static double DivideToDouble(BigNumber dividedNumb, BigNumber divider) {
-			return Math.Exp(BigInteger.Log(dividedNumb.bigIntegerValue) - BigInteger.Log(divider.bigIntegerValue));
+			return Math.Exp(BigInteger.Log(dividedNumb._bigIntegerIntValue) - BigInteger.Log(divider._bigIntegerIntValue));
 		}
 
 		#endregion
-
 
 
 		#region Compairs
 
 
 		public static bool operator <=(BigNumber num1, BigNumber num2) {
-			num1.InitializeIfNeed();
-			num2.InitializeIfNeed();
-			return num1.bigIntegerValue <= num2.bigIntegerValue;
+			return num1._bigIntegerIntValue <= num2._bigIntegerIntValue;
 		}
 
 		public static bool operator >=(BigNumber num1, BigNumber num2) {
-			num1.InitializeIfNeed();
-			num2.InitializeIfNeed();
-			return num1.bigIntegerValue >= num2.bigIntegerValue;
+			return num1._bigIntegerIntValue >= num2._bigIntegerIntValue;
 		}
 
 
 
 		public static bool operator <(BigNumber num1, BigNumber num2) {
-			num1.InitializeIfNeed();
-			num2.InitializeIfNeed();
-			return num1.bigIntegerValue < num2.bigIntegerValue;
+			return num1._bigIntegerIntValue < num2._bigIntegerIntValue;
 		}
 
 		public static bool operator >(BigNumber num1, BigNumber num2) {
-			num1.InitializeIfNeed();
-			num2.InitializeIfNeed();
-			return num1.bigIntegerValue > num2.bigIntegerValue;
+			return num1._bigIntegerIntValue > num2._bigIntegerIntValue;
 		}
 
 
 
 		public static bool operator >=(BigNumber num, int intValue) {
-			num.InitializeIfNeed();
-			return num.bigIntegerValue >= intValue;
+			return num._bigIntegerIntValue >= intValue;
 		}
 
 		public static bool operator <=(BigNumber num, int intValue) {
-			num.InitializeIfNeed();
-			return num.bigIntegerValue >= intValue;
+			return num._bigIntegerIntValue >= intValue;
 		}
 
 
 
 		public static bool operator <(BigNumber num, int intValue) {
-			num.InitializeIfNeed();
-			return num.bigIntegerValue < intValue;
+			return num._bigIntegerIntValue < intValue;
 		}
 
 		public static bool operator >(BigNumber num, int intValue) {
-			num.InitializeIfNeed();
-			return num.bigIntegerValue > intValue;
+			return num._bigIntegerIntValue > intValue;
 		}
 
 
 
 		public static bool operator ==(BigNumber num, int intValue) {
-			num.InitializeIfNeed();
-			return num.bigIntegerValue == intValue;
+			return num._bigIntegerIntValue == intValue;
 		}
 
 		public static bool operator !=(BigNumber num, int intValue) {
-			num.InitializeIfNeed();
-			return num.bigIntegerValue != intValue;
+			return num._bigIntegerIntValue != intValue;
 		}
 
 
 		#endregion
 
 
-		public static BigNumber RandomRange(BigNumber num1, BigNumber num2) {
-			num1.InitializeIfNeed();
-			num2.InitializeIfNeed();
+		#region RandomRange
 
+		public static BigNumber RandomRange(BigNumber num1, BigNumber num2) {
 			var random = RandomNumberGenerator.Create();
-			BigInteger randomInteger = RandomInRange(random, num1.bigIntegerValue, num2.bigIntegerValue);
+			BigInteger randomInteger = RandomInRange(random, num1._bigIntegerIntValue, num2._bigIntegerIntValue);
 			return new BigNumber(randomInteger);
 		}
 
@@ -360,57 +328,150 @@ namespace VavilichevGD.Tools {
 		}
 
 
+		#endregion
+
+
+		#region ToString
+
 		public override string ToString() {
-			InitializeIfNeed();
-			string stringValue = bigIntegerValue.ToString();
-			string[] blocks = SplitToArrayOf3(stringValue);
-			int lastIndex = blocks.Length - 1;
-			if (lastIndex >= 0) {
-				string finalValue = blocks[lastIndex];
-				if (lastIndex > 0) {
-					string valueAfterComa = blocks[lastIndex - 1][0].ToString();
-					if (valueAfterComa != "0")
-						finalValue += "." + valueAfterComa;
-				}
-				return finalValue;
+			return this.ToString("full");
+		}
+
+		public string ToString(string format) {
+			return this.Formate(format);
+		}
+		
+		public string ToString(string format, IBigNumberDictionary dictionary) {
+			return this.Formate(format, dictionary);
+		}
+
+		private string Formate(string format, IBigNumberDictionary dictionary = null) {
+			
+			format = format.ToUpperInvariant();
+
+			if (String.IsNullOrEmpty(format) || (this._bigIntegerIntValue < 1000 && format != FORMAT_FULL))
+				format = FORMAT_XXX_C;
+				
+			var fullNumberToString = this._bigIntegerIntValue.ToString();
+			var numberLength = fullNumberToString.Length;
+			var orderInt = (numberLength - 1) / 3;
+			var order = (BigNumberOrder) orderInt;
+
+			var olderNumbersLength = numberLength % 3 == 0 ? 3 : numberLength % 3;
+			var olderNumberString = fullNumberToString.Substring(0, olderNumbersLength);
+			var youngerNumberString = "";
+			var orderToString = dictionary != null ? dictionary.GetTranslatedOrder(order) : order.ToString();
+			if (order == 0)
+				orderToString = "";
+			
+			var finalStringWithoutOrder = "";
+
+			switch (format)
+			{
+				case FORMAT_XXX_XX_C:
+					finalStringWithoutOrder =
+						this.GetFinalStringWithoutOrder(fullNumberToString, olderNumberString, 2, true);
+					break;
+
+				case FORMAT_XXX_XXC:
+					finalStringWithoutOrder =
+						this.GetFinalStringWithoutOrder(fullNumberToString, olderNumberString, 2, false);
+					break;
+				
+				case FORMAT_XXX_X_C:
+					finalStringWithoutOrder =
+						this.GetFinalStringWithoutOrder(fullNumberToString, olderNumberString, 1, true);
+					break;
+				
+				case FORMAT_XXX_XC:
+					finalStringWithoutOrder =
+						this.GetFinalStringWithoutOrder(fullNumberToString, olderNumberString, 1, false);
+					break;
+				
+				case FORMAT_XXX_C:
+					finalStringWithoutOrder = $"{olderNumberString} ";
+					break;
+				
+				case FORMAT_XXXC:
+					finalStringWithoutOrder = $"{olderNumberString}";
+					break;
+				
+				case FORMAT_FULL:
+					return this._bigIntegerIntValue.ToString();
+					break;
+				
+				case FORMAT_DYNAMIC_3_C:
+					switch (olderNumbersLength) {
+						case 1:
+							finalStringWithoutOrder =
+								this.GetFinalStringWithoutOrder(fullNumberToString, olderNumberString, 2, true);
+							break;
+						case 2:
+							finalStringWithoutOrder =
+								this.GetFinalStringWithoutOrder(fullNumberToString, olderNumberString, 1, true);
+							break;
+						case 3:
+							finalStringWithoutOrder = $"{olderNumberString} ";
+							break;
+					}
+					break;
+				
+				case FORMAT_DYNAMIC_3C:
+					switch (olderNumbersLength) {
+						case 1:
+							finalStringWithoutOrder =
+								this.GetFinalStringWithoutOrder(fullNumberToString, olderNumberString, 2, false);
+							break;
+						case 2:
+							finalStringWithoutOrder =
+								this.GetFinalStringWithoutOrder(fullNumberToString, olderNumberString, 1, false);
+							break;
+						case 3:
+							finalStringWithoutOrder = $"{olderNumberString}";
+							break;
+					}
+					break;
+				
+				case FORMAT_DYNAMIC_4_C:
+					if (olderNumbersLength < 3) {
+						finalStringWithoutOrder =
+							this.GetFinalStringWithoutOrder(fullNumberToString, olderNumberString, 2, true);
+					}
+					else {
+						finalStringWithoutOrder =
+							this.GetFinalStringWithoutOrder(fullNumberToString, olderNumberString, 1, true);
+					}
+					break;
+				
+				case FORMAT_DYNAMIC_4C:
+					if (olderNumbersLength < 3) {
+						finalStringWithoutOrder =
+							this.GetFinalStringWithoutOrder(fullNumberToString, olderNumberString, 2, false);
+					}
+					else {
+						finalStringWithoutOrder =
+							this.GetFinalStringWithoutOrder(fullNumberToString, olderNumberString, 1, false);
+					}
+					break;
+				
+				default:
+					throw new FormatException(String.Format("The '{0}' format string is not supported.", format));
 			}
-
-			return $"0 {(NumberOrder)0}";
+			
+			return $"{finalStringWithoutOrder}{orderToString}";
 		}
 
-		public string ToStringShort() {
-			string strValue = ToString();
-			NumberOrder numberOrder = GetOrder();
-			return $"{strValue}{numberOrder}";
+		private string GetFinalStringWithoutOrder(string fullNumberToString, string olderNumberString, int youngerNumbersLength, bool withSpace) {
+			int olderNumbersLength = olderNumberString.Length;
+			var youngerNumberString = $"{fullNumberToString.Substring(olderNumbersLength, youngerNumbersLength)}";
+			if (Convert.ToInt32(youngerNumberString) == 0)
+				youngerNumberString = "";
+			else
+				youngerNumberString = $".{youngerNumberString}";
+			return $"{olderNumberString}{youngerNumberString}" + (withSpace ? " " : "");
 		}
 
-		private string[] SplitToArrayOf3(string text) {
-			List<string> splittedList = new List<string>();
-
-			for (int i = text.Length - 1; i >= 0; i -= 3) {
-				string block = "";
-				block = text[i] + block;
-				if (i >= 1)
-					block = text[i - 1] + block;
-				if (i >= 2)
-					block = text[i - 2] + block;
-				splittedList.Add(block);
-			}
-
-			return splittedList.ToArray();
-		}
-
-		public string ToStringFull() {
-			InitializeIfNeed();
-			return bigIntegerValue.ToString();
-		}
-
-		public NumberOrder GetOrder() {
-			InitializeIfNeed();
-			string fullValueString = this.ToStringFull();
-			int numberLength = fullValueString.Length;
-			int blocksCount = Mathf.CeilToInt(numberLength / 3f - 1);
-			return (NumberOrder) blocksCount;
-		}
+		#endregion
+		
 	}
 }

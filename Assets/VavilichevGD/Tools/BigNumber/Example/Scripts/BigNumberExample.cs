@@ -1,10 +1,12 @@
-﻿using UnityEngine;
+﻿using System.Numerics;
+using UnityEngine;
 using UnityEngine.UI;
 
-namespace VavilichevGD.Tools {
+namespace VavilichevGD.Tools.Numerics {
     public class BigNumberExample : MonoBehaviour {
 
-        [SerializeField] private BigNumber defaultValue;
+        [SerializeField] public BigNumberSetting defaultValue;
+        [SerializeField] public BigInteger bigInteger;
         [Space]
         [SerializeField] private Text textFullValue;
         [SerializeField] private Text textShortValue;
@@ -23,7 +25,7 @@ namespace VavilichevGD.Tools {
         }
 
         private void Initialize() {
-            value = defaultValue;
+            value = defaultValue.value;
         }
         
 
@@ -55,8 +57,8 @@ namespace VavilichevGD.Tools {
         }
 
         private void UpdateView() {
-            textFullValue.text = value.ToStringFull();
-            textShortValue.text = value.ToStringShort();
+            textFullValue.text = value.ToString();
+            textShortValue.text = value.ToString("dynamic4 c", BigNumberLocalizator.GetSimpleDictionary(SystemLanguage.English));
         }
 
         private void OnDisable() {
