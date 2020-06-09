@@ -902,7 +902,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultValue:
-    cutFloat: 15
+    cutFloat: 0
     order: 0
   textFullValue: {fileID: 2003735899}
   textShortValue: {fileID: 1948807881}

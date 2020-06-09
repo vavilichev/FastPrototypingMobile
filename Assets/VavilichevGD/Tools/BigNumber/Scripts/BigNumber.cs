@@ -9,17 +9,17 @@ namespace VavilichevGD.Tools.Numerics {
 
 		#region CONSTANTS
 
-		private const string FORMAT_FULL = "FULL";
-		private const string FORMAT_XXX_C = "XXX C";
-		private const string FORMAT_XXXC = "XXXC";
-		private const string FORMAT_XXX_XX_C = "XXX.XX C";
-		private const string FORMAT_XXX_XXC = "XXX.XXC";
-		private const string FORMAT_XXX_X_C = "XXX.X C";
-		private const string FORMAT_XXX_XC = "XXX.XC";
-		private const string FORMAT_DYNAMIC_3_C = "DYNAMIC3 C";
-		private const string FORMAT_DYNAMIC_3C = "DYNAMIC3C";
-		private const string FORMAT_DYNAMIC_4_C = "DYNAMIC4 C";
-		private const string FORMAT_DYNAMIC_4C = "DYNAMIC4C";
+		public const string FORMAT_FULL = "FULL";
+		public const string FORMAT_XXX_C = "XXX C";
+		public const string FORMAT_XXXC = "XXXC";
+		public const string FORMAT_XXX_XX_C = "XXX.XX C";
+		public const string FORMAT_XXX_XXC = "XXX.XXC";
+		public const string FORMAT_XXX_X_C = "XXX.X C";
+		public const string FORMAT_XXX_XC = "XXX.XC";
+		public const string FORMAT_DYNAMIC_3_C = "DYNAMIC3 C";
+		public const string FORMAT_DYNAMIC_3C = "DYNAMIC3C";
+		public const string FORMAT_DYNAMIC_4_C = "DYNAMIC4 C";
+		public const string FORMAT_DYNAMIC_4C = "DYNAMIC4C";
 		
 		#endregion
 		
