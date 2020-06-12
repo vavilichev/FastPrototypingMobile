@@ -206,6 +206,38 @@ namespace VavilichevGD.Tools.Numerics {
 			return clampingValue;
 		}
 
+		public static BigNumber Clamp(BigNumber clampingValue, BigNumber minValue, BigNumber maxValue) {
+			BigNumber min = Max(minValue, BigNumber.zero);
+			if (clampingValue < min)
+				return min;
+
+			BigNumber max = Min(maxValue, BigNumber.maxValue);
+			if (clampingValue > max)
+				return max;
+
+			return clampingValue;
+		}
+
+		public static BigNumber Min(params BigNumber[] numbers) {
+			BigNumber min = BigNumber.maxValue;
+			foreach (BigNumber number in numbers) {
+				if (number < min)
+					min = number;
+			}
+
+			return min;
+		}
+
+		public static BigNumber Max(params BigNumber[] numbers) {
+			BigNumber max = BigNumber.zero;
+			foreach (BigNumber number in numbers) {
+				if (number > max)
+					max = number;
+			}
+
+			return max;
+		}
+
 		public static double DivideToDouble(BigNumber dividedNumb, BigNumber divider) {
 			return Math.Exp(BigInteger.Log(dividedNumb._bigIntegerIntValue) - BigInteger.Log(divider._bigIntegerIntValue));
 		}
