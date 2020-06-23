@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b01b859d300859469885f3002298c31, type: 3}
   m_Name: RewardInfoSoftCurrency200
   m_EditorClassIdentifier: 
+  m_id: risf_200
   m_title: 
-  m_description: 
   m_spriteIcon: {fileID: 21300000, guid: ff2175e96b52b0d4b88d92e623b6182c, type: 3}
-  m_count: 1
   rewardValue:
-    value: 200
+    cutFloat: 200
+    order: 0

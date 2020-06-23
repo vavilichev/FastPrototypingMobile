@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using VavilichevGD.UI;
 using VavilichevGD.UI.Extentions;
@@ -8,11 +10,18 @@ namespace VavilichevGD.Meta.FortuneWheel.UI {
 
         private FortuneWheelInteractorFreeAndAD interactor;
 
+        private Dictionary<string, Reward> rewardsMap;
+
         protected override void OnStart() {
-            FortuneWheelConfig config = this.properties.fortuneWheel.config;
-            FortuneWheelSectorData[] sectorsData = config.GetSectorsData();
-            UIWidgetFortuneWheelSectorText[] widgets =
-                this.gameObject.GetComponentsInChildren<UIWidgetFortuneWheelSectorText>();
+            var config = this.properties.fortuneWheel.config;
+            var sectorsData = config.GetSectorsData();
+            var widgets = this.gameObject.GetComponentsInChildren<UIWidgetFortuneWheelSectorText>();
+            
+            this.rewardsMap = new Dictionary<string, Reward>();
+            foreach (var wheelSectorData in sectorsData) {
+                var reward = new Reward(wheelSectorData.rewardInfo);
+                this.rewardsMap[reward.id] = reward;
+            }
 
             if (sectorsData.Length != widgets.Length)
                 throw new Exception("Count of sectors data does not equals to ui widgets count");
@@ -20,11 +29,14 @@ namespace VavilichevGD.Meta.FortuneWheel.UI {
             this.interactor = new FortuneWheelInteractorFreeAndAD(this.properties.fortuneWheel);
             
             int count = sectorsData.Length;
+            var rewards = this.rewardsMap.Values.ToArray();
             for (int i = 0; i < count; i++)
-                widgets[i].Setup(sectorsData[i].rewardInfo);
+                widgets[i].Setup(rewards[i]);
             
             this.UpdateButtonRotate();
         }
+        
+        
 
         protected override void OnEnabled() {
             this.properties.btnRotate.AddListener(this.OnRotateBtnClick);
@@ -41,6 +53,10 @@ namespace VavilichevGD.Meta.FortuneWheel.UI {
             
             string textBtnRotate = this.interactor.freeSpinAvailable ? "Rotate (free)" : "Rotate (for AD)";
             this.properties.textBtnRotate.text = textBtnRotate;
+        }
+
+        private Reward GetReward(string id) {
+            return this.rewardsMap[id];
         }
         
         #region EVENTS
@@ -67,11 +83,11 @@ namespace VavilichevGD.Meta.FortuneWheel.UI {
             this.UpdateButtonRotate();
         }
 
-        private void OnFortuneWheelRewardReceived(FortuneWheel fortunewheel, RewardInfo rewardInfo) {
+        private void OnFortuneWheelRewardReceived(FortuneWheel fortunewheel, string rewardInfoId) {
             this.properties.fortuneWheel.OnRewardReceivedEvent -= OnFortuneWheelRewardReceived;
-            Reward reward = new Reward(rewardInfo);
+            var reward = this.GetReward(rewardInfoId);
             reward.Apply();
-            Debug.Log($"Reward: {rewardInfo}");
+            Debug.Log($"Reward: {reward.info}");
         }
 
         #endregion

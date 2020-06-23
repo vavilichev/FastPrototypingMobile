@@ -16,10 +16,10 @@ MonoBehaviour:
   sectorsDataList:
   - angle: 0
     rewardInfo: {fileID: 11400000, guid: 6e391ed072288ad4d81f447844e51edc, type: 2}
-    chance: 50
+    chance: 4
   - angle: 30
     rewardInfo: {fileID: 11400000, guid: 59f8be25c67583042bedadfff244a6dd, type: 2}
-    chance: 10
+    chance: 4
   - angle: 60
     rewardInfo: {fileID: 11400000, guid: 30a61e4507727f84787a3620fd59e09a, type: 2}
     chance: 4
@@ -46,7 +46,7 @@ MonoBehaviour:
     chance: 4
   - angle: 300
     rewardInfo: {fileID: 11400000, guid: 40f2208611cd7594a93895a2ab45ba16, type: 2}
-    chance: 4
+    chance: 10
   - angle: 330
-    rewardInfo: {fileID: 11400000, guid: 699fd47bb2d280f45b5f1ee163a30a3e, type: 2}
-    chance: 4
+    rewardInfo: {fileID: 11400000, guid: 22dd9202495e48b49853c4ad1b250ed2, type: 2}
+    chance: 50

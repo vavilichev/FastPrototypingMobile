@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
+﻿using System.Collections;
 using VavilichevGD.Architecture;
 using VavilichevGD.Tools;
 
@@ -15,13 +11,12 @@ namespace VavilichevGD.Monetization {
 
         #endregion
 
-        public Dictionary<Type, ICurrency> currencyTypesMap { get; private set; }
-
+        public SoftCurrency softCurrency { get; private set; }
+        public HardCurrency hardCurrency { get; private set; }
 
         #region Initialize
 
         protected override IEnumerator InitializeRoutine() {
-            this.InitCurrencyTypesMap();
             LoadFromStorage();
 
             yield return null;
@@ -29,65 +24,29 @@ namespace VavilichevGD.Monetization {
             this.CompleteInitializing();
         }
 
-        private void InitCurrencyTypesMap() {
-            this.currencyTypesMap = new Dictionary<Type, ICurrency>();
-            this.CreateCurrency<SoftCurrency>();
-            this.CreateCurrency<HardCurrency>();
-        }
-
-        private void CreateCurrency<T>() where T : ICurrency, new() {
-            var currencyValue = new T();
-            var type = typeof(T);
-            this.currencyTypesMap[type] = currencyValue;
-        }
-        
-        
         protected override void LoadFromStorage() {
-            var dataDefault = new BankCurrencyData(currencyTypesMap);
 
+            this.softCurrency = new SoftCurrency();
+            this.hardCurrency = new HardCurrency();
+            
+            var dataDefault = new BankCurrencyData(this.softCurrency, this.hardCurrency);
             var dataLoaded = Storage.GetCustom(PREF_KEY_CURRENCY_DATA, dataDefault);
+            this.softCurrency.SetValue(this, dataLoaded.softCurrency);
+            this.hardCurrency.SetValue(this, dataLoaded.hardCurrency);
 
-            for (int i = 0; i < dataLoaded.currencyJsons.Count; i++) {
-                string currencyJson = dataLoaded.currencyJsons[i];
-
-                Type type = currencyTypesMap.ElementAt(i).Key;
-                var value = JsonUtility.FromJson(currencyJson, type);
-                ICurrency currency = (ICurrency) value;
-                currencyTypesMap[type] = currency;
-                Logging.Log($"BANK REPOSITORY: Loaded {type}. Value: {currency}");
-            }
+            Logging.Log($"BANK REPOSITORY: Loaded. Soft: {this.softCurrency} and Hard: {this.hardCurrency}");
         }
 
         #endregion
         
-        
         protected override void SaveToStorage() {
-            BankCurrencyData data = new BankCurrencyData(currencyTypesMap);
+            BankCurrencyData data = new BankCurrencyData(this.softCurrency, this.hardCurrency);
             Storage.SetCustom(PREF_KEY_CURRENCY_DATA, data);
-            Logging.Log($"BANK REPOSITORY: Saved to storage.");
+            Logging.Log($"BANK REPOSITORY: Saved to storage. Soft: {this.softCurrency} and Hard: {this.hardCurrency}");
         }
         
-        
-
-        public void AddCurrency<T>(T value) where T : ICurrency {
-            Type type = typeof(T);
-            currencyTypesMap[type].Add(value);
-            Save();
-        }
-
-        public void SpendCurrency<T>(T value) where T : ICurrency {
-            Type type = typeof(T);
-            currencyTypesMap[type].Spend(value);
-            Save();
-        }
-
         public override void Save() {
             this.SaveToStorage();
-        }
-
-        public T GetCurrency<T>() where T : ICurrency {
-            Type type = typeof(T);
-            return (T) currencyTypesMap[type];
         }
     }
 }

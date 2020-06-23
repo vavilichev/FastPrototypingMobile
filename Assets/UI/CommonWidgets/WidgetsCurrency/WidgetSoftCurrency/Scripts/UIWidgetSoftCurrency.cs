@@ -1,32 +1,44 @@
 ﻿using VavilichevGD.Architecture;
+using VavilichevGD.Architecture.Extentions;
 using VavilichevGD.Monetization;
+using VavilichevGD.Tools.Numerics;
 
 namespace VavilichevGD.UI {
     public class UIWidgetSoftCurrency : UIWidget<UIWidgetCurrencyProperties> {
+
+        private BankInteractor bankInteractor;
         
-        protected override void OnEnabled() {
-            Bank.OnBankStateChangedEvent += this.OnBankStateChanged;            
-            Game.OnGameInitializedEvent += this.OnGameInitializedEvent;
+        protected override void OnStart() {
+            if (!Game.isInitialized)
+                Game.OnGameInitializedEvent += this.OnGameInitialized;
+            else
+                this.InitializeBankInteractor();
         }
 
-        protected override void OnDisabled() {
-            Bank.OnBankStateChangedEvent -= this.OnBankStateChanged;            
+        private void InitializeBankInteractor() {
+            this.bankInteractor = this.GetInteractor<BankInteractor>();
+            this.bankInteractor.softCurrency.OnChangedEvent += this.OnSoftCurrencyChanged;
+            this.UpdateVisual();
         }
 
-        private void UpdateCurerncyValue() {
-            var softCurrency = Bank.GetCurrency<SoftCurrency>();
-            this.properties.textCurrencyValue.text = softCurrency.ToString();
+        private void UpdateVisual() {
+            this.properties.textCurrencyValue.text =
+                this.bankInteractor.softCurrency.value.ToString(BigNumber.FORMAT_DYNAMIC_4C);
         }
-        
+
+        private void OnDestroy() {
+            this.bankInteractor.softCurrency.OnChangedEvent -= this.OnSoftCurrencyChanged;
+        }
+
         #region EVENTS
         
-        private void OnGameInitializedEvent() {
-            Game.OnGameInitializedEvent -= this.OnGameInitializedEvent;
-            this.UpdateCurerncyValue();
+        private void OnGameInitialized() {
+            Game.OnGameInitializedEvent -= this.OnGameInitialized;
+            this.InitializeBankInteractor();
         }
-
-        private void OnBankStateChanged() {
-            this.UpdateCurerncyValue();
+        
+        private void OnSoftCurrencyChanged(object sender, BigNumber oldvalue, BigNumber newvalue) {
+            this.UpdateVisual();
         }
 
         #endregion

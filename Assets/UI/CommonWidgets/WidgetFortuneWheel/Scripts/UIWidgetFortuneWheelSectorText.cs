@@ -2,9 +2,10 @@
 
 namespace VavilichevGD.Meta.FortuneWheel.UI {
     public class UIWidgetFortuneWheelSectorText : UIWidget<UIWidgetFortuneWheelSectorTextProperties> {
-        public void Setup(RewardInfo rewardInfo) {
-            this.properties.imgIcon.sprite = rewardInfo.GetSpriteIcon();
-            this.properties.textValue.text = rewardInfo.GetCountToString();
+        public void Setup(Reward reward) {
+            var info = reward.info;
+            this.properties.imgIcon.sprite = info.GetSpriteIcon();
+            this.properties.textValue.text = info.GetDescription();
         }
     }
 }

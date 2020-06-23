@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0b01b859d300859469885f3002298c31, type: 3}
-  m_Name: RewardInfoSoftCurrency3000
+  m_Name: RewardInfoSoftCurrency
   m_EditorClassIdentifier: 
-  m_title: 
-  m_description: 
-  m_spriteIcon: {fileID: 21300000, guid: ff2175e96b52b0d4b88d92e623b6182c, type: 3}
-  m_count: 1
+  m_id: test2
+  m_title: test2
+  m_spriteIcon: {fileID: 0}
   rewardValue:
-    value: 3000
+    cutFloat: 50
+    order: 4

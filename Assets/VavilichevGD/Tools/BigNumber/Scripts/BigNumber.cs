@@ -366,7 +366,7 @@ namespace VavilichevGD.Tools.Numerics {
 		#region ToString
 
 		public override string ToString() {
-			return this.ToString("full");
+			return this.ToString(FORMAT_XXX_XC);
 		}
 
 		public string ToString(string format) {

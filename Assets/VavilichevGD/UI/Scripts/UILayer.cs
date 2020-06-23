@@ -5,10 +5,9 @@ using UnityEngine.UI;
 namespace VavilichevGD.UI {
     public enum Layer {
         Screen,
+        FXUnderPopup,
         Popup,
-        Tutorial,
-        Warning,
-        FX
+        FXOverPopup
     }
     
     [RequireComponent(typeof(Canvas))]

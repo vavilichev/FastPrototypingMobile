@@ -15,7 +15,7 @@ namespace VavilichevGD.Meta.FortuneWheel {
 		public event FortuneWheelEventHandler OnRotateStartEvent;
 		public event FortuneWheelEventHandler OnRotateOverEvent;
 
-		public delegate void FortuneWheelRewardEventHandler(FortuneWheel fortuneWheel, RewardInfo rewardInfo);
+		public delegate void FortuneWheelRewardEventHandler(FortuneWheel fortuneWheel, string rewardInfoId);
 		public event FortuneWheelRewardEventHandler OnRewardReceivedEvent;
 
 		#endregion
@@ -85,7 +85,7 @@ namespace VavilichevGD.Meta.FortuneWheel {
 		private void ApplyRewardByAngle(float angle) {
 			var clampedAngle = Mathf.Abs(angle);
 			var sectorData = this.m_config.GetSectorDataByAngle(clampedAngle);
-			this.OnRewardReceivedEvent?.Invoke(this, sectorData.rewardInfo);
+			this.OnRewardReceivedEvent?.Invoke(this, sectorData.rewardInfo.id);
 		}
 	}
 }

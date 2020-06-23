@@ -1,30 +1,29 @@
 ﻿using UnityEngine;
-using UnityEngine.Purchasing;
-using VavilichevGD.Monetization;
+using VavilichevGD.Tools.Numerics;
 
 namespace VavilichevGD.Meta {
     [CreateAssetMenu(fileName = "RewardInfoSoftCurrency", menuName = "Meta/Currencies/RewardSoftCurrency")]
-    public class RewardInfoSoftCurrency : RewardInfo {
-        [SerializeField] private SoftCurrency rewardValue;
+    public class RewardInfoSoftCurrency : RewardInfo, IRewardInfoBigNumber {
+        [SerializeField] private BigNumberSetting rewardValue;
 
-        public SoftCurrency GetRewardValue() {
-            return this.rewardValue;
-        }
-
-        public override string GetCountToString() {
-            return this.rewardValue.ToString();
+        public override string GetDescription() {
+            return this.rewardValue.value.ToString(BigNumber.FORMAT_XXX_XC);
         }
 
         public override RewardHandler CreateRewardHandler(Reward reward) {
             return new RewardHandlerSoftCurrency(reward);
         }
 
-        public override RewardState CreateState() {
-            return new RewardState(this.GetId());
+        public override string ToString() {
+            return this.GetDescription();
         }
 
-        public override RewardState CreateState(string stateJson) {
-            return JsonUtility.FromJson<RewardState>(stateJson);
+        public BigNumber GetValue() {
+            return this.rewardValue.value;
+        }
+
+        public string GetValueToString() {
+            return this.GetDescription();
         }
     }
 }

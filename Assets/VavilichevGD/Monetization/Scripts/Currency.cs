@@ -3,11 +3,21 @@
 namespace VavilichevGD.Monetization {
     [Serializable]
     public abstract class Currency<T> : ICurrency {
+
+        #region DELEGATES
+
+        public delegate void CurrencyHandler(object sender, T oldValue, T newValue);
+        public abstract event CurrencyHandler OnAddedEvent;
+        public abstract event CurrencyHandler OnSpentEvent;
+        public abstract event CurrencyHandler OnChangedEvent;
+
+        #endregion
+        
         public T value;
 
-        public abstract void Add<P>(P value) where P : ICurrency;
-        public abstract void Spend<P>(P value) where P : ICurrency;
-        public abstract void SetValue<P>(P value) where P : ICurrency;
+        public abstract void Add<P>(object sender, P value) where P : ICurrency;
+        public abstract void Spend<P>(object sender, P value) where P : ICurrency;
+        public abstract void SetValue<P>(object sender, P value) where P : ICurrency;
 
         public abstract int CompareTo<P>(P value) where P : ICurrency;
         

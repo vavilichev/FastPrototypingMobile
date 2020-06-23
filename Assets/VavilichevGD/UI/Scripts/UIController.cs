@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace VavilichevGD.UI {
+﻿namespace VavilichevGD.UI {
     public class UIController : UIControllerBase {
 
         public static UIController main { get; private set; }

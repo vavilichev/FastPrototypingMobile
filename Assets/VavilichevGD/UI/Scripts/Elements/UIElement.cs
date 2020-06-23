@@ -22,7 +22,7 @@ namespace VavilichevGD.UI {
         [SerializeField] protected Layer m_layer = Layer.Screen;
 
         public Layer layer => m_layer;
-        public bool isActive { get; protected set; }
+        public bool isActive { get; protected set; } = true;
         public bool isInitialized { get; protected set; }
         public bool isFocused => this.IsFocused();
 

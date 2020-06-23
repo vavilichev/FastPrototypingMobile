@@ -66,6 +66,11 @@ namespace VavilichevGD.UI {
             OnDialogueResultsEvent?.Invoke(e);
         }
 
+        protected void NotifyAboutResults(UIPopupResult result) {
+            var args = new UIPopupArgs(this, result);
+            this.OnDialogueResultsEvent?.Invoke((P) args);
+        }
+
         protected virtual void Update() {
             if (!this.closeWhenBackClicked)
                 return;
