@@ -2,21 +2,77 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0a837fd0-d632-4c9c-b5dd-8086dd6314b0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Tools/BigNumber/Scripts/Editor/BigNumberEditor.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Tools/BigNumber/Scripts/Editor/BigNumberEditor.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/Interfaces.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/Interfaces/IUIElement.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/Interfaces/IUIElementAnim.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/Interfaces/IUIElementAnim.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/Interfaces/IUIPopup.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/Interfaces/IUIScreen.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/Interfaces/IUIView.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/Interfaces/IUIView.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/Interfaces/IUIWidget.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/UIView.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/UIView.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FastProrotype/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FastProrotype/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FastProrotype/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FastProrotype/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/SoftCurrencyRewards/RewardInfoSoftCurrency.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/SoftCurrencyRewards/RewardInfoSoftCurrency.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/SoftCurrencyRewards/RewardInfoSoftCurrencyDynamic.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/SoftCurrencyRewards/RewardInfoSoftCurrencyDynamic.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Tools/BigNumber/Example/Scenes/BigNumberExample.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Tools/BigNumber/Example/Scenes/BigNumberExample.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Tools/BigNumber/Example/Scripts/BigNumberExample.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Tools/BigNumber/Example/Scripts/BigNumberExample.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Tools/BigNumber/Scripts/BigNumber.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Tools/BigNumber/Scripts/BigNumber.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Tools/BigNumber/Scripts/BigNumberLocalizator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Tools/BigNumber/Scripts/BigNumberLocalizator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Tools/BigNumber/Scripts/BigNumberSetting.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Tools/BigNumber/Scripts/BigNumberSetting.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Tools/BigNumber/Scripts/Editor/BigNumberSettingEditor.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Tools/BigNumber/Scripts/Editor/BigNumberSettingEditor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI/CommonWidgets/WidgetFortuneWheel/Scripts/UIWidgetFortuneWheel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI/CommonWidgets/WidgetFortuneWheel/Scripts/UIWidgetFortuneWheel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI/CommonWidgets/WidgetFortuneWheel/Scripts/UIWidgetFortuneWheelSectorText.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI/CommonWidgets/WidgetFortuneWheel/Scripts/UIWidgetFortuneWheelSectorText.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI/CommonWidgets/WidgetFortuneWheel/Scripts/UiWidgetFortuneWheelSectorTMP.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI/CommonWidgets/WidgetFortuneWheel/Scripts/UiWidgetFortuneWheelSectorTMP.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI/CommonWidgets/WidgetProgressBar/Scripts/UIWidgetProgressBarMasked.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI/CommonWidgets/WidgetProgressBar/Scripts/UIWidgetProgressBarMasked.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI/CommonWidgets/WidgetSlider/Scripts/UIWidgetSlider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI/CommonWidgets/WidgetSlider/Scripts/UIWidgetSlider.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI/CommonWidgets/WidgetsCurrency/WidgetSoftCurrency/Scripts/UIWidgetSoftCurrency.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI/CommonWidgets/WidgetsCurrency/WidgetSoftCurrency/Scripts/UIWidgetSoftCurrency.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI/PopupAreYouSure/Scripts/UIPopupAreYouSure.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI/PopupAreYouSure/Scripts/UIPopupAreYouSure.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI/PopupLevels/Scripts/UIPopupLevelsList.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI/PopupLevels/Scripts/UIPopupLevelsList.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI/PopupLevels/Scripts/UIWidgetLevelsItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI/PopupLevels/Scripts/UIWidgetLevelsItem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI/PopupLevels/Scripts/UIWidgetScrollRectOptimizedLevels.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI/PopupLevels/Scripts/UIWidgetScrollRectOptimizedLevels.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI/PopupLose/Scripts/UIPopupLose.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI/PopupLose/Scripts/UIPopupLose.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI/PopupOfferAD/Scripts/UIPopupOfferAD.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI/PopupOfferAD/Scripts/UIPopupOfferAD.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI/PopupPause/Scripts/UIPopupPause.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI/PopupPause/Scripts/UIPopupPause.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI/PopupSettings/Panels/PanelLanguage/Scripts/UIPanelSettingsLanguage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI/PopupSettings/Panels/PanelLanguage/Scripts/UIWidgetSettingsLanguage.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI/PopupSettings/Panels/PanelLanguage/Scripts/UIPanelSettingsLanguage.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI/PopupSettings/Panels/PanelLanguage/Scripts/UIWidgetSettingsLanguage.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI/PopupSettings/Panels/PanelsSounds/Scripts/UIPanelSoundSettingsBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI/PopupSettings/Panels/PanelsSounds/Scripts/UIPanelSoundSettingsBase.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI/PopupSettings/Scripts/UIPopupSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI/PopupSettings/Scripts/UIPopupSettings.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI/PopupWin/Scripts/UIPopupWin.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI/PopupWin/Scripts/UIPopupWin.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI/ScreenGameplay/Scripts/UIScreenGameplay.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI/ScreenGameplay/Scripts/UIScreenGameplay.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI/ScreenMainMenu/Scripts/UIScreenMainMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI/ScreenMainMenu/Scripts/UIScreenMainMenu.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI/Scripts/UIControllerFastPrototype.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI/Scripts/UIControllerFastPrototype.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI/Scripts/UIInteractorFastPrototype.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI/Scripts/UIInteractorFastPrototype.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Tools/Storage/Scripts/Storage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Tools/Storage/Scripts/Storage.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/Argumets.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/Argumets/UIPopupArgs.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/Argumets/UIPopupArgs.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/UIControllerExample.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/IUIElement.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/IUIElement.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/Interfaces/IUIElement.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/IUIPanel.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/IUIPanel.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/IUIPopup.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/IUIPopup.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/Interfaces/IUIPopup.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/IUIScreen.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/IUIScreen.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/Interfaces/IUIScreen.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/IUIWidget.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/IUIWidget.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/Interfaces/IUIWidget.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/UIElement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/UIElement.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/UIElementAnim.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/UIElementAnim.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/UIPanel.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/UIPanel.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/UIPanelAnim.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/UIPanelAnim.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/UIPopup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/UIPopup.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/UIPopupAnim.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/UIPopupAnim.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/UIScreen.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/UIScreen.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/UIScreenAnim.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/UIScreenAnim.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/UIWidget.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/UIWidget.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/UIWidgetAnim.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/UIWidgetAnim.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/UIController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/UIControllerExample.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/UIController.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/UIController.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/UIControllerBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/UIController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/UIControllerBase.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/UIInteractor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/UIInteractor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/UILayer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/UILayer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Utils/ScrollRectOptimized/Example/Scripts/UIWidgetScrollRectOptimizedExample.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Utils/ScrollRectOptimized/Example/Scripts/UIWidgetScrollRectOptimizedExample.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Utils/ScrollRectOptimized/Example/Scripts/UIWidgetScrollRectOptimizedItemExample.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Utils/ScrollRectOptimized/Example/Scripts/UIWidgetScrollRectOptimizedItemExample.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Utils/ScrollRectOptimized/Scripts/UIWidgetScrollRectOptimized.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Utils/ScrollRectOptimized/Scripts/UIWidgetScrollRectOptimized.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Utils/ScrollRectOptimized/Scripts/UIWidgetScrollRectOptimizedItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Utils/ScrollRectOptimized/Scripts/UIWidgetScrollRectOptimizedItem.cs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -31,6 +87,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Core/Levels/Scripts/Architecture/LevelInfo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Tools/DebugLogging/Scripts/Logging.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/DeferredReward/Scripts/DefferedRewardsInteractor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/Interfaces/IUIView.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/UI/PopupLevels/Scripts/UIWidgetLevelsItem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Analytics/Scripts/Customizing/AnalyticsInteractor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Architecture/Game/Scripts/Game.cs" root0="FORCE_HIGHLIGHTING" />
@@ -49,9 +106,12 @@
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Sounds/Music/Scripts/MusicPlayer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Architecture/Interactors/Scripts/InteractorsBase.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Architecture/Interactors/Scripts/Interactor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/UI/PopupPause/Scripts/UIPopupPause.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Core/Levels/Scripts/LevelLoader/LevelsLoaderSimple.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Core/Levels/Scripts/LevelLoader/ILevelsLoader.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Architecture/Repository/Scripts/RepositoryUpdater.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/UI/PopupWin/Scripts/UIPopupWin.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/UI/PopupSettings/Scripts/UIPopupSettings.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Localization/Scripts/LocalizationInteractor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Localization/Scripts/LocalizationRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Analytics/Scripts/AnalyticsSender.cs" root0="FORCE_HIGHLIGHTING" />
@@ -77,6 +137,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Tools/GameTime/Scripts/GameTime.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Monetization/ADS/Scripts/ADS.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/DailyRewards/Scripts/Editor/DailyRewardsConfigEditor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/UI/ScreenMainMenu/Scripts/UIScreenMainMenu.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Monetization/ADS/Scripts/ADSInteractor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/DailyRewards/Example/Config/Rewards/Scripts/DailyRewardInfoExample.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Tools/Coroutines/Scripts/RoutineWithArg.cs" root0="FORCE_HIGHLIGHTING" />
@@ -95,12 +156,14 @@
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Sounds/Scripts/SoundSourceUpdater.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Monetization/Shop/Payment/Scripts/PaymentHandlerSoftCurrency.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Monetization/Shop/Payment/Scripts/PaymentHandler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/UI/CommonWidgets/WidgetProgressBar/Scripts/UIWidgetProgressBarMasked.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Monetization/Shop/Payment/Scripts/PaymentHandlerHardCurrency.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Monetization/Shop/Payment/Scripts/PaymentHandlerRealCurrency.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Monetization/Shop/Payment/Scripts/PaymentsHandlerFactory.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Core/Levels/Scripts/Architecture/LevelState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Core/Levels/Scripts/Architecture/LevelsInteractor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Monetization/Shop/Payment/Scripts/PaymentHandlerADS.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/UI/CommonWidgets/WidgetSlider/Scripts/UIWidgetSlider.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Monetization/Shop/Payment/Scripts/RealPayments/RealPaymentBehaviorUnity.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Monetization/Shop/Payment/Scripts/RealPayments/RealPaymentBehavior.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Monetization/Shop/Payment/Scripts/RealPayments/RealPaymentInteractor.cs" root0="FORCE_HIGHLIGHTING" />
@@ -119,12 +182,15 @@
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Monetization/Shop/Products/Scripts/ProductHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/SoftCurrencyRewards/RewardInfoSoftCurrencyDynamic.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Core/Levels/Scripts/Architecture/LevelsRepository.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/UI/PopupSettings/Panels/PanelLanguage/Scripts/UIWidgetSettingsLanguage.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Core/Levels/Scripts/Architecture/Level.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Monetization/Scripts/ICurrency.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/UI/Utils/ScrollRectOptimized/Scripts/UIWidgetScrollRectOptimizedItemProperties.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Tools/BigNumber/Scripts/BigNumberLocalizator.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/UI/CommonWidgets/WidgetsCurrency/WidgetSoftCurrency/Scripts/UIWidgetSoftCurrency.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/Scripts/IRewardInfoDynamic.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Tools/BigNumber/Scripts/BigNumberSerialized.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/UI/PopupSettings/Panels/PanelsSounds/Scripts/UIPanelSoundSettingsBase.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Tools/BigNumber/Scripts/BigNumberOrder.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Sounds/SFX/Scripts/SFXSource.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/UI/PopupOfferAD/Scripts/UIPopupOfferAD.cs" root0="FORCE_HIGHLIGHTING" />
@@ -139,6 +205,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/UI/Utils/ScrollRectOptimized/Scripts/UIWidgetScrollRectOptimizedItem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/UI/Utils/ScrollRectOptimized/Scripts/UIWidgetScrollRectOptimized.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Core/Levels/Example/Scripts/ExampleLevels.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/UI/PopupLose/Scripts/UIPopupLose.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Tools/Coroutines/Scripts/Routine.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/Scripts/IRewardInfoInteger.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/UI/CommonWidgets/WidgetFortuneWheel/Scripts/UIWidgetFortuneWheelSectorTextProperties.cs" root0="FORCE_HIGHLIGHTING" />
@@ -154,6 +221,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/Scripts/IRewardInfoBigNumber.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@2.0.1/Scripts/Runtime/TMP_Text.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Meta/Quests/Scripts/QuestInteractor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/UIView.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/UI/PopupAreYouSure/Scripts/UIPopupAreYouSure.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Monetization/Scripts/HardCurrency.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Tools/BigNumber/Scripts/Editor/BigNumberEditor.cs" root0="FORCE_HIGHLIGHTING" />
@@ -194,33 +262,42 @@
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Meta/FortuneWheel/Config/Scripts/Editor/FortuneWheelConfigEditor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/DailyRewards/Scripts/DailyRewardsData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Extentions/UIExtentionsRectTransform.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/UIWidget.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/UI/PopupLevels/Scripts/UIPopupLevelsListProperties.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/DailyRewards/Scripts/DailyRewardHandler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/UIScreenAnim.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/DailyRewards/Scripts/DailyRewardInteractor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Meta/FortuneWheel/Config/Scripts/FortuneWheelConfig.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/Argumets/UIPopupArgs.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/UIWidgetAnim.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/DeferredReward/Scripts/DefferedRewardsData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/UIPopup.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/UIScreen.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/UIPopupAnim.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/UIElement.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Analytics/Scripts/AnalyticsEvent.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/Interfaces/IUIWidget.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Monetization/Bank/Example/Scripts/GameBankExample.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7C074160-DD1A-4D91-9B45-B6E4C27A3BAC/62/51d9e69a/Dictionary`2.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/UIElementAnim.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Tools/Storage/Scripts/Storage.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/Interfaces/IUIElement.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/Interfaces/IUIScreen.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Tools/Storage/Scripts/StorageEncryptor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9202CBF1-9591-499D-8BBB-DCD8ACB92428/41/8f5db7a8/AudioSource.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/IUIPopup.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/Interfaces/IUIPopup.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/Interfaces/IUIElementAnim.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/UIInteractor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Analytics/Scripts/AnalyticsSenderDevToDev.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Sounds/Scripts/SoundSettings.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/UIController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/UIControllerExample.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/UILayer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Tools/BigNumber/Example/Scripts/BigNumberExample.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/UIControllerBase.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/UIController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Tools/BigNumber/Scripts/BigNumber.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/UI/PopupLevels/Scripts/UIWIdgetLevelsItemProperties.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/DeferredReward/Scripts/DefferedRewardsExample.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4BEC26B5-CBC7-4715-8442-F1499E984732/e7/757a8646/Object.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/UI/ScreenGameplay/Scripts/UIScreenGameplay.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Architecture/Utils/ArchitectureExtentions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/DeferredReward/Scripts/DefferedRewardInfo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/DeferredReward/Scripts/DefferedRewardsRepository.cs" root0="FORCE_HIGHLIGHTING" />
@@ -230,57 +307,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/VavilichevGD/Core/Levels/Scripts/LevelsLoaderSimple.cs" />
-        <option value="$PROJECT_DIR$/Assets/VavilichevGD/Core/Levels/Scripts/Architecture/LevelsRepository.cs" />
-        <option value="$PROJECT_DIR$/Assets/VavilichevGD/Core/Levels/Scripts/Architecture/AllLevelStates.cs" />
-        <option value="$PROJECT_DIR$/Assets/VavilichevGD/Core/Levels/Scripts/Architecture/LevelInfo.cs" />
-        <option value="$PROJECT_DIR$/Assets/VavilichevGD/Core/Levels/Scripts/Architecture/LevelState.cs" />
-        <option value="$PROJECT_DIR$/Assets/VavilichevGD/Core/Levels/Scripts/Architecture/LevelsInteractor.cs" />
-        <option value="$PROJECT_DIR$/Assets/VavilichevGD/Architecture/Utils/ArchitectureExtentions.cs" />
-        <option value="$PROJECT_DIR$/Assets/VavilichevGD/Core/Levels/Example/Scripts/ExampleLevels.cs" />
-        <option value="$PROJECT_DIR$/Assets/VavilichevGD/Architecture/Interactors/Scripts/InteractorsBase.cs" />
-        <option value="$PROJECT_DIR$/Assets/VavilichevGD/Architecture/Repository/Scripts/IRepository.cs" />
-        <option value="$PROJECT_DIR$/Assets/VavilichevGD/Architecture/Repository/Scripts/RepositoriesBase.cs" />
-        <option value="$PROJECT_DIR$/Assets/VavilichevGD/Architecture/Interactors/Scripts/IInteractor.cs" />
-        <option value="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/UIElement.cs" />
-        <option value="$PROJECT_DIR$/Assets/UI/PopupOfferAD/Scripts/IOfferAD.cs" />
-        <option value="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/UIPopup.cs" />
-        <option value="$PROJECT_DIR$/Assets/UI/PopupOfferAD/Scripts/UIPopupOfferAD.cs" />
-        <option value="$PROJECT_DIR$/Assets/UI/PopupOfferAD/Scripts/UIPopupOfferADProperties.cs" />
-        <option value="$PROJECT_DIR$/Assets/UI/AnimationsScriptable/UIAnimationBounce.cs" />
-        <option value="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/UIController.cs" />
-        <option value="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/UILayer.cs" />
-        <option value="$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/Scripts/RewardHandler.cs" />
-        <option value="$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/DailyRewards/Example/Config/Rewards/Scripts/DailyRewardHandlerExample.cs" />
-        <option value="$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/Scripts/RewardDynamicState.cs" />
-        <option value="$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/Scripts/RewardDynamicInfo.cs" />
-        <option value="$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/Scripts/RewardDynamicInfoState.cs" />
-        <option value="$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/Scripts/RewardInfoCountable.cs" />
-        <option value="$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/Scripts/RewardInfoBigNumber.cs" />
-        <option value="$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/Scripts/RewardInfoDynamic.cs" />
-        <option value="$PROJECT_DIR$/Assets/VavilichevGD/Monetization/Scripts/SoftCurrency.cs" />
-        <option value="$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/Scripts/IRewardInfoDynamic.cs" />
-        <option value="$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/Scripts/RewardDynamic.cs" />
-        <option value="$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/Scripts/IRewardInfoBigNumber.cs" />
-        <option value="$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/Scripts/IRewardInfoInteger.cs" />
-        <option value="$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/Scripts/RewardInfoInteger.cs" />
-        <option value="$PROJECT_DIR$/Assets/UI/CommonWidgets/WidgetFortuneWheel/Scripts/RewardInfoFortuneHandler.cs" />
-        <option value="$PROJECT_DIR$/Assets/UI/CommonWidgets/WidgetFortuneWheel/Scripts/RewardInfoFortune.cs" />
-        <option value="$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/Scripts/RewardInfo.cs" />
-        <option value="$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/DailyRewards/Example/Config/Rewards/Scripts/DailyRewardInfoExample.cs" />
-        <option value="$PROJECT_DIR$/Assets/UI/CommonWidgets/WidgetFortuneWheel/Scripts/UiWidgetFortuneWheelSectorTMP.cs" />
-        <option value="$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/Example/Scripts/TestScript.cs" />
-        <option value="$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/Scripts/Reward.cs" />
-        <option value="$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/SoftCurrencyRewards/RewardHandlerSoftCurrency.cs" />
-        <option value="$PROJECT_DIR$/Assets/UI/CommonWidgets/WidgetFortuneWheel/Scripts/UIWidgetFortuneWheelSectorText.cs" />
-        <option value="$PROJECT_DIR$/Assets/VavilichevGD/Meta/FortuneWheel/Scripts/FortuneWheel.cs" />
-        <option value="$PROJECT_DIR$/Assets/UI/CommonWidgets/WidgetFortuneWheel/Scripts/UIWidgetFortuneWheel.cs" />
-        <option value="$PROJECT_DIR$/Assets/VavilichevGD/Tools/BigNumber/Scripts/BigNumberLocalizator.cs" />
-        <option value="$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/SoftCurrencyRewards/RewardInfoSoftCurrency.cs" />
-        <option value="$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/SoftCurrencyRewards/RewardInfoSoftCurrencyDynamic.cs" />
-        <option value="$PROJECT_DIR$/Assets/VavilichevGD/Tools/BigNumber/Scripts/BigNumber.cs" />
         <option value="$PROJECT_DIR$/Assets/VavilichevGD/Tools/BigNumber/Example/Scripts/BigNumberExample.cs" />
         <option value="$PROJECT_DIR$/Assets/VavilichevGD/Tools/BigNumber/Scripts/Editor/BigNumberEditor.cs" />
+        <option value="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/IUIElement.cs" />
+        <option value="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/UIElement.cs" />
+        <option value="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/UIElementAnim.cs" />
+        <option value="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/Refactored/UIElement.cs" />
+        <option value="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/Refactored/IUIElement.cs" />
+        <option value="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/Refactored/IUIView.cs" />
+        <option value="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/Refactored/UIView.cs" />
+        <option value="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/IUIPopup.cs" />
+        <option value="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/Refactored/Interfaces/IUIPopup.cs" />
+        <option value="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/UIPopupAnim.cs" />
+        <option value="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/IUIScreen.cs" />
+        <option value="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/Refactored/Interfaces/IUIElementAnim.cs" />
+        <option value="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/Refactored/UIElementAnim.cs" />
+        <option value="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/Refactored/UIPopupAnim.cs" />
+        <option value="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/UIScreenAnim.cs" />
+        <option value="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/IUIWidget.cs" />
+        <option value="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/UIWidget.cs" />
+        <option value="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/UIWidgetAnim.cs" />
+        <option value="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/Argumets/UIPopupArgs.cs" />
+        <option value="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/Argumets/UIPopupResult.cs" />
+        <option value="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/UIPopup.cs" />
+        <option value="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/UIControllerBase.cs" />
+        <option value="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/Interfaces/IUIScreen.cs" />
+        <option value="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/UIScreen.cs" />
+        <option value="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/UIControllerExample.cs" />
+        <option value="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/UIInteractor.cs" />
+        <option value="$PROJECT_DIR$/Assets/VavilichevGD/UI/Utils/ScrollRectOptimized/Scripts/UIWidgetScrollRectOptimized.cs" />
+        <option value="$PROJECT_DIR$/Assets/UI/ScreenMainMenu/Scripts/UIScreenMainMenu.cs" />
+        <option value="$PROJECT_DIR$/Assets/UI/ScreenGameplay/Scripts/UIScreenGameplay.cs" />
+        <option value="$PROJECT_DIR$/Assets/UI/PopupWin/Scripts/UIPopupWin.cs" />
+        <option value="$PROJECT_DIR$/Assets/UI/PopupSettings/Panels/PanelLanguage/Scripts/UIWidgetSettingsLanguage.cs" />
+        <option value="$PROJECT_DIR$/Assets/UI/PopupSettings/Panels/PanelsSounds/Scripts/UIPanelSoundSettingsBase.cs" />
+        <option value="$PROJECT_DIR$/Assets/UI/PopupSettings/Scripts/UIPopupSettings.cs" />
+        <option value="$PROJECT_DIR$/Assets/UI/PopupPause/Scripts/UIPopupPause.cs" />
+        <option value="$PROJECT_DIR$/Assets/UI/PopupOfferAD/Scripts/UIPopupOfferAD.cs" />
+        <option value="$PROJECT_DIR$/Assets/UI/PopupLose/Scripts/UIPopupLose.cs" />
+        <option value="$PROJECT_DIR$/Assets/UI/PopupLevels/Scripts/UIPopupLevelsList.cs" />
+        <option value="$PROJECT_DIR$/Assets/VavilichevGD/UI/Utils/ScrollRectOptimized/Scripts/UIWidgetScrollRectOptimizedItem.cs" />
+        <option value="$PROJECT_DIR$/Assets/VavilichevGD/UI/Utils/ScrollRectOptimized/Example/Scripts/UIWidgetScrollRectOptimizedItemExample.cs" />
+        <option value="$PROJECT_DIR$/Assets/UI/PopupLevels/Scripts/UIWidgetLevelsItem.cs" />
+        <option value="$PROJECT_DIR$/Assets/UI/PopupAreYouSure/Scripts/UIPopupAreYouSure.cs" />
+        <option value="$PROJECT_DIR$/Assets/UI/CommonWidgets/WidgetFortuneWheel/Scripts/UIWidgetFortuneWheel.cs" />
+        <option value="$PROJECT_DIR$/Assets/UI/CommonWidgets/WidgetFortuneWheel/Scripts/UIWidgetFortuneWheelSectorText.cs" />
+        <option value="$PROJECT_DIR$/Assets/UI/CommonWidgets/WidgetFortuneWheel/Scripts/UiWidgetFortuneWheelSectorTMP.cs" />
+        <option value="$PROJECT_DIR$/Assets/UI/CommonWidgets/WidgetProgressBar/Scripts/UIWidgetProgressBarMasked.cs" />
+        <option value="$PROJECT_DIR$/Assets/UI/CommonWidgets/WidgetsCurrency/WidgetSoftCurrency/Scripts/UIWidgetSoftCurrency.cs" />
+        <option value="$PROJECT_DIR$/Assets/UI/CommonWidgets/WidgetSlider/Scripts/UIWidgetSlider.cs" />
+        <option value="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/UIController.cs" />
+        <option value="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/UILayer.cs" />
       </list>
     </option>
   </component>
@@ -384,7 +461,7 @@
       <workItem from="1592938091000" duration="5056000" />
       <workItem from="1593177101281" duration="1538000" />
       <workItem from="1596312961904" duration="1788000" />
-      <workItem from="1596384937681" duration="1041000" />
+      <workItem from="1596384937681" duration="9701000" />
     </task>
     <servers />
   </component>

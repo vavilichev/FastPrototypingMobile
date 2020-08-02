@@ -1,15 +1,18 @@
-﻿namespace VavilichevGD.UI.Utils {
-    public abstract class UIWidgetScrollRectOptimized<P> : UIWidget<UIWidgetScrollRectOptimizedProperties> 
-        where P : UIWidgetScrollRectOptimizedItemProperties {
+﻿using UnityEngine;
 
-        private UIWidgetScrollRectOptimizedItem<P>[] items;
+namespace VavilichevGD.UI.Utils {
+    public abstract class UIWidgetScrollRectOptimized : UIWidget {
+
+        [SerializeField] protected UIWidgetScrollRectOptimizedProperties properties;
+
+        private UIWidgetScrollRectOptimizedItem[] items;
         
         protected override void OnStart() {
-            this.items = this.GetComponentsInChildren<UIWidgetScrollRectOptimizedItem<P>>();
+            this.items = this.GetComponentsInChildren<UIWidgetScrollRectOptimizedItem>();
             
-            UIWidgetScrollRectOptimizedItem<P>.Properties props = new UIWidgetScrollRectOptimizedItem<P>.Properties();
-            props.cameraRelative = UIControllerBase.cameraUI;
-            props.rootRectTransform = UIControllerBase.rootRectTransform;
+            UIWidgetScrollRectOptimizedItem.Properties props = new UIWidgetScrollRectOptimizedItem.Properties();
+            props.cameraRelative = UIController.cameraUI;
+            props.rootRectTransform = UIController.rootRectTransform;
             props.containerRectTransform = this.properties.rectTransformMaskContainer;
             
             

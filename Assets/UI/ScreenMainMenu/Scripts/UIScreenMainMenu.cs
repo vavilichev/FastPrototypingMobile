@@ -2,7 +2,9 @@
 using VavilichevGD.UI.Extentions;
 
 namespace VavilichevGD.UI {
-    public class UIScreenMainMenu : UIScreen<UIScreenMainMenuProperties> {
+    public class UIScreenMainMenu : UIScreen {
+
+        [SerializeField] protected UIScreenMainMenuProperties properties;
         
         protected override void OnEnabled() {
             this.properties.btnPlay.AddListener(this.OnPlayBtnClick);    

@@ -3,8 +3,10 @@ using UnityEngine;
 using VavilichevGD.UI.Extentions;
 
 namespace VavilichevGD.UI {
-    public class UIPopupOfferAD : UIPopup<UIPopupOfferADProperties, UIPopupArgs> {
+    public class UIPopupOfferAD : UIPopup {
 
+        [SerializeField] private UIPopupOfferADProperties properties;
+        
         public void Setup(IOfferAD offer) {
             this.properties.imgIcon.sprite = offer.GetIcon();
             this.properties.textTitle.text = offer.GetTitle();
@@ -34,12 +36,12 @@ namespace VavilichevGD.UI {
 
         private void OnApplyButtonClick() {
             this.Hide();
-            this.NotifyAboutResults(UIPopupResult.Apply);
+            this.NotifyAboutHiddenWithResults(UIPopupResult.Apply);
         }
 
         private void OnCancelButtonClick() {
             this.Hide();
-            this.NotifyAboutResults(UIPopupResult.Close);
+            this.NotifyAboutHiddenWithResults(UIPopupResult.Cancel);
         }
 
         #endregion

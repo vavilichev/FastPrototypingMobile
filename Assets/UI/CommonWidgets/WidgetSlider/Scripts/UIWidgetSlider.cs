@@ -2,7 +2,9 @@
 using UnityEngine.Events;
 
 namespace VavilichevGD.UI {
-    public class UIWidgetSlider : UIWidget<UIWidgetSliderProperties> {
+    public class UIWidgetSlider : UIWidget {
+
+        [SerializeField] private UIWidgetSliderProperties properties;
         
         protected float difference => this.properties.valueMax - this.properties.valueMin;
         protected float step => 1f / difference;

@@ -2,25 +2,33 @@
 using UnityEngine.UI;
 
 namespace VavilichevGD.UI {
-    public abstract class UIPopup<T, P> : UIElement, IUIPopup where T : UIProperties where P : UIPopupArgs {
+    
+    public enum UIPopupResult {
+        Cancel,
+        Apply,
+        Error,
+        Other
+    }
+    
+    public abstract class UIPopup: UIView, IUIPopup {
 
         #region DELEGATES
 
-        public delegate void DialogueResultsHandler(P e);
-        public event DialogueResultsHandler OnDialogueResultsEvent;
+        public delegate void UIPopupCloseHandler(UIPopup popup, UIPopupResult result);
+        public event UIPopupCloseHandler OnUIPopupHiddenWithResultsEvent;
 
         #endregion
-        
+
         [Space]
         [SerializeField] protected bool preCached = false;
-        [SerializeField] protected bool closeWhenBackClicked = false;
-        [SerializeField] protected T properties;
+        [SerializeField] protected bool hideWhenBackClicked = false;
 
+        public bool isPreCached => this.preCached;
         public Canvas canvas { get; protected set; }
-        
-        
-        protected virtual void Awake() {
-            if (this.preCached) 
+
+
+        protected override void OnAwake() {
+            if (this.isPreCached) 
                 this.InitPreCachedPopup();
         }
 
@@ -28,29 +36,33 @@ namespace VavilichevGD.UI {
             this.canvas = this.gameObject.GetComponent<Canvas>();
             if (!this.canvas)
                 this.canvas = this.gameObject.AddComponent<Canvas>();
+            
             GraphicRaycaster raycaster = this.gameObject.GetComponent<GraphicRaycaster>();
             if (!raycaster)
                 this.gameObject.AddComponent<GraphicRaycaster>();
         }
         
+        
+        
         public override void Show() {
             if (this.isActive)
                 return;
 
-            if (this.preCached) {
-                this.transform.SetAsLastSibling();
+            if (this.isPreCached) {
+                this.myTransform.SetAsLastSibling();
                 this.gameObject.SetActive(true);
                 this.canvas.enabled = true;
             }
             
             this.isActive = true;
+            this.NotifyAboutElementShown();
         }
         
         public override void HideInstantly() {
             if (!this.isActive)
                 return;
             
-            if (this.preCached) {
+            if (this.isPreCached) {
                 this.canvas.enabled = false;
                 this.gameObject.SetActive(false);
             }
@@ -59,32 +71,23 @@ namespace VavilichevGD.UI {
 
             
             this.isActive = false;
-        }
-        
-        
-        protected virtual void NotifyAboutResults(P e) {
-            OnDialogueResultsEvent?.Invoke(e);
+            this.NotifyAboutElementHidden();
         }
 
-        protected void NotifyAboutResults(UIPopupResult result) {
-            var args = new UIPopupArgs(this, result);
-            this.OnDialogueResultsEvent?.Invoke((P) args);
+        protected virtual void NotifyAboutHiddenWithResults(UIPopupResult result) {
+            this.OnUIPopupHiddenWithResultsEvent?.Invoke(this, result);
         }
-
+        
         protected virtual void Update() {
-            if (!this.closeWhenBackClicked)
+            if (!this.hideWhenBackClicked)
+                return;
+            
+            if (!this.isFocused)
                 return;
             
             if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Home) || Input.GetKeyDown(KeyCode.Home))
                 this.Hide();
         }
-
-        public bool IsActive() {
-            return this.isActive;
-        }
-
-        public bool IsPreCached() {
-            return this.preCached;
-        }
+        
     }
 }

@@ -2,7 +2,9 @@
 using VavilichevGD.UI.Extentions;
 
 namespace VavilichevGD.UI {
-    public class UIPopupLose : UIPopup<UIPopupLoseProperties, UIPopupArgs> {
+    public class UIPopupLose : UIPopup {
+
+        [SerializeField] private UIPopupLoseProperties properties;
 
         protected override void OnEnabled() {
             this.properties.btnMenu.AddListener(OnMenuBtnClick);
@@ -20,8 +22,6 @@ namespace VavilichevGD.UI {
         private void OnMenuBtnClick() {
             // TODO: Go to menu;
             this.Hide();
-            UIPopupArgs args = new UIPopupArgs(this, UIPopupResult.Other);
-            this.NotifyAboutResults(args);
             
             Debug.Log("On menu btn clicked");
         }
@@ -29,8 +29,6 @@ namespace VavilichevGD.UI {
         private void OnRestartBtnClick() {
             // TODO: Restart level;
             this.Hide();
-            UIPopupArgs args = new UIPopupArgs(this, UIPopupResult.Other);
-            this.NotifyAboutResults(args);
             
             Debug.Log("On restart btn clicked");
         }

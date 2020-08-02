@@ -164,8 +164,8 @@
             <e p="Panels" t="Include">
               <e p="PanelLanguage" t="Include">
                 <e p="Scripts" t="Include">
-                  <e p="UIPanelSettingsLanguage.cs" t="Include" />
                   <e p="UIPanelSettingsLanguageProperties.cs" t="Include" />
+                  <e p="UIWidgetSettingsLanguage.cs" t="Include" />
                 </e>
               </e>
               <e p="PanelsSounds" t="Include">
@@ -627,22 +627,21 @@
             </e>
             <e p="Scripts" t="Include">
               <e p="Elements" t="Include">
-                <e p="Argumets" t="Include">
-                  <e p="UIPopupArgs.cs" t="Include" />
+                <e p="Interfaces" t="Include">
+                  <e p="IUIElement.cs" t="Include" />
+                  <e p="IUIElementAnim.cs" t="Include" />
+                  <e p="IUIPopup.cs" t="Include" />
+                  <e p="IUIScreen.cs" t="Include" />
+                  <e p="IUIView.cs" t="Include" />
+                  <e p="IUIWidget.cs" t="Include" />
                 </e>
-                <e p="IUIElement.cs" t="Include" />
-                <e p="IUIPanel.cs" t="Include" />
-                <e p="IUIPopup.cs" t="Include" />
-                <e p="IUIScreen.cs" t="Include" />
-                <e p="IUIWidget.cs" t="Include" />
                 <e p="UIElement.cs" t="Include" />
                 <e p="UIElementAnim.cs" t="Include" />
-                <e p="UIPanel.cs" t="Include" />
-                <e p="UIPanelAnim.cs" t="Include" />
                 <e p="UIPopup.cs" t="Include" />
                 <e p="UIPopupAnim.cs" t="Include" />
                 <e p="UIScreen.cs" t="Include" />
                 <e p="UIScreenAnim.cs" t="Include" />
+                <e p="UIView.cs" t="Include" />
                 <e p="UIWidget.cs" t="Include" />
                 <e p="UIWidgetAnim.cs" t="Include" />
               </e>
@@ -652,7 +651,7 @@
                 <e p="UIExtentionsRectTransform.cs" t="Include" />
               </e>
               <e p="UIController.cs" t="Include" />
-              <e p="UIControllerBase.cs" t="Include" />
+              <e p="UIControllerExample.cs" t="Include" />
               <e p="UIInteractor.cs" t="Include" />
               <e p="UILayer.cs" t="Include" />
               <e p="UIProperties.cs" t="Include" />

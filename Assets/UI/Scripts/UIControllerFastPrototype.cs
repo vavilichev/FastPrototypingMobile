@@ -1,7 +1,7 @@
 ﻿using VavilichevGD.Architecture;
 
 namespace VavilichevGD.UI {
-    public class UIControllerFastPrototype : UIControllerBase {
+    public class UIControllerFastPrototype : UIController {
         protected override void OnInitialized() {
             this.ShowElement<UIScreenMainMenu>();
         }

@@ -1,15 +1,22 @@
 ﻿using UnityEngine;
 
 namespace VavilichevGD.UI {
-    public abstract class UIPopupAnim<T, P> : UIPopup<T, P> where T : UIProperties where P : UIPopupArgs {
-        
-        [Space]
-        [SerializeField] protected Animator animator;
-        
+    public abstract class UIPopupAnim : UIPopup, IUIElementAnim {
+
+        #region CONSTANTS
+
         private static readonly int triggerHide = Animator.StringToHash("hide");
 
-        protected void Handle_AnimationOutOver() {
-            HideInstantly();
+        #endregion
+        
+        [Space]
+        [SerializeField] protected Animator m_animator;
+
+        public Animator animator => this.m_animator;
+
+
+        public void Handle_AnimationOutOver() {
+            this.HideInstantly();
         }
 
         public override void Hide() {
@@ -20,9 +27,9 @@ namespace VavilichevGD.UI {
         }
         
 #if UNITY_EDITOR
-        protected void Reset() {
-            if (this.animator == null)
-                this.animator = this.GetComponent<Animator>();
+        protected virtual void Reset() {
+            if (this.m_animator == null)
+                this.m_animator = this.GetComponent<Animator>();
         }
 #endif
     }

@@ -6,8 +6,9 @@ using VavilichevGD.UI;
 using VavilichevGD.UI.Extentions;
 
 namespace VavilichevGD.Meta.FortuneWheel.UI {
-    public class UIWidgetFortuneWheel : UIWidget<UIWidgetFortuneWheelProperties> {
+    public class UIWidgetFortuneWheel : UIWidget {
 
+        [SerializeField] private UIWidgetFortuneWheelProperties properties;
         private FortuneWheelInteractorFreeAndAD interactor;
 
         private Dictionary<string, Reward> rewardsMap;

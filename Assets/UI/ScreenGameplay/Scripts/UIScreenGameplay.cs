@@ -2,7 +2,9 @@
 using VavilichevGD.UI.Extentions;
 
 namespace VavilichevGD.UI {
-    public class UIScreenGameplay : UIScreen<UIScreenGameplayProperties> {
+    public class UIScreenGameplay : UIScreen {
+
+        protected UIScreenGameplayProperties properties;
         
         protected override void OnEnabled() {
             this.properties.btnPause.AddListener(this.OnPauseBtnClick);

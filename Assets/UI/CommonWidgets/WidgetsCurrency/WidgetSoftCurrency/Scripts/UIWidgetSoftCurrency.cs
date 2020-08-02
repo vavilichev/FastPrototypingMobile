@@ -1,11 +1,14 @@
-﻿using VavilichevGD.Architecture;
+﻿using UnityEngine;
+using VavilichevGD.Architecture;
 using VavilichevGD.Architecture.Extentions;
 using VavilichevGD.Monetization;
 using VavilichevGD.Tools.Numerics;
 
 namespace VavilichevGD.UI {
-    public class UIWidgetSoftCurrency : UIWidget<UIWidgetCurrencyProperties> {
+    public class UIWidgetSoftCurrency : UIWidget {
 
+        [SerializeField] private UIWidgetCurrencyProperties properties;
+        
         private BankInteractor bankInteractor;
         
         protected override void OnStart() {

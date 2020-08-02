@@ -1,5 +1,10 @@
-﻿namespace VavilichevGD.UI {
-    public abstract class UIPanelSoundSettingsBase : UIPanel<UIPanelSoundSettingsBaseProperties> {
+﻿using UnityEngine;
+
+namespace VavilichevGD.UI {
+    public abstract class UIPanelSoundSettingsBase : UIWidget {
+
+        [SerializeField] private UIPanelSoundSettingsBaseProperties properties;
+        
         protected override void OnEnabled() {
             if (this.properties.slider != null)
                 this.properties.slider.AddListener(OnSliderValueChanged);

@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 
 namespace VavilichevGD.UI.Utils {
-    public abstract class UIWidgetScrollRectOptimizedItem<T> : UIWidget<T> 
-        where T : UIWidgetScrollRectOptimizedItemProperties {
+    public abstract class UIWidgetScrollRectOptimizedItem : UIWidget {
          
         public struct Properties {
             public Camera cameraRelative;
@@ -12,11 +11,13 @@ namespace VavilichevGD.UI.Utils {
 
         #region DELEGATES
 
-        public delegate void ScrollRectItemHandler(UIWidgetScrollRectOptimizedItem<T> widgetItem);
+        public delegate void ScrollRectItemHandler(UIWidgetScrollRectOptimizedItem widgetItem);
         public event ScrollRectItemHandler OnBecomeVisibleEvent;
         public event ScrollRectItemHandler OnBecomeInvisibleEvent;
 
         #endregion
+
+        protected abstract UIWidgetScrollRectOptimizedItemProperties properties { get; }
         
         public RectTransform rectTransform { get; private set; }
         public RectTransform containerRectTransfom { get; private set; }
@@ -32,16 +33,14 @@ namespace VavilichevGD.UI.Utils {
 
         #region AWAKE
 
-        private void Awake() {
+        protected override void OnAwake() {
+            base.OnAwake();
             this.rectTransform = this.GetComponent<RectTransform>();
             this.myBounds = new RectBounds();
             this.isVisibleOnLastFrame = true;
             this.oldPosition = this.rectTransform.position;
-            this.OnAwake();
         }
         
-        protected virtual void OnAwake() { }
-
         #endregion
 
         #region UPDATE

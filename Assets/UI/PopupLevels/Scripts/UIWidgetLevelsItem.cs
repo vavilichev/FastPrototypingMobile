@@ -4,39 +4,46 @@ using VavilichevGD.UI.Extentions;
 using VavilichevGD.UI.Utils;
 
 namespace VavilichevGD.UI {
-    public class UIWidgetLevelsItem : UIWidgetScrollRectOptimizedItem<UIWIdgetLevelsItemProperties> {
+    public class UIWidgetLevelsItem : UIWidgetScrollRectOptimizedItem {
 
+        [SerializeField] private UIWIdgetLevelsItemProperties levelProperties;
+
+        protected override UIWidgetScrollRectOptimizedItemProperties properties => this.levelProperties;
+
+        
         private Level currentLevel;
 
         public void Setup(Level level) {
             this.currentLevel = level;
-            this.properties.textLevelNumber.text = level.info.levelNumber.ToString();
+            this.levelProperties.textLevelNumber.text = level.info.levelNumber.ToString();
         }
         
         protected override void OnEnabled() {
-            this.properties.button.AddListener(this.OnClick);
+            base.OnEnabled();
+            this.levelProperties.button.AddListener(this.OnClick);
         }
 
         protected override void OnDisabled() {
-            this.properties.button.RemoveListener(this.OnClick);
+            base.OnDisabled();
+            this.levelProperties.button.RemoveListener(this.OnClick);
         }
 
         #region EVENTS
 
         private void OnClick() {
-            UIController uiController = UIController.main;
-            UIPopupAreYouSure popup = uiController.ShowElement<UIPopupAreYouSure>();
+            var uiController = UIController.main;
+            var popup = uiController.ShowElement<UIPopupAreYouSure>();
             popup.SetQuestionText($"Open level {this.currentLevel.info.levelNumber}?");
-            popup.OnDialogueResultsEvent += this.OnAreYouSureDialogueResults;
+            popup.OnUIPopupHiddenWithResultsEvent += this.OnAreYouSureDialogueResults;
         }
 
-        private void OnAreYouSureDialogueResults(UIPopupArgs e) {
-            UIPopupAreYouSure popup = e.GetPopup<UIPopupAreYouSure>();
-            popup.OnDialogueResultsEvent -= this.OnAreYouSureDialogueResults;
-            if (e.result == UIPopupResult.Apply)
+        private void OnAreYouSureDialogueResults(UIPopup popup, UIPopupResult result) {
+            popup.OnUIPopupHiddenWithResultsEvent -= this.OnAreYouSureDialogueResults;
+            if (result == UIPopupResult.Apply)
                 Debug.Log($"Try to load level {this.currentLevel.info.levelNumber}");
         }
 
         #endregion
+
     }
 }

@@ -2,7 +2,9 @@
 using VavilichevGD.UI.Extentions;
 
 namespace VavilichevGD.UI {
-    public class UIPopupWin : UIPopup<UIPopupWinProperties, UIPopupArgs> {
+    public class UIPopupWin : UIPopup {
+
+        [SerializeField] protected UIPopupWinProperties properties;
         
         protected override void OnEnabled() {
             this.properties.btnMenu.AddListener(this.OnMenuBtnClick);
@@ -19,18 +21,12 @@ namespace VavilichevGD.UI {
         private void OnMenuBtnClick() {
             // TODO: Go to menu;
             this.Hide();
-            UIPopupArgs args = new UIPopupArgs(this, UIPopupResult.Other);
-            this.NotifyAboutResults(args);
-            
             Debug.Log("On menu btn clicked");
         }
         
         private void OnNextBtnClick() {
             // TODO: Next level;
             this.Hide();
-            UIPopupArgs args = new UIPopupArgs(this, UIPopupResult.Other);
-            this.NotifyAboutResults(args);
-            
             Debug.Log("On next btn clicked");
         }
 

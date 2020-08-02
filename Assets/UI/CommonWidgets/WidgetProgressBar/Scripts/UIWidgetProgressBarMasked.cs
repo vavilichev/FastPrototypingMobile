@@ -2,7 +2,10 @@
 using UnityEngine;
 
 namespace VavilichevGD.UI {
-    public class UIWidgetProgressBarMasked : UIWidget<UIWidgetProgressBarMakedProperties>, IUIWidgetProgressBar {
+    public class UIWidgetProgressBarMasked : UIWidget, IUIWidgetProgressBar {
+
+        [SerializeField] private UIWidgetProgressBarMakedProperties properties;
+        
         
         public void SetValue(float newNormalizedValue) {
             float newValue = Mathf.Clamp01(newNormalizedValue);

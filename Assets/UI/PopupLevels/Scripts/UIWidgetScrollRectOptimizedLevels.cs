@@ -3,7 +3,7 @@ using VavilichevGD.Core;
 using VavilichevGD.UI.Utils;
 
 namespace VavilichevGD.UI {
-    public class UIWidgetScrollRectOptimizedLevels : UIWidgetScrollRectOptimized<UIWIdgetLevelsItemProperties> {
+    public class UIWidgetScrollRectOptimizedLevels : UIWidgetScrollRectOptimized {
 
         [SerializeField] private UIWidgetLevelsItem prefWidget;
         [SerializeField] private Transform transformContainer;

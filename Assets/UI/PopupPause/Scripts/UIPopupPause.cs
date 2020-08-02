@@ -3,7 +3,9 @@ using UnityEngine.UI;
 using VavilichevGD.UI.Extentions;
 
 namespace VavilichevGD.UI {
-    public class UIPopupPause : UIPopup<UIPopupPauseProperties, UIPopupArgs> {
+    public class UIPopupPause : UIPopup {
+
+        [SerializeField] private UIPopupPauseProperties properties;
         
         protected override void OnEnabled() {
             this.properties.btnRestart.AddListener(this.OnRestartBtnClick);

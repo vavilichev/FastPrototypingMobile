@@ -1,9 +1,11 @@
-﻿using UnityEngine.UI;
+﻿using UnityEngine;
+using UnityEngine.UI;
 using VavilichevGD.UI.Extentions;
 
 namespace VavilichevGD.UI {
-    public class UIPopupAreYouSure : UIPopup<UIPopupAreYouSureProperties, UIPopupArgs> {
+    public class UIPopupAreYouSure : UIPopup {
 
+        [SerializeField] private UIPopupAreYouSureProperties properties;
 
         public void SetQuestionText(string questionText) {
             this.properties.textQuestion.text = questionText;
@@ -25,15 +27,13 @@ namespace VavilichevGD.UI {
         #region EVENTS
 
         private void OnYesBtnClick() {
-            UIPopupArgs args = new UIPopupArgs(this, UIPopupResult.Apply);
-            this.NotifyAboutResults(args);
             this.Hide();
+            this.NotifyAboutHiddenWithResults(UIPopupResult.Apply);
         }
 
         private void OnNoBtnClick() {
-            UIPopupArgs args = new UIPopupArgs(this, UIPopupResult.Close);
-            this.NotifyAboutResults(args);
             this.Hide();
+            this.NotifyAboutHiddenWithResults(UIPopupResult.Cancel);
         }
 
         #endregion

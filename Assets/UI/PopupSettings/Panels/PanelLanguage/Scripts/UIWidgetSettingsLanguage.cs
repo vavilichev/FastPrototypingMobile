@@ -2,7 +2,9 @@
 using VavilichevGD.UI.Extentions;
 
 namespace VavilichevGD.UI {
-    public class UIPanelSettingsLanguage : UIPanel<UIPanelSettingsLanguageProperties> {
+    public class UIWidgetSettingsLanguage : UIWidget {
+
+        [SerializeField] private UIPanelSettingsLanguageProperties properties;
         
         protected override void OnEnabled() {
             this.properties.btnSwitchLanguage.AddListener(this.OnSwitchLanguageBtnClick);

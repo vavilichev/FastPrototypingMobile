@@ -1,8 +1,11 @@
-﻿using UnityEngine.UI;
+﻿using UnityEngine;
+using UnityEngine.UI;
 using VavilichevGD.UI.Extentions;
 
 namespace VavilichevGD.UI {
-    public class UIPopupSettings : UIPopup<UIPopupSettingsProperties, UIPopupArgs> {
+    public class UIPopupSettings : UIPopup {
+
+        [SerializeField] private UIPopupSettingsProperties properties;
         
         protected override void OnEnabled() {
             foreach (Button button in this.properties.btnCloseList)

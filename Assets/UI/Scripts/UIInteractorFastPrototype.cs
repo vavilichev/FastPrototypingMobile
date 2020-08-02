@@ -7,14 +7,14 @@ namespace FastPrototype.Architecture {
         private const string PREF_NAME_UICONTROLLER = "[INTERFACE]";
         
         
-        protected override UIControllerBase CreateUIController() {
-            var pref = Resources.Load<UIControllerBase>(PREF_NAME_UICONTROLLER);
+        protected override UIController CreateUIController() {
+            var pref = Resources.Load<UIController>(PREF_NAME_UICONTROLLER);
             
-            UIControllerBase createdUiControllerBase = Object.Instantiate(pref);
-            Object.DontDestroyOnLoad(createdUiControllerBase.gameObject);
+            UIController createdUiController = Object.Instantiate(pref);
+            Object.DontDestroyOnLoad(createdUiController.gameObject);
             Resources.UnloadUnusedAssets();
             
-            return createdUiControllerBase;
+            return createdUiController;
         }
     }
 }
