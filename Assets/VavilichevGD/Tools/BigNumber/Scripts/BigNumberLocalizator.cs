@@ -25,7 +25,7 @@ namespace VavilichevGD.Tools.Numerics {
             }
         }
 
-        public static IBigNumberDictionary GetSimpleDictionary(SystemLanguage language) {
+        public static IBigNumberDictionary GetSimpleDictionary(SystemLanguage language = SystemLanguage.English) {
             if (simpleDictionary == null || language != currentLanguage)
                 DefineSimpleDictionary(language);
             return simpleDictionary;

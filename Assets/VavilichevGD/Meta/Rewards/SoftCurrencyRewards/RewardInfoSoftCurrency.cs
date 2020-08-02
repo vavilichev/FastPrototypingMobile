@@ -4,10 +4,10 @@ using VavilichevGD.Tools.Numerics;
 namespace VavilichevGD.Meta {
     [CreateAssetMenu(fileName = "RewardInfoSoftCurrency", menuName = "Meta/Currencies/RewardSoftCurrency")]
     public class RewardInfoSoftCurrency : RewardInfo, IRewardInfoBigNumber {
-        [SerializeField] private BigNumberSetting rewardValue;
+        [SerializeField] private BigNumber rewardValue;
 
         public override string GetDescription() {
-            return this.rewardValue.value.ToString(BigNumber.FORMAT_XXX_XC);
+            return this.rewardValue.ToString(BigNumber.FORMAT_XXX_XC);
         }
 
         public override RewardHandler CreateRewardHandler(Reward reward) {
@@ -19,7 +19,7 @@ namespace VavilichevGD.Meta {
         }
 
         public BigNumber GetValue() {
-            return this.rewardValue.value;
+            return this.rewardValue;
         }
 
         public string GetValueToString() {

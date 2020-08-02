@@ -5,8 +5,8 @@ using System.Security.Cryptography;
 
 namespace VavilichevGD.Tools.Numerics {
 	[Serializable]
-	public struct BigNumber {
-
+	public struct BigNumber : ISerializationCallbackReceiver {
+		
 		#region CONSTANTS
 
 		public const string FORMAT_FULL = "FULL";
@@ -24,38 +24,64 @@ namespace VavilichevGD.Tools.Numerics {
 		#endregion
 		
 		
-
-		private BigInteger _bigIntegerIntValue;
-
+		[SerializeField] private float cutValue;
+		[SerializeField] private BigNumberOrder order;
 
 		
-		public static BigNumber maxValue {
-			get {
-				int countOfOrders = Enum.GetNames(typeof(BigNumberOrder)).Length;
-				string finalValueString = "";
-				for (int i = 0; i < countOfOrders; i++)
-					finalValueString = $"{finalValueString}999";
+		internal BigInteger bigIntegerValue { get; private set; }
+		private bool isInitialized { get; set; }
 
-				BigInteger result = BigInteger.Parse(finalValueString);
-				return new BigNumber(result);
-			}
-		}
-
+		
+		
+		public static BigNumber maxValue => GetMaxValue();
 		public static BigNumber zero => new BigNumber(0);
 
+		private static BigNumber GetMaxValue() {
+			int countOfOrders = Enum.GetNames(typeof(BigNumberOrder)).Length;
+			string finalValueString = "";
+			for (int i = 0; i < countOfOrders; i++)
+				finalValueString = $"{finalValueString}999";
 
+			return new BigNumber(finalValueString);
+		}
+		
+
+		
 		#region CONSTRUCTORS
-
-		public BigNumber(BigInteger bigIntegerInt) {
-			this._bigIntegerIntValue = bigIntegerInt;
+		
+		public BigNumber(BigNumber bigNumber)
+		{
+			this.bigIntegerValue = bigNumber.bigIntegerValue;
+			this.order = bigNumber.GetOrder();
+			this.cutValue = bigNumber.GetCutValue();
+			this.isInitialized = true;
 		}
 
-		public BigNumber(int intValue) {
-			this._bigIntegerIntValue = intValue;
+		public BigNumber(BigInteger bigInteger) {
+			this.bigIntegerValue = bigInteger;
+			var max = maxValue;
+			if (bigInteger > max.bigIntegerValue)
+				bigIntegerValue = max.bigIntegerValue;
+
+			this.order = GetOrder(this.bigIntegerValue);
+			this.cutValue = GetCutValue(this.bigIntegerValue);
+			this.isInitialized = true;
+		}
+
+		public BigNumber(int value) {
+			this.bigIntegerValue = value;
+			this.order = GetOrder(this.bigIntegerValue);
+			this.cutValue = GetCutValue(this.bigIntegerValue);
+            
+			this.isInitialized = true;
 		}
 
 		public BigNumber(string strValue) {
-			this._bigIntegerIntValue = BigInteger.Parse(strValue);
+			this.bigIntegerValue = BigInteger.Parse(strValue);
+			this.order = GetOrder(this.bigIntegerValue);
+			this.cutValue = GetCutValue(this.bigIntegerValue);
+            
+			this.isInitialized = true;
 		}
 
 		public BigNumber(BigNumberOrder order, float cutFloat) {
@@ -72,11 +98,46 @@ namespace VavilichevGD.Tools.Numerics {
 					strValue = $"{strValue}000";
 			}
 
-			this._bigIntegerIntValue = BigInteger.Parse(strValue);
+			this.order = order;
+			this.cutValue = cutFloat;
+			this.bigIntegerValue = BigInteger.Parse(strValue);
+			this.isInitialized = true;
 		}
 
 		#endregion
+
+
+		#region GET
+
+		public float GetCutValue() {
+			return this.cutValue;
+		}
+
+		private static float GetCutValue(BigInteger bigInteger) {
+			var fullString = bigInteger.ToString();
+			var length = fullString.Length;
+			if (length < 4)
+				return Convert.ToInt32(fullString);
+
+			var simbolsCount = (length - 1) % 3 + 2;
+			var simbols = fullString.Substring(0, simbolsCount);
+			var intValue = Convert.ToInt32(simbols);
+			return intValue / 10f;
+		}
 		
+		
+		public BigNumberOrder GetOrder() {
+			return this.order;
+		}
+        
+		private static BigNumberOrder GetOrder(BigInteger bigInteger) {
+			var fullString = bigInteger.ToString();
+			var length = fullString.Length;
+			return (BigNumberOrder) ((length - 1) / 3);
+		}
+
+		#endregion
+	
 
 		#region Calculations
 
@@ -85,22 +146,22 @@ namespace VavilichevGD.Tools.Numerics {
 
 
 		public static BigNumber operator +(BigNumber num1, BigNumber num2) {
-			BigInteger bigSum = num1._bigIntegerIntValue + num2._bigIntegerIntValue;
+			BigInteger bigSum = num1.bigIntegerValue + num2.bigIntegerValue;
 			return Clamp(new BigNumber(bigSum));
 		}
 
 		public static BigNumber operator -(BigNumber num1, BigNumber num2) {
-			BigInteger result = num1._bigIntegerIntValue - num2._bigIntegerIntValue;
+			BigInteger result = num1.bigIntegerValue - num2.bigIntegerValue;
 			return Clamp(new BigNumber(result));
 		}
 
 		public static BigNumber operator /(BigNumber dividedNumb, BigNumber divider) {
-			BigInteger result = dividedNumb._bigIntegerIntValue / divider._bigIntegerIntValue;
+			BigInteger result = dividedNumb.bigIntegerValue / divider.bigIntegerValue;
 			return Clamp(new BigNumber(result));
 		}
 
 		public static BigNumber operator *(BigNumber num1, BigNumber num2) {
-			BigInteger result = num1._bigIntegerIntValue * num2._bigIntegerIntValue;
+			BigInteger result = num1.bigIntegerValue * num2.bigIntegerValue;
 			return Clamp(new BigNumber(result));
 		}
 
@@ -112,22 +173,22 @@ namespace VavilichevGD.Tools.Numerics {
 
 
 		public static BigNumber operator +(BigNumber num, int value) {
-			BigInteger result = num._bigIntegerIntValue + value;
+			BigInteger result = num.bigIntegerValue + value;
 			return Clamp(new BigNumber(result));
 		}
 		
 		public static BigNumber operator -(BigNumber num, int value) {
-			BigInteger result = num._bigIntegerIntValue - value;
+			BigInteger result = num.bigIntegerValue - value;
 			return Clamp(new BigNumber(result));
 		}
 
 		public static BigNumber operator *(BigNumber num1, int value) {
-			BigInteger result = num1._bigIntegerIntValue * value;
+			BigInteger result = num1.bigIntegerValue * value;
 			return Clamp(new BigNumber(result));
 		}
 		
 		public static BigNumber operator /(BigNumber dividedNumb, int value) {
-			BigInteger result = dividedNumb._bigIntegerIntValue / value;
+			BigInteger result = dividedNumb.bigIntegerValue / value;
 			return Clamp(new BigNumber(result));
 		}
 		
@@ -142,8 +203,8 @@ namespace VavilichevGD.Tools.Numerics {
 			if (mul < 0)
 				throw new Exception(string.Format("Multiplicator cannot be negative: {0}", mul));
 			
-			if (num._bigIntegerIntValue < 100) {
-				int intValue = (int) num._bigIntegerIntValue;
+			if (num.bigIntegerValue < 100) {
+				int intValue = (int) num.bigIntegerValue;
 				int result = Mathf.CeilToInt((intValue * mul));
 				BigInteger bigIntResult = new BigInteger(result);
 				return Clamp(new BigNumber(bigIntResult));
@@ -151,13 +212,13 @@ namespace VavilichevGD.Tools.Numerics {
 
 			float roundedMul = (float) Math.Round(mul, 2);
 			int mul100 = Mathf.RoundToInt(roundedMul * 100);
-			BigInteger bitIntResult = (num._bigIntegerIntValue * mul100) / 100;
+			BigInteger bitIntResult = (num.bigIntegerValue * mul100) / 100;
 			return Clamp(new BigNumber(bitIntResult));
 		}
 
 		public static BigNumber operator /(BigNumber num, float div) {
 			int div100 = Mathf.RoundToInt((float) Math.Round(div, 2) * 100);
-			BigInteger num100 = num._bigIntegerIntValue * 100;
+			BigInteger num100 = num.bigIntegerValue * 100;
 			BigInteger result = num100 / div100;
 			return Clamp(new BigNumber(result));
 		}
@@ -169,22 +230,22 @@ namespace VavilichevGD.Tools.Numerics {
 		#region BigNumber && double
 
 		public static BigNumber operator +(BigNumber num, double value) {
-			BigInteger result = num._bigIntegerIntValue + new BigInteger(value);
+			BigInteger result = num.bigIntegerValue + new BigInteger(value);
 			return Clamp(new BigNumber(result));
 		}
 		
 		public static BigNumber operator -(BigNumber num, double value) {
-			BigInteger result = num._bigIntegerIntValue - new BigInteger(value);
+			BigInteger result = num.bigIntegerValue - new BigInteger(value);
 			return Clamp(new BigNumber(result));
 		}
 
 		public static BigNumber operator *(BigNumber num1, double value) {
-			BigInteger result = num1._bigIntegerIntValue * new BigInteger(value);
+			BigInteger result = num1.bigIntegerValue * new BigInteger(value);
 			return Clamp(new BigNumber(result));
 		}
 		
 		public static BigNumber operator /(BigNumber dividedNumb, double value) {
-			BigInteger result = dividedNumb._bigIntegerIntValue / new BigInteger(value);
+			BigInteger result = dividedNumb.bigIntegerValue / new BigInteger(value);
 			return Clamp(new BigNumber(result));
 		}
 
@@ -192,13 +253,13 @@ namespace VavilichevGD.Tools.Numerics {
 		
 
 		private static BigNumber Clamp(BigNumber clampingValue) {
-			if (clampingValue._bigIntegerIntValue < 0)
+			if (clampingValue.bigIntegerValue < 0)
 				return new BigNumber(0);
 
 
 			var countOfOrders = Enum.GetNames(typeof(BigNumberOrder)).Length;
 			var maxValueLength = countOfOrders * 3;		// Every order contains 3 digits.
-			var clampingValueLength = clampingValue.ToString().Length;
+			var clampingValueLength = clampingValue.ToString(FORMAT_FULL).Length;
 
 			if (clampingValueLength > maxValueLength)
 				return maxValue;
@@ -206,12 +267,12 @@ namespace VavilichevGD.Tools.Numerics {
 			return clampingValue;
 		}
 
-		public static BigNumber Clamp(BigNumber clampingValue, BigNumber minValue, BigNumber maxValue) {
+		public static BigNumber Clamp(BigNumber clampingValue, BigNumber minValue, BigNumber _maxValue) {
 			BigNumber min = Max(minValue, BigNumber.zero);
 			if (clampingValue < min)
 				return min;
 
-			BigNumber max = Min(maxValue, BigNumber.maxValue);
+			BigNumber max = Min(_maxValue, BigNumber.maxValue);
 			if (clampingValue > max)
 				return max;
 
@@ -239,7 +300,7 @@ namespace VavilichevGD.Tools.Numerics {
 		}
 
 		public static double DivideToDouble(BigNumber dividedNumb, BigNumber divider) {
-			return Math.Exp(BigInteger.Log(dividedNumb._bigIntegerIntValue) - BigInteger.Log(divider._bigIntegerIntValue));
+			return Math.Exp(BigInteger.Log(dividedNumb.bigIntegerValue) - BigInteger.Log(divider.bigIntegerValue));
 		}
 
 		#endregion
@@ -249,51 +310,51 @@ namespace VavilichevGD.Tools.Numerics {
 
 
 		public static bool operator <=(BigNumber num1, BigNumber num2) {
-			return num1._bigIntegerIntValue <= num2._bigIntegerIntValue;
+			return num1.bigIntegerValue <= num2.bigIntegerValue;
 		}
 
 		public static bool operator >=(BigNumber num1, BigNumber num2) {
-			return num1._bigIntegerIntValue >= num2._bigIntegerIntValue;
+			return num1.bigIntegerValue >= num2.bigIntegerValue;
 		}
 
 
 
 		public static bool operator <(BigNumber num1, BigNumber num2) {
-			return num1._bigIntegerIntValue < num2._bigIntegerIntValue;
+			return num1.bigIntegerValue < num2.bigIntegerValue;
 		}
 
 		public static bool operator >(BigNumber num1, BigNumber num2) {
-			return num1._bigIntegerIntValue > num2._bigIntegerIntValue;
+			return num1.bigIntegerValue > num2.bigIntegerValue;
 		}
 
 
 
 		public static bool operator >=(BigNumber num, int intValue) {
-			return num._bigIntegerIntValue >= intValue;
+			return num.bigIntegerValue >= intValue;
 		}
 
 		public static bool operator <=(BigNumber num, int intValue) {
-			return num._bigIntegerIntValue >= intValue;
+			return num.bigIntegerValue >= intValue;
 		}
 
 
 
 		public static bool operator <(BigNumber num, int intValue) {
-			return num._bigIntegerIntValue < intValue;
+			return num.bigIntegerValue < intValue;
 		}
 
 		public static bool operator >(BigNumber num, int intValue) {
-			return num._bigIntegerIntValue > intValue;
+			return num.bigIntegerValue > intValue;
 		}
 
 
 
 		public static bool operator ==(BigNumber num, int intValue) {
-			return num._bigIntegerIntValue == intValue;
+			return num.bigIntegerValue == intValue;
 		}
 
 		public static bool operator !=(BigNumber num, int intValue) {
-			return num._bigIntegerIntValue != intValue;
+			return num.bigIntegerValue != intValue;
 		}
 
 
@@ -304,7 +365,7 @@ namespace VavilichevGD.Tools.Numerics {
 
 		public static BigNumber RandomRange(BigNumber num1, BigNumber num2) {
 			var random = RandomNumberGenerator.Create();
-			BigInteger randomInteger = RandomInRange(random, num1._bigIntegerIntValue, num2._bigIntegerIntValue);
+			BigInteger randomInteger = RandomInRange(random, num1.bigIntegerValue, num2.bigIntegerValue);
 			return new BigNumber(randomInteger);
 		}
 
@@ -317,7 +378,6 @@ namespace VavilichevGD.Tools.Numerics {
 
 			// offset to set min = 0
 			BigInteger offset = -min;
-			min = 0;
 			max += offset;
 
 			var value = RandomInRangeFromZeroToPositive(rng, max) - offset;
@@ -370,28 +430,25 @@ namespace VavilichevGD.Tools.Numerics {
 		}
 
 		public string ToString(string format) {
-			return this.Formate(format);
+			return this.Format(format);
 		}
 		
 		public string ToString(string format, IBigNumberDictionary dictionary) {
-			return this.Formate(format, dictionary);
+			return this.Format(format, dictionary);
 		}
 
-		private string Formate(string format, IBigNumberDictionary dictionary = null) {
+		private string Format(string format, IBigNumberDictionary dictionary = null) {
 			
 			format = format.ToUpperInvariant();
 
-			if (String.IsNullOrEmpty(format) || (this._bigIntegerIntValue < 1000 && format != FORMAT_FULL))
+			if (String.IsNullOrEmpty(format) || (this.bigIntegerValue < 1000 && format != FORMAT_FULL))
 				format = FORMAT_XXX_C;
 				
-			var fullNumberToString = this._bigIntegerIntValue.ToString();
+			var fullNumberToString = this.bigIntegerValue.ToString();
 			var numberLength = fullNumberToString.Length;
-			var orderInt = (numberLength - 1) / 3;
-			var order = (BigNumberOrder) orderInt;
 
 			var olderNumbersLength = numberLength % 3 == 0 ? 3 : numberLength % 3;
 			var olderNumberString = fullNumberToString.Substring(0, olderNumbersLength);
-			var youngerNumberString = "";
 			var orderToString = dictionary != null ? dictionary.GetTranslatedOrder(order) : order.ToString();
 			if (order == 0)
 				orderToString = "";
@@ -429,9 +486,8 @@ namespace VavilichevGD.Tools.Numerics {
 					break;
 				
 				case FORMAT_FULL:
-					return this._bigIntegerIntValue.ToString();
-					break;
-				
+					return this.bigIntegerValue.ToString();
+
 				case FORMAT_DYNAMIC_3_C:
 					switch (olderNumbersLength) {
 						case 1:
@@ -504,6 +560,50 @@ namespace VavilichevGD.Tools.Numerics {
 		}
 
 		#endregion
+		
+		
+		
+		public void OnBeforeSerialize() { }
+
+		public void OnAfterDeserialize() {
+			int intValue = Mathf.FloorToInt(cutValue);
+			int decValue = Mathf.RoundToInt((cutValue - intValue) * 1000);
+
+			int addZeroBlockCount = decValue == 0 ? (int) order : (int) order - 1;
+			string strValue = intValue.ToString();
+			if (decValue > 0)
+				strValue = $"{strValue}{decValue}";
+
+			if ((int) order >= (int) BigNumberOrder.Thousands) {
+				for (int i = 0; i < addZeroBlockCount; i++)
+					strValue = $"{strValue}000";
+			}
+
+			bigIntegerValue = BigInteger.Parse(strValue);
+			isInitialized = true;
+		}
+		
+		
+		
+		public bool Equals(BigNumber other) {
+			return cutValue.Equals(other.cutValue) && order == other.order && bigIntegerValue.Equals(other.bigIntegerValue) && isInitialized == other.isInitialized;
+		}
+
+		public override bool Equals(object obj) {
+			return obj is BigNumber other && Equals(other);
+		}
+		
+		public override int GetHashCode()
+		{
+			unchecked
+			{
+				var hashCode = cutValue.GetHashCode();
+				hashCode = (hashCode * 397) ^ (int) order;
+				hashCode = (hashCode * 397) ^ bigIntegerValue.GetHashCode();
+				hashCode = (hashCode * 397) ^ isInitialized.GetHashCode();
+				return hashCode;
+			}
+		}
 		
 	}
 }

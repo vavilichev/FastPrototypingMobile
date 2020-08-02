@@ -1,12 +1,10 @@
-﻿using System.Numerics;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 namespace VavilichevGD.Tools.Numerics {
     public class BigNumberExample : MonoBehaviour {
 
-        [SerializeField] public BigNumberSetting defaultValue;
-        [SerializeField] public BigInteger bigInteger;
+        [SerializeField] public BigNumber defaultValue;
         [Space]
         [SerializeField] private Text textFullValue;
         [SerializeField] private Text textShortValue;
@@ -20,14 +18,14 @@ namespace VavilichevGD.Tools.Numerics {
 
 
         private void Awake() {
-            Initialize();
-            UpdateView();
+            this.Initialize();
+            this.UpdateView();
         }
 
         private void Initialize() {
-            value = defaultValue.value;
+            this.value = this.defaultValue;
         }
-        
+
 
         private void OnEnable() {
             btnX2.onClick.AddListener(OnX2BtnClick);

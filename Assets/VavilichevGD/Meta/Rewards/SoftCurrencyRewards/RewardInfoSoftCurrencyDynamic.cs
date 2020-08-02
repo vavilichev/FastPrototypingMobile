@@ -7,8 +7,8 @@ namespace VavilichevGD.Meta {
         IRewardInfoDynamic, 
         IRewardInfoBigNumber {
         
-        [SerializeField] private BigNumberSetting rewardValueMin;
-        [SerializeField] private BigNumberSetting rewardValueMax;
+        [SerializeField] private BigNumber rewardValueMin;
+        [SerializeField] private BigNumber rewardValueMax;
 
         private BigNumber m_rewardValue;
 
@@ -17,10 +17,7 @@ namespace VavilichevGD.Meta {
         }
         
         public void Refresh() {
-            if (rewardValueMin == null || rewardValueMax == null)
-                return;
-            
-            this.m_rewardValue = BigNumber.RandomRange(rewardValueMin.value, rewardValueMax.value);
+            this.m_rewardValue = BigNumber.RandomRange(rewardValueMin, rewardValueMax);
         }
 
         public override string GetDescription() {

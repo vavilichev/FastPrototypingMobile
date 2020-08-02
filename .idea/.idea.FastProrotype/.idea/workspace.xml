@@ -2,84 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0a837fd0-d632-4c9c-b5dd-8086dd6314b0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/Scripts/IRewardInfoBigNumber.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/Scripts/IRewardInfoBigNumber.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/Scripts/IRewardInfoDynamic.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/Scripts/IRewardInfoDynamic.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/Scripts/IRewardInfoInteger.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/Scripts/IRewardInfoInteger.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/SoftCurrencyRewards/RewardInfoSoftCurrencyDynamic.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/SoftCurrencyRewards/RewardInfoSoftCurrencyDynamic.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Tools/BigNumber/Scripts/Editor/BigNumberEditor.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Tools/BigNumber/Scripts/Editor/BigNumberEditor.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FastProrotype/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FastProrotype/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FastProrotype/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FastProrotype/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainMenuScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainMenuScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/CommonWidgets/WidgetFortuneWheel/Scripts/UIWidgetFortuneWheel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI/CommonWidgets/WidgetFortuneWheel/Scripts/UIWidgetFortuneWheel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/CommonWidgets/WidgetFortuneWheel/Scripts/UIWidgetFortuneWheelSectorText.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI/CommonWidgets/WidgetFortuneWheel/Scripts/UIWidgetFortuneWheelSectorText.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/CommonWidgets/WidgetFortuneWheel/Scripts/UiWidgetFortuneWheelSectorTMP.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI/CommonWidgets/WidgetFortuneWheel/Scripts/UiWidgetFortuneWheelSectorTMP.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/CommonWidgets/WidgetsCurrency/WidgetSoftCurrency/Scripts/UIWidgetSoftCurrency.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI/CommonWidgets/WidgetsCurrency/WidgetSoftCurrency/Scripts/UIWidgetSoftCurrency.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/Prefabs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/Prefabs/WidgetSwitcherOnOff.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/Prefabs/WidgetSwitcherOnOff/Animations.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/Prefabs/WidgetSwitcherOnOff/Animations/WidgetSwitcherOnOffAnimator.controller" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/Prefabs/WidgetSwitcherOnOff/Animations/WidgetSwitcherOnOffAnimator.controller.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/Prefabs/WidgetSwitcherOnOff/Animations/WidgetSwitcherOnOff_Off.anim" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/Prefabs/WidgetSwitcherOnOff/Animations/WidgetSwitcherOnOff_Off.anim.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/Prefabs/WidgetSwitcherOnOff/Animations/WidgetSwitcherOnOff_On.anim" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/Prefabs/WidgetSwitcherOnOff/Animations/WidgetSwitcherOnOff_On.anim.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/Prefabs/WidgetSwitcherOnOff/Animations/WidgetSwitcherOnOff_SwitchOff.anim" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/Prefabs/WidgetSwitcherOnOff/Animations/WidgetSwitcherOnOff_SwitchOff.anim.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/Prefabs/WidgetSwitcherOnOff/Animations/WidgetSwitcherOnOff_SwitchOn.anim" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/Prefabs/WidgetSwitcherOnOff/Animations/WidgetSwitcherOnOff_SwitchOn.anim.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/Prefabs/WidgetSwitcherOnOff/Scripts.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/Prefabs/WidgetSwitcherOnOff/Scripts/UIWidgetSwitcherOnOff.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/Prefabs/WidgetSwitcherOnOff/Scripts/UIWidgetSwitcherOnOff.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/Prefabs/WidgetSwitcherOnOff/WidgetSwitcherOnOff.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/Prefabs/WidgetSwitcherOnOff/WidgetSwitcherOnOff.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/Resources/[INTERFACE].prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI/Resources/[INTERFACE].prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Meta/FortuneWheel/Config/FortuneWheelConfig.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Meta/FortuneWheel/Config/FortuneWheelConfig.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Meta/FortuneWheel/Example/Config/Rewards/RewardInfoSoftCurrency100.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Meta/FortuneWheel/Example/Config/Rewards/RewardInfoSoftCurrency100.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Meta/FortuneWheel/Example/Config/Rewards/RewardInfoSoftCurrency1000.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Meta/FortuneWheel/Example/Config/Rewards/RewardInfoSoftCurrency1000.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Meta/FortuneWheel/Example/Config/Rewards/RewardInfoSoftCurrency200.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Meta/FortuneWheel/Example/Config/Rewards/RewardInfoSoftCurrency200.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Meta/FortuneWheel/Example/Config/Rewards/RewardInfoSoftCurrency2000.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Meta/FortuneWheel/Example/Config/Rewards/RewardInfoSoftCurrency2000.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Meta/FortuneWheel/Example/Config/Rewards/RewardInfoSoftCurrency300.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Meta/FortuneWheel/Example/Config/Rewards/RewardInfoSoftCurrency300.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Meta/FortuneWheel/Example/Config/Rewards/RewardInfoSoftCurrency3000.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Meta/FortuneWheel/Example/Config/Rewards/RewardInfoSoftCurrency3000.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Meta/FortuneWheel/Example/Config/Rewards/RewardInfoSoftCurrency400.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Meta/FortuneWheel/Example/Config/Rewards/RewardInfoSoftCurrency400.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Meta/FortuneWheel/Example/Config/Rewards/RewardInfoSoftCurrency500.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Meta/FortuneWheel/Example/Config/Rewards/RewardInfoSoftCurrency500.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Meta/FortuneWheel/Example/Config/Rewards/RewardInfoSoftCurrency600.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Meta/FortuneWheel/Example/Config/Rewards/RewardInfoSoftCurrency600.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Meta/FortuneWheel/Example/Config/Rewards/RewardInfoSoftCurrency700.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Meta/FortuneWheel/Example/Config/Rewards/RewardInfoSoftCurrency700.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Meta/FortuneWheel/Example/Config/Rewards/RewardInfoSoftCurrency800.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Meta/FortuneWheel/Example/Config/Rewards/RewardInfoSoftCurrency800.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Meta/FortuneWheel/Example/Config/Rewards/RewardInfoSoftCurrency900.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Meta/FortuneWheel/Example/Config/Rewards/RewardInfoSoftCurrency900.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Meta/FortuneWheel/Scripts/FortuneWheel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Meta/FortuneWheel/Scripts/FortuneWheel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/DailyRewards/Example/Config/Rewards/Scripts/DailyRewardHandlerExample.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/DailyRewards/Example/Config/Rewards/Scripts/DailyRewardHandlerExample.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/DailyRewards/Example/Config/Rewards/Scripts/DailyRewardInfoExample.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/DailyRewards/Example/Config/Rewards/Scripts/DailyRewardInfoExample.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/Scripts/Reward.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/Scripts/Reward.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/Scripts/RewardHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/Scripts/RewardHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/Scripts/RewardInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/Scripts/RewardInfo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/Scripts/RewardState.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/Scripts/RewardState.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/Scripts/RewardStatesData.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/Scripts/RewardStatesData.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/SoftCurrencyRewards/RewardHandlerSoftCurrency.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/SoftCurrencyRewards/RewardHandlerSoftCurrency.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/SoftCurrencyRewards/RewardInfoSoftCurrency.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/SoftCurrencyRewards/RewardInfoSoftCurrency.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Monetization/Bank/Example/Scripts/UIBankExample.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Monetization/Bank/Example/Scripts/UIBankExample.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Monetization/Bank/Scripts/Bank.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Monetization/Bank/Scripts/Bank.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Monetization/Bank/Scripts/BankCurrencyData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Monetization/Bank/Scripts/BankCurrencyData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Monetization/Bank/Scripts/BankInteractor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Monetization/Bank/Scripts/BankInteractor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Monetization/Bank/Scripts/BankRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Monetization/Bank/Scripts/BankRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Monetization/Scripts/Currency.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Monetization/Scripts/Currency.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Monetization/Scripts/HardCurrency.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Monetization/Scripts/HardCurrency.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Monetization/Scripts/ICurrency.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Monetization/Scripts/ICurrency.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Monetization/Scripts/SoftCurrency.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Monetization/Scripts/SoftCurrency.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Monetization/Shop/Payment/Scripts/PaymentHandlerHardCurrency.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Monetization/Shop/Payment/Scripts/PaymentHandlerHardCurrency.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Monetization/Shop/Payment/Scripts/PaymentHandlerSoftCurrency.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Monetization/Shop/Payment/Scripts/PaymentHandlerSoftCurrency.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/SoftCurrencyRewards/RewardInfoSoftCurrencyDynamic.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/SoftCurrencyRewards/RewardInfoSoftCurrencyDynamic.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Tools/BigNumber/Example/Scenes/BigNumberExample.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Tools/BigNumber/Example/Scenes/BigNumberExample.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Tools/BigNumber/Example/Scripts/BigNumberExample.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Tools/BigNumber/Example/Scripts/BigNumberExample.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Tools/BigNumber/Scripts/BigNumber.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Tools/BigNumber/Scripts/BigNumber.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Tools/BigNumber/Scripts/BigNumberLocalizator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Tools/BigNumber/Scripts/BigNumberLocalizator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Tools/BigNumber/Scripts/BigNumberSetting.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Tools/BigNumber/Scripts/BigNumberSetting.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Tools/BigNumber/Scripts/Editor/BigNumberSettingEditor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Tools/BigNumber/Scripts/Editor/BigNumberSettingEditor.cs.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Tools/Storage/Scripts/Storage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Tools/Storage/Scripts/Storage.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/UIElement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/UIElement.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/UIPopup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/UIPopup.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/UIController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/UIController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/UILayer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/UILayer.cs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -185,10 +122,11 @@
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Core/Levels/Scripts/Architecture/Level.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Monetization/Scripts/ICurrency.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/UI/Utils/ScrollRectOptimized/Scripts/UIWidgetScrollRectOptimizedItemProperties.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Tools/BigNumber/Scripts/BigNumberLocalizator.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/Scripts/IRewardInfoDynamic.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Tools/BigNumber/Scripts/BigNumberSetting.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Tools/BigNumber/Scripts/BigNumberSerialized.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Tools/BigNumber/Scripts/BigNumberOrder.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Sounds/SFX/Scripts/SFXSource.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Tools/BigNumber/Scripts/Editor/BigNumberSettingEditor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/UI/PopupOfferAD/Scripts/UIPopupOfferAD.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Monetization/Shop/Products/Scripts/IProductInfo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/UI/PopupOfferAD/Scripts/UIPopupOfferADProperties.cs" root0="FORCE_HIGHLIGHTING" />
@@ -218,6 +156,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Meta/Quests/Scripts/QuestInteractor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/UI/PopupAreYouSure/Scripts/UIPopupAreYouSure.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Monetization/Scripts/HardCurrency.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Tools/BigNumber/Scripts/Editor/BigNumberEditor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Meta/FortuneWheel/Scripts/FortuneWheel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Meta/FortuneWheel/Scripts/FortuneWheelSectorData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Tools/Storage/Scripts/Editor/ButtonCleanStorageEditor.cs" root0="FORCE_HIGHLIGHTING" />
@@ -276,6 +215,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Sounds/Scripts/SoundSettings.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/UIController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/UILayer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Tools/BigNumber/Example/Scripts/BigNumberExample.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/UIControllerBase.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Tools/BigNumber/Scripts/BigNumber.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/UI/PopupLevels/Scripts/UIWIdgetLevelsItemProperties.cs" root0="FORCE_HIGHLIGHTING" />
@@ -290,9 +230,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/VavilichevGD/Core/Levels/Scripts/LevelsRepository.cs" />
-        <option value="$PROJECT_DIR$/Assets/VavilichevGD/Core/Levels/Scripts/ILevelsLoader.cs" />
-        <option value="$PROJECT_DIR$/Assets/VavilichevGD/Core/Levels/Scripts/LevelsInteractor.cs" />
         <option value="$PROJECT_DIR$/Assets/VavilichevGD/Core/Levels/Scripts/LevelsLoaderSimple.cs" />
         <option value="$PROJECT_DIR$/Assets/VavilichevGD/Core/Levels/Scripts/Architecture/LevelsRepository.cs" />
         <option value="$PROJECT_DIR$/Assets/VavilichevGD/Core/Levels/Scripts/Architecture/AllLevelStates.cs" />
@@ -333,14 +270,17 @@
         <option value="$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/DailyRewards/Example/Config/Rewards/Scripts/DailyRewardInfoExample.cs" />
         <option value="$PROJECT_DIR$/Assets/UI/CommonWidgets/WidgetFortuneWheel/Scripts/UiWidgetFortuneWheelSectorTMP.cs" />
         <option value="$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/Example/Scripts/TestScript.cs" />
-        <option value="$PROJECT_DIR$/Assets/VavilichevGD/Tools/BigNumber/Scripts/BigNumber.cs" />
-        <option value="$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/SoftCurrencyRewards/RewardInfoSoftCurrency.cs" />
         <option value="$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/Scripts/Reward.cs" />
         <option value="$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/SoftCurrencyRewards/RewardHandlerSoftCurrency.cs" />
-        <option value="$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/SoftCurrencyRewards/RewardInfoSoftCurrencyDynamic.cs" />
         <option value="$PROJECT_DIR$/Assets/UI/CommonWidgets/WidgetFortuneWheel/Scripts/UIWidgetFortuneWheelSectorText.cs" />
         <option value="$PROJECT_DIR$/Assets/VavilichevGD/Meta/FortuneWheel/Scripts/FortuneWheel.cs" />
         <option value="$PROJECT_DIR$/Assets/UI/CommonWidgets/WidgetFortuneWheel/Scripts/UIWidgetFortuneWheel.cs" />
+        <option value="$PROJECT_DIR$/Assets/VavilichevGD/Tools/BigNumber/Scripts/BigNumberLocalizator.cs" />
+        <option value="$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/SoftCurrencyRewards/RewardInfoSoftCurrency.cs" />
+        <option value="$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/SoftCurrencyRewards/RewardInfoSoftCurrencyDynamic.cs" />
+        <option value="$PROJECT_DIR$/Assets/VavilichevGD/Tools/BigNumber/Scripts/BigNumber.cs" />
+        <option value="$PROJECT_DIR$/Assets/VavilichevGD/Tools/BigNumber/Example/Scripts/BigNumberExample.cs" />
+        <option value="$PROJECT_DIR$/Assets/VavilichevGD/Tools/BigNumber/Scripts/Editor/BigNumberEditor.cs" />
       </list>
     </option>
   </component>
@@ -441,7 +381,10 @@
       <workItem from="1591820788915" duration="38000" />
       <workItem from="1592500596172" duration="4126000" />
       <workItem from="1592890175314" duration="5944000" />
-      <workItem from="1592938091000" duration="4535000" />
+      <workItem from="1592938091000" duration="5056000" />
+      <workItem from="1593177101281" duration="1538000" />
+      <workItem from="1596312961904" duration="1788000" />
+      <workItem from="1596384937681" duration="1041000" />
     </task>
     <servers />
   </component>

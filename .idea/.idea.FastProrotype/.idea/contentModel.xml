@@ -558,9 +558,8 @@
                 <e p="BigNumberLocalizator.cs" t="Include" />
                 <e p="BigNumberOrder.cs" t="Include" />
                 <e p="BigNumberSerialized.cs" t="Include" />
-                <e p="BigNumberSetting.cs" t="Include" />
                 <e p="Editor" t="Include">
-                  <e p="BigNumberSettingEditor.cs" t="Include" />
+                  <e p="BigNumberEditor.cs" t="Include" />
                 </e>
                 <e p="IBigNumberDictionary.cs" t="Include" />
               </e>
@@ -686,6 +685,8 @@
       <e p="Packages" t="ExcludeRecursive" />
       <e p="Temp\bin" t="ExcludeRecursive" />
     </e>
+    <e p="C:\Users\Vasya\.Rider2019.2\Config\consoles\db" t="IncludeRecursive" />
+    <e p="C:\Users\Vasya\.Rider2019.2\Config\Extensions" t="IncludeRecursive" />
     <e p="C:\Users\Vasya\.Rider2019.2\system\extResources" t="IncludeRecursive" />
     <e p="C:\Users\Vasya\.Rider2019.2\system\resharper-host\local\Transient\ReSharperHost\v192\SolutionCaches\_FastProrotype.420033468.00" t="ExcludeRecursive" />
   </component>
