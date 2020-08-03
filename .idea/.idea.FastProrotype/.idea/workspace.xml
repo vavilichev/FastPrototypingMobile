@@ -3,9 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="0a837fd0-d632-4c9c-b5dd-8086dd6314b0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FastProrotype/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FastProrotype/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI/CommonWidgets/WidgetProgressBar/Scripts/IUIWidgetProgressBar.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI/CommonWidgets/WidgetProgressBar/Scripts/IUIWidgetProgressBar.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI/CommonWidgets/WidgetProgressBar/Scripts/UIWidgetProgressBarMasked.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI/CommonWidgets/WidgetProgressBar/Scripts/UIWidgetProgressBarMasked.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI/CommonWidgets/WidgetProgressBar/Scripts/UIWidgetProgressBarMaskedProperties.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI/CommonWidgets/WidgetProgressBar/Scripts/UIWidgetProgressBarMaskedProperties.cs.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Tools/Storage/Scripts/Storage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Tools/Storage/Scripts/Storage.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/UIController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/UIController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/UILayer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/UILayer.cs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -89,6 +91,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/UI/CommonWidgets/WidgetFortuneWheel/Scripts/UIWidgetFortuneWheel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Sounds/Scripts/SoundSourceUpdater.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Monetization/Shop/Payment/Scripts/PaymentHandlerSoftCurrency.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/UI/CommonWidgets/WidgetProgressBar/Scripts/IUIWidgetProgressBar.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Monetization/Shop/Payment/Scripts/PaymentHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/UI/CommonWidgets/WidgetProgressBar/Scripts/UIWidgetProgressBarMasked.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Monetization/Shop/Payment/Scripts/PaymentHandlerHardCurrency.cs" root0="FORCE_HIGHLIGHTING" />
@@ -241,7 +244,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/VavilichevGD/Tools/BigNumber/Example/Scripts/BigNumberExample.cs" />
         <option value="$PROJECT_DIR$/Assets/VavilichevGD/Tools/BigNumber/Scripts/Editor/BigNumberEditor.cs" />
         <option value="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/IUIElement.cs" />
         <option value="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/UIElement.cs" />
@@ -287,11 +289,12 @@
         <option value="$PROJECT_DIR$/Assets/UI/CommonWidgets/WidgetFortuneWheel/Scripts/UIWidgetFortuneWheel.cs" />
         <option value="$PROJECT_DIR$/Assets/UI/CommonWidgets/WidgetFortuneWheel/Scripts/UIWidgetFortuneWheelSectorText.cs" />
         <option value="$PROJECT_DIR$/Assets/UI/CommonWidgets/WidgetFortuneWheel/Scripts/UiWidgetFortuneWheelSectorTMP.cs" />
-        <option value="$PROJECT_DIR$/Assets/UI/CommonWidgets/WidgetProgressBar/Scripts/UIWidgetProgressBarMasked.cs" />
         <option value="$PROJECT_DIR$/Assets/UI/CommonWidgets/WidgetsCurrency/WidgetSoftCurrency/Scripts/UIWidgetSoftCurrency.cs" />
         <option value="$PROJECT_DIR$/Assets/UI/CommonWidgets/WidgetSlider/Scripts/UIWidgetSlider.cs" />
         <option value="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/UILayer.cs" />
         <option value="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/UIController.cs" />
+        <option value="$PROJECT_DIR$/Assets/UI/CommonWidgets/WidgetProgressBar/Scripts/IUIWidgetProgressBar.cs" />
+        <option value="$PROJECT_DIR$/Assets/UI/CommonWidgets/WidgetProgressBar/Scripts/UIWidgetProgressBarMasked.cs" />
       </list>
     </option>
   </component>
@@ -396,7 +399,7 @@
       <workItem from="1593177101281" duration="1538000" />
       <workItem from="1596312961904" duration="1788000" />
       <workItem from="1596384937681" duration="10308000" />
-      <workItem from="1596434206574" duration="1146000" />
+      <workItem from="1596434206574" duration="1925000" />
     </task>
     <servers />
   </component>

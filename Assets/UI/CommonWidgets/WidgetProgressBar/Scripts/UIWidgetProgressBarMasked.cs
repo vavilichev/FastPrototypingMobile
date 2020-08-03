@@ -1,15 +1,27 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.UI;
 
 namespace VavilichevGD.UI {
     public class UIWidgetProgressBarMasked : UIWidget, IUIWidgetProgressBar {
 
-        [SerializeField] private UIWidgetProgressBarMakedProperties properties;
+        #region DELEGATES
+
+        public event UnityAction<float> OnValueChangedEvent;
+
+        #endregion
+
+        [SerializeField] private Properties properties;
         
         
         public void SetValue(float newNormalizedValue) {
-            float newValue = Mathf.Clamp01(newNormalizedValue);
-            this.properties.imgMask.fillAmount = newValue;
+            var newValue = Mathf.Clamp01(newNormalizedValue);
+            var oldValue = this.properties.imgMask.fillAmount;
+            if (Math.Abs(newValue - oldValue) > Mathf.Epsilon) {
+                this.properties.imgMask.fillAmount = newValue;
+                this.OnValueChangedEvent?.Invoke(newValue);
+            }
         }
 
         public void SetTextValue(string valueText) {
@@ -32,5 +44,12 @@ namespace VavilichevGD.UI {
                 this.properties.imgMask.fillAmount = value;
         }
 #endif
+        
+        
+        [Serializable]
+        public class Properties {
+            public Image imgMask;
+            public Text textValue;
+        }
     }
 }
