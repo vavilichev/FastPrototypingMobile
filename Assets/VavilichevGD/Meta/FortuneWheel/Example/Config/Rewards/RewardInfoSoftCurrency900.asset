@@ -16,5 +16,5 @@ MonoBehaviour:
   m_title: 
   m_spriteIcon: {fileID: 21300000, guid: ff2175e96b52b0d4b88d92e623b6182c, type: 3}
   rewardValue:
-    cutFloat: 900
+    cutValue: 900
     order: 0
