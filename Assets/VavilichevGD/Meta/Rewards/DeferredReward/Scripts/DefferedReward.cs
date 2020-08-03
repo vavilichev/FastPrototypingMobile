@@ -48,7 +48,8 @@ namespace VavilichevGD.Meta.DefferedRewards {
 
         #region EVENTS
 
-        private void OnOneSecondTick(DateTime nowDevice) {
+        private void OnOneSecondTick() {
+            var nowDevice = GameTime.nowDevice;
             var remainingTime = this.GetRemainingTime(nowDevice);
             if (remainingTime <= 0) {
                 this.state.isReady = true;

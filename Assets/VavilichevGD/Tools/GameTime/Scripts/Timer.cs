@@ -67,7 +67,7 @@ namespace VavilichevGD.Tools.Time {
 
         #region EVENTS
 
-        private void OnOneSecondTick(DateTime nowDevice) {
+        private void OnOneSecondTick() {
             if (!this.isActive || this.paused)
                 return;
             
