@@ -16,16 +16,6 @@ namespace VavilichevGD.UI {
         public Layer layer => m_layer;
         public Transform container => this.transform;
         
-        public bool HasAnyActivePopups() {
-            var uiPopups = this.container.GetComponentsInChildren<IUIPopup>();
-            foreach (var popup in uiPopups) {
-                if (popup.IsActive())
-                    return true;
-            }
-
-            return false;
-        }
-
         public IUIView[] GetAllUIViews() {
             var uiViews = new List<IUIView>();
             var childCount = this.container.childCount;

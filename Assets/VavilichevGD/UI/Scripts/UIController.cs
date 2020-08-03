@@ -23,6 +23,7 @@ namespace VavilichevGD.UI {
         
         protected Dictionary<Type, string> uiViewsPathsMap;
         protected Dictionary<Type, IUIView> uiCachedViewsMap;
+        protected Dictionary<Type, IUIView> uiCreatedViewsMap;
 
         protected Routine routineInitializing;
 
@@ -54,15 +55,14 @@ namespace VavilichevGD.UI {
         protected IEnumerator InitializeRoutine() {
             this.uiCachedViewsMap = new Dictionary<Type, IUIView>();
             this.uiViewsPathsMap = new Dictionary<Type, string>();
+            this.uiCreatedViewsMap = new Dictionary<Type, IUIView>();
             
             var uiElements = Resources.LoadAll<UIView>(PREFABS_FOLDER);
             
             foreach (var uiElement in uiElements) {
                 if (uiElement is IUIPopup uiPopup) {
-                    if (uiPopup.isPreCached) {
+                    if (uiPopup.isPreCached)
                         this.CreateAndCache(uiElement);
-                        yield return null;
-                    }
                 }
 
                 var type = uiElement.GetType();
@@ -84,6 +84,8 @@ namespace VavilichevGD.UI {
             
             var type = pref.GetType();
             this.uiCachedViewsMap[type] = createdElement;
+            this.uiCreatedViewsMap[type] = createdElement;
+            
             createdElement.HideInstantly();
         }
 
@@ -130,6 +132,7 @@ namespace VavilichevGD.UI {
             createdElement.name = pref.name;
             createdElement.Show();
 
+            this.uiCreatedViewsMap[type] = createdElement;
             Resources.UnloadUnusedAssets();
             return createdElement;
         }
@@ -137,25 +140,35 @@ namespace VavilichevGD.UI {
         #endregion
         
         public bool HasAnyActivePopups() {
-            foreach (UILayer layer in this.layers) {
-                if (layer.HasAnyActivePopups())
+            var allViews = this.uiCachedViewsMap.Values;
+            
+            foreach (var view in allViews) {
+                if (view is IUIPopup popup && popup.IsActive())
                     return true;
             }
 
             return false;
         }
-
+        
         public object TryToGetView<T>() where T : IUIView {
-            foreach (var layer in this.layers) {
-                var allViews = layer.GetAllUIViews();
-                foreach (var m_view in allViews) {
-                    if (m_view is T convertedView) {
-                        return convertedView;
-                    }
-                }
-            }
+            
+            this.RefreshCreatedViewsMap();
 
+            var requiredType = typeof(T);
+            if (this.uiCreatedViewsMap.ContainsKey(requiredType))
+                return this.uiCreatedViewsMap[requiredType];
+            
             return null;
+        }
+
+        private void RefreshCreatedViewsMap() {
+            foreach (var createdViewPair in this.uiCreatedViewsMap) {
+                var key = createdViewPair.Key;
+                var createdView = createdViewPair.Value;
+                
+                if (createdView == null)
+                    this.uiCreatedViewsMap.Remove(key);
+            }
         }
     }
 }
