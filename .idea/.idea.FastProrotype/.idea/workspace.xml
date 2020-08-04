@@ -2,26 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0a837fd0-d632-4c9c-b5dd-8086dd6314b0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Tools/AppBuilder/Editor/AppBuilder.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Tools/AppBuilder/Editor/AppBuilderConfig.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Tools/AppBuilder/Editor/AppBuilderConfig.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Tools/EditorDownloader/Editor/EditorDownloader.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Tools/Extensions/Editor.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.FastProrotype/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FastProrotype/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.FastProrotype/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FastProrotype/.idea/indexLayout.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.FastProrotype/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FastProrotype/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Tools/BigNumber/Scripts/BigNumber.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Tools/BigNumber/Scripts/BigNumber.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Tools/Extensions/ScriptOrder.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Tools/Extensions/Editor/ScriptOrder.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Tools/Extensions/ScriptOrder/ScriptOrderAttribute.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Tools/Extensions/Editor/ScriptOrder/ScriptOrderAttribute.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Tools/Extensions/ScriptOrder/ScriptOrderAttribute.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Tools/Extensions/Editor/ScriptOrder/ScriptOrderAttribute.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Tools/Extensions/ScriptOrder/ScriptOrderHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Tools/Extensions/Editor/ScriptOrder/ScriptOrderHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Tools/Extensions/ScriptOrder/ScriptOrderHandler.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Tools/Extensions/Editor/ScriptOrder/ScriptOrderHandler.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Tools/Storage/Scripts/Storage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Tools/Storage/Scripts/Storage.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/UILayer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/UILayer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/UnityConnectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/UnityConnectSettings.asset" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -39,6 +20,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/Interfaces/IUIView.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/UI/PopupLevels/Scripts/UIWidgetLevelsItem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Analytics/Scripts/Customizing/AnalyticsInteractor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/XLSReader/Scripts/Editor/XLSReaderExample.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Architecture/Game/Scripts/Game.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Sounds/Music/Scripts/MusicPlayerProperties.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VavilichevGD/Meta/Rewards/DailyRewards/Example/Config/Rewards/DailyRewardInfo0.asset" root0="FORCE_HIGHLIGHTING" />
@@ -263,7 +245,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/UIPopupAnim.cs" />
         <option value="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/IUIScreen.cs" />
         <option value="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/Refactored/Interfaces/IUIElementAnim.cs" />
         <option value="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/Elements/Refactored/UIElementAnim.cs" />
@@ -314,6 +295,7 @@
         <option value="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/UILayer.cs" />
         <option value="$PROJECT_DIR$/Assets/VavilichevGD/Tools/BigNumber/Scripts/BigNumber.cs" />
         <option value="$PROJECT_DIR$/Assets/VavilichevGD/Tools/EditorDownloader/Editor/EditorDownloader.cs" />
+        <option value="$PROJECT_DIR$/Assets/XLSReader/Scripts/Editor/XLSReaderExample.cs" />
       </list>
     </option>
   </component>
@@ -419,7 +401,7 @@
       <workItem from="1596312961904" duration="1788000" />
       <workItem from="1596384937681" duration="10308000" />
       <workItem from="1596434206574" duration="8198000" />
-      <workItem from="1596520400357" duration="2210000" />
+      <workItem from="1596520400357" duration="2911000" />
     </task>
     <servers />
   </component>

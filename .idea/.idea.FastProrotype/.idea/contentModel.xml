@@ -749,6 +749,26 @@
                 <e p="StorageHandlerPlayerPrefs.cs" t="Include" />
               </e>
             </e>
+            <e p="XLSReader" t="Include">
+              <e p="Example" t="Include">
+                <e p="Editor" t="Include">
+                  <e p="XLSReaderExample.cs" t="Include" />
+                </e>
+              </e>
+              <e p="Scripts" t="Include">
+                <e p="Editor" t="Include">
+                  <e p="EPPlus" t="Include">
+                    <e p="README.txt" t="Include" />
+                  </e>
+                  <e p="Excel4Unity" t="Include">
+                    <e p="Excel.cs" t="Include" />
+                    <e p="ExcelHelper.cs" t="Include" />
+                    <e p="ExcelTable.cs" t="Include" />
+                    <e p="ExcelTableCell.cs" t="Include" />
+                  </e>
+                </e>
+              </e>
+            </e>
           </e>
           <e p="UI" t="Include">
             <e p="Loading" t="Include">
