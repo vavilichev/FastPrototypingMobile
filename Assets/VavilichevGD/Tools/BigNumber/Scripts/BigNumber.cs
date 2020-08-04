@@ -27,8 +27,8 @@ namespace VavilichevGD.Tools.Numerics {
 		[SerializeField] private float cutValue;
 		[SerializeField] private BigNumberOrder order;
 
-		
-		internal BigInteger bigIntegerValue { get; private set; }
+
+		private BigInteger bigIntegerValue { get; set; }
 		private bool isInitialized { get; set; }
 
 		
@@ -582,10 +582,9 @@ namespace VavilichevGD.Tools.Numerics {
 			bigIntegerValue = BigInteger.Parse(strValue);
 			isInitialized = true;
 		}
-		
-		
-		
-		public bool Equals(BigNumber other) {
+
+
+		private bool Equals(BigNumber other) {
 			return cutValue.Equals(other.cutValue) && order == other.order && bigIntegerValue.Equals(other.bigIntegerValue) && isInitialized == other.isInitialized;
 		}
 
@@ -597,9 +596,13 @@ namespace VavilichevGD.Tools.Numerics {
 		{
 			unchecked
 			{
+				// ReSharper disable once NonReadonlyMemberInGetHashCode
 				var hashCode = cutValue.GetHashCode();
+				// ReSharper disable once NonReadonlyMemberInGetHashCode
 				hashCode = (hashCode * 397) ^ (int) order;
+				// ReSharper disable once NonReadonlyMemberInGetHashCode
 				hashCode = (hashCode * 397) ^ bigIntegerValue.GetHashCode();
+				// ReSharper disable once NonReadonlyMemberInGetHashCode
 				hashCode = (hashCode * 397) ^ isInitialized.GetHashCode();
 				return hashCode;
 			}
