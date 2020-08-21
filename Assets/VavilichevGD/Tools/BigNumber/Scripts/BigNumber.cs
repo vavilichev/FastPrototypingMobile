@@ -1,4 +1,5 @@
-﻿using System;
+﻿// Created by Vavilichev
+using System;
 using UnityEngine;
 using System.Numerics;
 using System.Security.Cryptography;

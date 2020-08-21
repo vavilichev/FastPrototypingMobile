@@ -1,7 +1,8 @@
-﻿using UnityEngine;
+﻿// Created by Vavilichev
+using UnityEngine;
 using UnityEngine.UI;
 
-namespace VavilichevGD.Tools.Numerics {
+namespace VavilichevGD.Tools.Numerics.Example {
     public class BigNumberExample : MonoBehaviour {
 
         [SerializeField] public BigNumber defaultValue;

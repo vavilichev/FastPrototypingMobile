@@ -1,4 +1,5 @@
-﻿using System;
+﻿// Created by Vavilichev
+using System;
 
 namespace VavilichevGD.Tools.Numerics {
     [Serializable]

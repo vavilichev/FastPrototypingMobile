@@ -27,6 +27,7 @@
       <change beforePath="$PROJECT_DIR$/Assets/Plugins/UnityPurchasing/Editor.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/UnityPurchasing/Editor.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Plugins/UnityPurchasing/script/IAPDemo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/UnityPurchasing/script/IAPDemo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/UI/Scripts/UIControllerFastPrototype.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI/Scripts/UIControllerFastPrototype.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Tools/BigNumber/Scripts/BigNumber.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Tools/BigNumber/Scripts/BigNumber.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/VavilichevGD/Tools/Storage/Scripts/Storage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VavilichevGD/Tools/Storage/Scripts/Storage.cs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -316,11 +317,11 @@
         <option value="$PROJECT_DIR$/Assets/VavilichevGD/Tools/AppBuilder/Editor/AppBuilderConfig.cs" />
         <option value="$PROJECT_DIR$/Assets/VavilichevGD/Tools/AppBuilder/Editor/AppBuilder.cs" />
         <option value="$PROJECT_DIR$/Assets/VavilichevGD/UI/Scripts/UILayer.cs" />
-        <option value="$PROJECT_DIR$/Assets/VavilichevGD/Tools/BigNumber/Scripts/BigNumber.cs" />
         <option value="$PROJECT_DIR$/Assets/VavilichevGD/Tools/EditorDownloader/Editor/EditorDownloader.cs" />
         <option value="$PROJECT_DIR$/Assets/XLSReader/Scripts/Editor/XLSReaderExample.cs" />
         <option value="$PROJECT_DIR$/Assets/VavilichevGD/Tools/XLSReader/Example/Editor/XLSReaderExample.cs" />
         <option value="$PROJECT_DIR$/Assets/UI/Scripts/UIControllerFastPrototype.cs" />
+        <option value="$PROJECT_DIR$/Assets/VavilichevGD/Tools/BigNumber/Scripts/BigNumber.cs" />
       </list>
     </option>
   </component>
@@ -427,7 +428,7 @@
       <workItem from="1596384937681" duration="10308000" />
       <workItem from="1596434206574" duration="8198000" />
       <workItem from="1596520400357" duration="3707000" />
-      <workItem from="1597989771794" duration="542000" />
+      <workItem from="1597989771794" duration="938000" />
     </task>
     <servers />
   </component>

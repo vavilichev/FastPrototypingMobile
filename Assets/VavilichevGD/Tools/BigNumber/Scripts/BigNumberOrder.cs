@@ -1,4 +1,6 @@
-﻿namespace VavilichevGD.Tools.Numerics {
+﻿// Created by Vavilichev
+
+namespace VavilichevGD.Tools.Numerics {
     public enum BigNumberOrder {
         Singles = 0,
         Thousands = 1,

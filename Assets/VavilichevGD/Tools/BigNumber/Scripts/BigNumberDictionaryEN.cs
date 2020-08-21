@@ -1,4 +1,5 @@
-﻿using VavilichevGD.Tools.Numerics;
+﻿// Created by Vavilichev
+using VavilichevGD.Tools.Numerics;
 
 namespace VavilichevGD.Tools {
     public class BigNumberDictionaryEN : IBigNumberDictionary {

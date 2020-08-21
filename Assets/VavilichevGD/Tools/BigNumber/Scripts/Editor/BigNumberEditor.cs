@@ -1,4 +1,5 @@
-﻿using System;
+﻿// Created by Vavilichev
+using System;
 using UnityEditor;
 using UnityEngine;
 

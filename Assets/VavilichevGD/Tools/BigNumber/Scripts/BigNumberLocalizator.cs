@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿// Created by Vavilichev
+using UnityEngine;
 
 namespace VavilichevGD.Tools.Numerics {
     public static class BigNumberLocalizator {
