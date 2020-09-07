@@ -27,16 +27,16 @@ namespace VavilichevGD.Tools.Time {
 
         #region INITIALIZING
 
+        protected override void Initialize() {
+            this.gameTimeRepository = this.GetRepository<GameTimeRepository>();
+        }
+
         protected override IEnumerator InitializeRoutine() {
-            this.gameTimeRepository = new GameTimeRepository();
-            yield return this.gameTimeRepository.Initialize();
-            
             TimeLoader timeLoader = new TimeLoader();
             timeLoader.OnTimeDownloadedEvent += this.OnTimeDownloaded;
             yield return timeLoader.LoadTime();
 
             GameTime.Initialize(this);
-            this.CompleteInitializing();
             Logging.Log($"GAME TIME INTERACTOR: Initialized successful. \n{this}");
         }
         
@@ -93,7 +93,7 @@ namespace VavilichevGD.Tools.Time {
         #endregion
         
         
-        public override void Save() {
+        public void Save() {
             this.gameSessionCurrentTimeData.sessionDuration = this.timeSinceGameStartedSec;
             this.gameSessionCurrentTimeData.timeValueActiveDeviceAtEnd = this.GetDeviceWorkTimeInSeconds();
             this.gameTimeRepository.SetGameSessionPreviousTimeData(this.gameSessionCurrentTimeData);
@@ -105,9 +105,11 @@ namespace VavilichevGD.Tools.Time {
         }
         
         public override string ToString() {
-            return $"Last session: {gameSessionPreviousTimeData}\n\n" +
+            if (this.isInitialized)
+               return $"Last session: {gameSessionPreviousTimeData}\n\n" +
                    $"Current session: {gameSessionCurrentTimeData}\n\n" +
                    $"Time between sessions: {timeBetweenSessionsSec}";
+            return this.GetType().ToString();
         }
     }
 }

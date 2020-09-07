@@ -1,5 +1,6 @@
-﻿using System;
-using FastPrototype.Architecture;
+﻿using FastPrototype.Architecture;
+using UnityEngine.Events;
+using VavilichevGD.Architecture.Scenes;
 using VavilichevGD.Core.Loadging;
 
 namespace VavilichevGD.Architecture {
@@ -8,7 +9,7 @@ namespace VavilichevGD.Architecture {
         public static void Run() {
             bool singletonCreated = CreateSingleton();
             if (singletonCreated) {
-                Game.OnGameInitializedEvent += OnGameInitialized;
+                OnGameInitializedEvent += OnGameInitialized;
                 instance.Initialize();
             }
         }
@@ -21,27 +22,22 @@ namespace VavilichevGD.Architecture {
             return true;
         }
 
-        private void CreateInstance() {
-            if (isInitialized)
-                throw new Exception("The game is already initialized");
-
-            instance = this;
-        }
-        
-        protected override void CreateBases() {
-            repositoriesBase = new RepositoriesBaseFastProrotype();
-            interactorsBase = new InteractorsBaseFastPrototype();
-        }
-
-
         #region Events
 
         private static void OnGameInitialized() {
-            Game.OnGameInitializedEvent -= OnGameInitialized;
+            OnGameInitializedEvent -= OnGameInitialized;
             Loading.HideLoadingScreen();
         }
 
         #endregion
-        
+
+        protected override SceneManager CreateSceneManager() {
+            return new SceneManagerFastPrototype();
+        }
+
+        protected override void LoadFirstScene(UnityAction<ISceneConfig> callback) {
+            Loading.ShowLoadingScreen();
+            sceneManager.LoadScene(SceneManagerFastPrototype.SCENE_MAIN, callback);
+        }
     }
 }

@@ -23,7 +23,7 @@ namespace VavilichevGD.Tools.Time.Example {
         
         private IEnumerator Start() {
             this.interactor = new GameTimeInteractor();
-            yield return interactor.Initialize();
+            yield return interactor.InitializeAsync();
         }
 
         private void OnEnable() {

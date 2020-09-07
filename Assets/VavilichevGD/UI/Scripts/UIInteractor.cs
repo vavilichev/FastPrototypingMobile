@@ -6,11 +6,11 @@ namespace VavilichevGD.UI {
 
         public UIController uiController { get; protected set; }
         
-        protected override IEnumerator InitializeRoutine() {
-            uiController = this.CreateUIController();
-            yield return uiController.Initialize();
-            this.CompleteInitializing();
-        }
+//        protected override IEnumerator InitializeRoutineBase() {
+//            uiController = this.CreateUIController();
+//            yield return uiController.Initialize();
+//            this.CompleteInitializing();
+//        }
 
         protected abstract UIController CreateUIController();
     }

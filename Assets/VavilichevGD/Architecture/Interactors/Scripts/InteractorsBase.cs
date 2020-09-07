@@ -5,64 +5,68 @@ using System.Linq;
 using UnityEngine;
 using VavilichevGD.Tools;
 
-namespace VavilichevGD.Architecture {
-    public abstract class InteractorsBase {
+namespace VavilichevGD.Architecture.Scenes {
+    public class InteractorsBase {
 
-        #region Delegates
+        #region DELEGATES
 
-        public delegate void InteractorBaseStatusHandler(string statusText);
-        public event InteractorBaseStatusHandler OnInteractorBaseStatusChanged;
+        public delegate void InteractorBaseHandler(string statusText);
+        public event InteractorBaseHandler OnInteractorBaseStatusChangedEvent;
 
         #endregion
         
-        
-        protected Dictionary<Type, IInteractor> interactorsMap;
+        private Dictionary<Type, IInteractor> interactorsMap;
+        private ISceneConfig sceneConfig;
 
-
-        #region Initializing
-
-        public InteractorsBase() {
-            interactorsMap = new Dictionary<Type, IInteractor>();
+        public InteractorsBase(ISceneConfig sceneConfig) {
+            this.interactorsMap = new Dictionary<Type, IInteractor>();
+            this.sceneConfig = sceneConfig;
         }
         
-        public abstract void CreateAllInteractors();
-
-        protected void CreateInteractor<T>() where T : Interactor, new() {
-            T interactor = new T();
-            interactorsMap.Add(typeof(T), interactor);
-        }
         
+        public void CreateAllInteractors() {
+            this.interactorsMap = this.sceneConfig.CreateAllInteractors();
+        }
+
+        
+        
+        #region INITIALIZING
+
         public Coroutine InitializeAllInteractors() {
             return Coroutines.StartRoutine(InitializeAllInteractorsRoutine());
         }
 
-        protected IEnumerator InitializeAllInteractorsRoutine() {
-            IInteractor[] allInteractors = interactorsMap.Values.ToArray();
+        private IEnumerator InitializeAllInteractorsRoutine() {
+            IInteractor[] allInteractors = this.interactorsMap.Values.ToArray();
             foreach (IInteractor interactor in allInteractors) {
-                if (!interactor.IsInitialized())
-                    yield return interactor.Initialize();
+                if (!interactor.isInitialized) {
+                    this.OnInteractorBaseStatusChangedEvent?.Invoke(interactor.GetStatusStartInitializing());
+                    yield return interactor.InitializeAsync();
+                    this.OnInteractorBaseStatusChangedEvent?.Invoke(interactor.GetStatusCompleteInitializing());
+                }
             }
         }
 
-        public void SendOnGameInitializedEvent() {
-            IInteractor[] allInteractors = interactorsMap.Values.ToArray();
-            foreach (IInteractor interactor in allInteractors)
-                interactor.OnReady();
-        }
+        #endregion
+
+        
+        
+        #region START
+
+        public void StartAllInteractors() {
+            IInteractor[] allInteractors = this.interactorsMap.Values.ToArray();
+            foreach (IInteractor interactor in allInteractors) {
+                interactor.Start();
+                this.OnInteractorBaseStatusChangedEvent?.Invoke(interactor.GetStatusStart());
+            }
+        } 
 
         #endregion
-        
-        
-        protected Coroutine AddInteractor(Interactor interactor) {
-            Type type = interactor.GetType();
-            interactorsMap.Add(type, interactor);
-            return interactor.Initialize();
-        }
-       
-        protected void NotifyAboutStatusChanged(string statusText) {
-            OnInteractorBaseStatusChanged?.Invoke(statusText);
-        }
 
+        public void Clear() {
+            this.interactorsMap.Clear();
+            this.sceneConfig = null;
+        }
         
         
         public T GetInteractor<T>() where T : IInteractor {
@@ -88,22 +92,6 @@ namespace VavilichevGD.Architecture {
             }
 
             return requiredInteractors;
-        }
-
-        public void Clear() {
-            interactorsMap.Clear();
-        }
-
-        public void SaveAllInteractors() {
-            var allInteractors = this.interactorsMap.Values;
-            foreach (var interactor in allInteractors)
-                interactor.Save();
-        }
-
-        public void ResetAllInteractors() {
-            var allInteractors = this.interactorsMap.Values;
-            foreach (var interactor in allInteractors)
-                interactor.Reset();
         }
         
     }

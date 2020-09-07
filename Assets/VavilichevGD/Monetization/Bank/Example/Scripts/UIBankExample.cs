@@ -28,11 +28,20 @@ namespace VavilichevGD.Monetization.Examples {
         
         
         private void Start() {
-            Game.OnGameInitializedEvent += OnGameInitializedEvent;
+            
+            if (Game.isInitialized)
+                this.Initialize();
+            else
+                Game.OnGameInitializedEvent += OnGameInitializedEvent;
         }
-
+        
         private void OnGameInitializedEvent() {
             Game.OnGameInitializedEvent -= OnGameInitializedEvent;
+            this.Initialize();
+        }
+        
+
+        private void Initialize() {
             this.bankInteractor = this.GetInteractor<BankInteractor>();
             this.bankInteractor.softCurrency.OnChangedEvent += this.OnSoftCurrencyChanged;
             this.bankInteractor.hardCurrency.OnChangedEvent += this.OnHardCurrencyChanged;
@@ -40,6 +49,8 @@ namespace VavilichevGD.Monetization.Examples {
             this.currencyParamsHard.textCurrencyValue.text = $"Hard Currency: {this.bankInteractor.hardCurrency}";
             this.currencyParamsSoft.textCurrencyValue.text = $"Soft Currency: {this.bankInteractor.softCurrency}";
         }
+
+        
 
         private void OnDestroy() {
             this.bankInteractor.softCurrency.OnChangedEvent -= this.OnSoftCurrencyChanged;

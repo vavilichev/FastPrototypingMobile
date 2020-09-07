@@ -3,66 +3,98 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
+using VavilichevGD.Architecture.Scenes;
 using VavilichevGD.Tools;
 
-namespace VavilichevGD.Architecture {
-    public abstract class RepositoriesBase {
+namespace VavilichevGD.Architecture.Scenes {
+    public class RepositoriesBase {
 
-        #region Delegates
+        #region DELEGATES
 
-        public delegate void RepositoryBaseStatusHandler(string statusText);
-        public event RepositoryBaseStatusHandler OnRepositoryBaseStatusChanged;
+        public delegate void RepositoriesBaseHandler(string statusText);
+        public event RepositoriesBaseHandler OnRepositoriesBaseStatusChangedEvent;
 
         #endregion
 
+        private Dictionary<Type, IRepository> repositoriesMap;
+        private ISceneConfig sceneConfig;
         
-        protected Dictionary<Type, IRepository> repositoriesMap;
-
-
-        #region Initializing
-
-
-        public RepositoriesBase() {
-            repositoriesMap = new Dictionary<Type, IRepository>();
+        public RepositoriesBase(ISceneConfig sceneConfig) {
+            this.repositoriesMap = new Dictionary<Type, IRepository>();
+            this.sceneConfig = sceneConfig;
         }
 
-        public abstract void CreateAllRepositories();
-
-        protected void CreateRepository<T>() where T : Repository, new() {
-            T repository = new T();
-            repositoriesMap.Add(typeof(T), repository);
+        
+        public void CreateAllRepositories() {
+            this.repositoriesMap = this.sceneConfig.CreateAllRepositories();
         }
         
+        
+
+        #region INITIALIZING
+
         public Coroutine InitializeAllRepositories() {
             return Coroutines.StartRoutine(InitializeAllRepositoriesRoutine());
         }
 
-        protected IEnumerator InitializeAllRepositoriesRoutine() {
+        private IEnumerator InitializeAllRepositoriesRoutine() {
             IRepository[] allRepositories = repositoriesMap.Values.ToArray();
             foreach (IRepository repository in allRepositories) {
-                if (!repository.IsInitialized())
-                    yield return repository.Initialize();
+                if (!repository.isInitialized) {
+                    this.OnRepositoriesBaseStatusChangedEvent?.Invoke(repository.GetStatusStartInitializing());
+                    yield return repository.InitializeAsync();
+                    this.OnRepositoriesBaseStatusChangedEvent?.Invoke(repository.GetStatusCompleteInitializing());
+                }
             }
-        }
-        
-        public void SendOnGameInitializedEvent() {
-            IRepository[] allRepositories = repositoriesMap.Values.ToArray();
-            foreach (IRepository repository in allRepositories)
-                repository.OnReady();
         }
 
         #endregion
+
         
-        protected void NotifyAboutStatusChanged(string statusText) {
-            OnRepositoryBaseStatusChanged?.Invoke(statusText);
+        
+        #region START
+
+        public void StartAllRepositories() {
+            IRepository[] allRepositories = repositoriesMap.Values.ToArray();
+            foreach (IRepository repository in allRepositories) {
+                repository.Start();
+                this.OnRepositoriesBaseStatusChangedEvent?.Invoke(repository.GetStatusStart());
+            }
+        } 
+
+        #endregion
+
+        
+        
+        #region SAVE
+
+        public void SaveAllRepositories() {
+            IRepository[] allRepositories = repositoriesMap.Values.ToArray();
+            foreach (IRepository repository in allRepositories)
+                repository.Save();
         }
+
+        public Coroutine SaveAllRepositoriesAsync(UnityAction callback) {
+            return Coroutines.StartRoutine(this.SaveAllRepositoriesAsyncRoutine(callback));
+        }
+
+        private IEnumerator SaveAllRepositoriesAsyncRoutine(UnityAction callback) {
+            IRepository[] allRepositories = repositoriesMap.Values.ToArray();
+            foreach (var repository in allRepositories)
+                yield return repository.SaveAsync();
+            callback?.Invoke();
+        }
+
+        #endregion
+
+
         
-
-
         public T GetRepository<T>() where T : IRepository {
-            Type type = typeof(T);
-            IRepository resultRepository = null;
-            bool founded = repositoriesMap.TryGetValue(type, out resultRepository);
+            var type = typeof(T);
+            IRepository resultRepository;
+            var founded = repositoriesMap.TryGetValue(type, out resultRepository);
+            
             if (founded)
                 return (T) resultRepository;
             
@@ -84,9 +116,6 @@ namespace VavilichevGD.Architecture {
 
             return requiredRepositories;
         }
-
-        public void Clear() {
-            repositoriesMap.Clear();
-        }
+        
     }
 }

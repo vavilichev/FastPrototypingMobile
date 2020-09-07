@@ -18,10 +18,10 @@ namespace VavilichevGD.Meta.DailyRewards.Example {
 
         private IEnumerator InitializeRoutine() {
             var gameTimeInteractor = new GameTimeInteractor();
-            yield return gameTimeInteractor.Initialize();
+            yield return gameTimeInteractor.InitializeAsync();
             
             this.dailyRewardsInteractorFake = new DailyRewardsInteractorFake();
-            yield return this.dailyRewardsInteractorFake.Initialize();
+            yield return this.dailyRewardsInteractorFake.InitializeAsync();
 
             Debug.Log("Waiting 3 seconds..");
             yield return new WaitForSeconds(3f);
@@ -66,12 +66,12 @@ namespace VavilichevGD.Meta.DailyRewards.Example {
         
 
         private void OnApplicationPause(bool pauseStatus) {
-            if(pauseStatus)
-                this.dailyRewardsInteractorFake.Save();
+//            if(pauseStatus)
+//                this.dailyRewardsInteractorFake.Save();
         }
 
         private void OnApplicationQuit() {
-            this.dailyRewardsInteractorFake.Save();
+//            this.dailyRewardsInteractorFake.Save();
         }
     }
 }

@@ -18,10 +18,10 @@ namespace VavilichevGD.Monetization.Examples {
 
         private IEnumerator InitialzieRoutine() {
             ADSRepository repository = new ADSRepository();
-            yield return repository.Initialize();
+            yield return repository.InitializeAsync();
             
             ADSInteractor interactor = new ADSInteractor();
-            yield return interactor.Initialize();
+            yield return interactor.InitializeAsync();
         }
         
 

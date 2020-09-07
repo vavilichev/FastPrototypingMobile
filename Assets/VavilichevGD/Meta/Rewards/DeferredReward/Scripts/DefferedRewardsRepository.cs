@@ -21,7 +21,7 @@ namespace VavilichevGD.Meta.DefferedRewards {
             yield return null;
         }
 
-        protected override void LoadFromStorage() {
+        private void LoadFromStorage() {
             this.data = Storage.GetCustom(PREF_KEY, new DefferedRewardsData());
             
             if (Logging.enabled)
@@ -33,14 +33,11 @@ namespace VavilichevGD.Meta.DefferedRewards {
         }
         
         public override void Save() {
-            this.SaveToStorage();
-        }
-
-        protected override void SaveToStorage() {
             Storage.SetCustom(PREF_KEY, this.data);
             
             if (Logging.enabled)
                 Logging.Log($"DEFFERED REWARDS REPOSITORY: saved to storage: {this.data}");
         }
+
     }
 }

@@ -1,4 +1,6 @@
-﻿using VavilichevGD.Architecture;
+﻿using UnityEngine.Events;
+using VavilichevGD.Architecture;
+using VavilichevGD.Architecture.Scenes;
 
 namespace VavilichevGD.Core.Levels.Example {
     public class ExampleGameLevels : Game {
@@ -10,9 +12,12 @@ namespace VavilichevGD.Core.Levels.Example {
             instance.Initialize();
         }
         
-        protected override void CreateBases() {
-            this.repositoriesBase = new ExampleLevelsRepositoriesBase();
-            this.interactorsBase = new ExampleLevelsInteractorsBase();
+        protected override SceneManager CreateSceneManager() {
+            return new ExampleSceneManagerLevels();            
+        }
+
+        protected override void LoadFirstScene(UnityAction<ISceneConfig> callback) {
+            sceneManager.LoadScene(ExampleSceneConfigLevels.SCENE_NAME, callback);
         }
     }
 }

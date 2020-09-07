@@ -13,7 +13,7 @@ namespace VavilichevGD.Meta.DefferedRewards.Example {
 
         private IEnumerator Start() {
             this.defferedRewardsInteractor = new DefferedRewardsInteractor();
-            yield return this.defferedRewardsInteractor.Initialize();
+            yield return this.defferedRewardsInteractor.InitializeAsync();
             
             this.rewardControler1.SetInteractor(this.defferedRewardsInteractor);
             this.rewardControler2.SetInteractor(this.defferedRewardsInteractor);

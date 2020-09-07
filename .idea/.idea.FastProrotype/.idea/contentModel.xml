@@ -12,8 +12,8 @@
             <e p="BootSceneManager.cs" t="Include" />
           </e>
           <e p="GameFastPrototype.cs" t="Include" />
-          <e p="InteractorsBaseFastPrototype.cs" t="Include" />
-          <e p="RepositoriesBaseFastProrotype.cs" t="Include" />
+          <e p="SceneConfigFastPrototype.cs" t="Include" />
+          <e p="SceneManagerFastPrototype.cs" t="Include" />
         </e>
         <e p="GooglePlayGames" t="Include">
           <e p="BasicApi" t="Include">
@@ -376,6 +376,17 @@
                 <e p="RepositoryUpdater.cs" t="Include" />
               </e>
             </e>
+            <e p="Scenes" t="Include">
+              <e p="Config" t="Include">
+                <e p="IScene.cs" t="Include" />
+                <e p="ISceneConfig.cs" t="Include" />
+                <e p="ISceneManager.cs" t="Include" />
+                <e p="Scene.cs" t="Include" />
+                <e p="SceneConfigBase.cs" t="Include" />
+                <e p="SceneConfigMain.cs" t="Include" />
+                <e p="SceneManager.cs" t="Include" />
+              </e>
+            </e>
             <e p="State" t="Include">
               <e p="IState.cs" t="Include" />
             </e>
@@ -389,8 +400,8 @@
                 <e p="Scripts" t="Include">
                   <e p="ExampleGameLevels.cs" t="Include" />
                   <e p="ExampleLevels.cs" t="Include" />
-                  <e p="ExampleLevelsInteractorsBase.cs" t="Include" />
-                  <e p="ExampleLevelsRepositoriesBase.cs" t="Include" />
+                  <e p="ExampleSceneConfigLevels.cs" t="Include" />
+                  <e p="ExampleSceneManagerLevels.cs" t="Include" />
                 </e>
               </e>
               <e p="Scripts" t="Include">
@@ -454,10 +465,10 @@
               </e>
               <e p="Example" t="Include">
                 <e p="Scripts" t="Include">
-                  <e p="FortuneWheelExampleInteractorsBase.cs" t="Include" />
                   <e p="FortuneWheelExampleManager.cs" t="Include" />
-                  <e p="FortuneWheelExampleRepositoriesBase.cs" t="Include" />
                   <e p="GameFortuneWheelExample.cs" t="Include" />
+                  <e p="SceneConfigFortuneWheelExample.cs" t="Include" />
+                  <e p="SceneManagerFortuneWheelExample.cs" t="Include" />
                 </e>
               </e>
               <e p="README.txt" t="Include" />
@@ -581,9 +592,9 @@
               <e p="Example" t="Include">
                 <e p="Scripts" t="Include">
                   <e p="BankExampleBoot.cs" t="Include" />
+                  <e p="ExampleSceneConfigBank.cs" t="Include" />
+                  <e p="ExampleSceneManagerBank.cs" t="Include" />
                   <e p="GameBankExample.cs" t="Include" />
-                  <e p="InteractorsBaseBankExample.cs" t="Include" />
-                  <e p="RepositoriesBaseBankExample.cs" t="Include" />
                   <e p="UIBankExample.cs" t="Include" />
                 </e>
               </e>
@@ -715,6 +726,12 @@
                 </e>
               </e>
               <e p="ExtensionsClass.cs" t="Include" />
+            </e>
+            <e p="GameState" t="Include">
+              <e p="GameEntityState.cs" t="Include" />
+              <e p="GameState.cs" t="Include" />
+              <e p="GameStateTester.cs" t="Include" />
+              <e p="TestEntity.cs" t="Include" />
             </e>
             <e p="GameTime" t="Include">
               <e p="Example" t="Include">

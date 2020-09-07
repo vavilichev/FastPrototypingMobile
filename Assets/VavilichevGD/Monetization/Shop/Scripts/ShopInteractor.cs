@@ -15,20 +15,15 @@ namespace VavilichevGD.Monetization {
         
         #region Initializing
 
-        protected override IEnumerator InitializeRoutine() {
+        protected override void OnStart() {
             this.InitProductsMap();
-            yield return null;
-            
             Shop.Initialize(this);
-            yield return null;
-            
-            this.CompleteInitializing();
         }
 
         private void InitProductsMap() {
             this.productsMap = new Dictionary<string, Product>();
             
-            ShopRepository shopRepository = this.GetRepository<ShopRepository>();
+            var shopRepository = this.GetRepository<ShopRepository>();
             var stateJsons = shopRepository.stateJsons;
             var allProductsInfo = this.GetAllProductsInfo();
             Logging.Log($"PRODUCT INTERACTOR: Loaded products info. Count = {allProductsInfo?.Length}");
@@ -37,10 +32,10 @@ namespace VavilichevGD.Monetization {
                 foreach (IProductInfo productInfo in allProductsInfo) {
                     bool productCreated = false;
                     foreach (string stateJson in stateJsons) {
-                        ProductState state = JsonUtility.FromJson<ProductState>(stateJson);
+                        var state = JsonUtility.FromJson<ProductState>(stateJson);
                         if (productInfo.GetId() == state.id) {
-                            ProductState specialState = productInfo.CreateState(stateJson);
-                            Product product = new Product(productInfo, specialState);
+                            var specialState = productInfo.CreateState(stateJson);
+                            var product = new Product(productInfo, specialState);
                             productsMap.Add(productInfo.GetId(), product);
                             productCreated = true;
                             break;

@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using VavilichevGD.Architecture;
 using VavilichevGD.Tools;
@@ -16,12 +15,11 @@ namespace VavilichevGD.Core {
         
         public AllLevelStates allLevelsStates { get; private set; }
 
-        protected override IEnumerator InitializeRoutine() {
+        protected override void Initialize() {
             this.LoadFromStorage();
-            yield return null;
         }
 
-        protected override void LoadFromStorage() {
+        private void LoadFromStorage() {
             LevelInfo[] levelInfos = Resources.LoadAll<LevelInfo>(PATH_LEVELINFO);
             bool firstPlay = !Storage.HasKey(PREF_LEVELSTATES);
             if (firstPlay)

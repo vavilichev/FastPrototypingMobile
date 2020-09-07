@@ -17,14 +17,12 @@ namespace VavilichevGD.Tools.Time {
         
         private const string PREF_KEY_GAME_TIME_DATA = "PREF_KEY_GAME_TIME_DATA";
 
-        
-        protected override IEnumerator InitializeRoutine() {
+
+        protected override void Initialize() {
             this.LoadFromStorage();
-            yield return null;
-            this.CompleteInitializing();
         }
 
-        protected override void LoadFromStorage() {
+        private void LoadFromStorage() {
             this.gameTimeDataSaving = Storage.GetCustom<GameTimeDataSaving>(PREF_KEY_GAME_TIME_DATA);
             Logging.Log($"GAME TIME REPOSITORY: Loaded last data from the Storage. \n{this.gameTimeDataSaving}");
         }
@@ -39,12 +37,9 @@ namespace VavilichevGD.Tools.Time {
         }
 
         public override void Save() {
-            this.SaveToStorage();
-        }
-
-        protected override void SaveToStorage() {
             Storage.SetCustom(PREF_KEY_GAME_TIME_DATA, this.gameTimeDataSaving);
             Logging.Log($"GAME TIME REPOSITORY: Saved current data in the Storage. \n{this.gameTimeDataSaving}");
         }
+
     }
 }

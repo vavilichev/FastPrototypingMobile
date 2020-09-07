@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using VavilichevGD.Meta;
+﻿using VavilichevGD.Meta;
 using VavilichevGD.Tools;
 
 namespace VavilichevGD.Architecture {
@@ -15,29 +14,25 @@ namespace VavilichevGD.Architecture {
 
         protected const string PREF_KEY = "QUEST_STATES";
 
-        public void SetStates(QuestState[] statesArray) {
-            states = new QuestStates(statesArray);
+
+        protected override void Initialize() {
+            this.LoadFromStorage();
         }
-
-        public override void Save() {
-            SaveToStorage();
-        }
-
-        protected override IEnumerator InitializeRoutine() {
-            LoadFromStorage();
-
-            // You can also load states from server;
-            yield break;
-        }
-
-        protected override void LoadFromStorage() {
+        
+        private void LoadFromStorage() {
             states = Storage.GetCustom(PREF_KEY, QuestStates.empty);
             Logging.Log("QUEST REPOSITORY: Loaded from the Storage");
         }
 
-        protected override void SaveToStorage() {
+        public void SetStates(QuestState[] statesArray) {
+            states = new QuestStates(statesArray);
+        }
+        
+
+        public override void Save() {
             Storage.SetCustom(PREF_KEY, states);
             Logging.Log("QUEST REPOSITORY: Saved to the Storage");
         }
+
     }
 }

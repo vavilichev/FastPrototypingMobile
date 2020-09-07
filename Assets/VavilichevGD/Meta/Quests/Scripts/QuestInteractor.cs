@@ -13,27 +13,30 @@ namespace VavilichevGD.Meta.Quests {
 
         protected override IEnumerator InitializeRoutine() {
             Logging.Log("QUEST INTERACTOR: Start initializing.");
-            QuestRepository questRepository = GetRepository<QuestRepository>();
-            if (!questRepository.IsInitialized())
-                yield return questRepository.Initialize();
             
-            string[] stateJsons = questRepository.stateJsons;
-            QuestInfo[] allQuestInfo = Resources.LoadAll<QuestInfo>(QUESTS_FOLDER_PATH);
+            var questRepository = GetRepository<QuestRepository>();
+            if (!questRepository.isInitialized)
+                yield return questRepository.InitializeAsync();
+            
+            var stateJsons = questRepository.stateJsons;
+            var allQuestInfo = Resources.LoadAll<QuestInfo>(QUESTS_FOLDER_PATH);
 
             foreach (string stateJson in stateJsons) {
-                QuestState state = JsonUtility.FromJson<QuestState>(stateJson);
+                var state = JsonUtility.FromJson<QuestState>(stateJson);
 
-                foreach (QuestInfo info in allQuestInfo) {
+                foreach (var info in allQuestInfo) {
                     if (info.id == state.id) {
-                        QuestState specialState = info.CreateState(stateJson);
-                        Quest quest = new Quest(info, specialState);
+                        var specialState = info.CreateState(stateJson);
+                        var quest = new Quest(info, specialState);
                         questsMap.Add(info.id, quest);
                         break;
                     }
                 }
             }
+            
             Resources.UnloadUnusedAssets();
             yield return null;
+            
             Logging.Log("QUEST INTERACTOR: Initialized successfully.");
         }
 

@@ -16,18 +16,23 @@ namespace VavilichevGD.LocalizationFramework {
 
         private const string PATH_SETTINGS = "LocalizationSettings";
 
+        public override void OnCreate() {
+            this.entities = new Dictionary<string, string>();
+        }
+
+        protected override void Initialize() {
+            this.localizationRepository = this.GetRepository<LocalizationRepository>();
+        }
+
         protected override IEnumerator InitializeRoutine() {
-            entities = new Dictionary<string, string>();
-            localizationRepository = this.GetRepository<LocalizationRepository>();
-            
-            SystemLanguage language = localizationRepository.GetLanguage();
-            settings = LoadSettings(language);
-            entities = LocalizationParser.Parse(settings.tableAsset.text);
+            var language = localizationRepository.GetLanguage();
+            this.settings = LoadSettings(language);
+            this.entities = LocalizationParser.Parse(this.settings.tableAsset.text);
             Localization.Initialize(this);
             
             yield return null;
             Resources.UnloadUnusedAssets();
-            NotifyAboutNewLanguageSetupped();
+            this.NotifyAboutNewLanguageSetupped();
             Logging.Log($"LOCALIZATION INTERACTOR: Initialized. Language: {GetLanguageTitle()} Entities count = {entities.Count}");
         }
 

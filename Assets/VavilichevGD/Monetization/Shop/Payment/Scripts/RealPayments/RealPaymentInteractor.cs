@@ -1,22 +1,14 @@
-﻿using System.Collections;
-using VavilichevGD.Architecture;
-using VavilichevGD.Tools;
+﻿using VavilichevGD.Architecture;
 
 namespace VavilichevGD.Monetization {
     public class RealPaymentInteractor : Interactor {
 
         private RealPaymentBehavior behavior;
         
-        protected override IEnumerator InitializeRoutine() {
-            ShopInteractor shopInteractor = Game.GetInteractor<ShopInteractor>();
-            if (shopInteractor == null) {
-                Logging.LogError($"REAL PAYMENT INTERACTOR: ProductInteractor is not initialized yet. Real payments is not initialized;");
-                yield break;
-            }
-
-            Product[] products = shopInteractor.GetAllRealPaymentProducts();
-            behavior = new RealPaymentBehaviorUnity(products); // You can change payments behavior here.
-            yield return null;
+        protected override void OnStart() {
+            var shopInteractor = Game.GetInteractor<ShopInteractor>();
+            var products = shopInteractor.GetAllRealPaymentProducts();
+            this.behavior = new RealPaymentBehaviorUnity(products); // You can change payments behavior here.
         }
 
         public bool IsPurchasedProduct(Product product) {

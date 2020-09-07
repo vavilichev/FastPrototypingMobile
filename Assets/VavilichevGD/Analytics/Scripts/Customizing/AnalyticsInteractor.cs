@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using VavilichevGD.Architecture;
 
 namespace VavilichevGD.Analytics {
@@ -7,17 +6,16 @@ namespace VavilichevGD.Analytics {
 
         private List<AnalyticsSender> senders;
 
-        protected override IEnumerator InitializeRoutine() {
-            this.InitSenders();
-            yield return null;
-            
+        public override void OnCreate() {
+            this.senders = new List<AnalyticsSender>();
+        }
+
+        protected override void Initialize() {
+            this.InitSenders();            
             AnalyticsEngine.Initialize(this);
-            this.CompleteInitializing();
         }
 
         private void InitSenders() {
-            this.senders = new List<AnalyticsSender>();
-            
             // TODO: Create different senders
             this.CreateSender<AnalyticsSenderFirebase>();
             this.CreateSender<AnalyticsSenderAppMetrica>();

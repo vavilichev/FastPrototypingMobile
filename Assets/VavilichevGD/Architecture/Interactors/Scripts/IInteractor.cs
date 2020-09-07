@@ -2,10 +2,14 @@
 
 namespace VavilichevGD.Architecture {
     public interface IInteractor {
-        bool IsInitialized();
-        Coroutine Initialize();
-        void OnReady();
-        void Save();
-        void Reset();
+        bool isInitialized { get; }
+
+        void OnCreate();
+        Coroutine InitializeAsync();
+        void Start();
+        
+        string GetStatusStartInitializing();
+        string GetStatusCompleteInitializing();
+        string GetStatusStart();
     }
 }

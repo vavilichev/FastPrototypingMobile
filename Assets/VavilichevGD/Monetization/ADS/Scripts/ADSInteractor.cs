@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using VavilichevGD.Architecture;
+﻿using VavilichevGD.Architecture;
 using VavilichevGD.Monetization.Unity;
 using VavilichevGD.Tools;
 
@@ -10,14 +9,12 @@ namespace VavilichevGD.Monetization {
         protected ADSRepository adsRepository;
 
         public bool isActive => adsRepository.stateCurrent.isActive;
-        
-        protected override IEnumerator InitializeRoutine() {
-            
+
+        protected override void Initialize() {
             // TODO: You can change ADS behavior here!
             behavior = new ADSBehaviorUnity();
             
             ADS.Initialize(this);
-            yield return null;
             Logging.Log("ADS INTERACTOR: initialized");
         }
 

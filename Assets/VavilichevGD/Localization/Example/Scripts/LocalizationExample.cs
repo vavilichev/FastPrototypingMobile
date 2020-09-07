@@ -14,10 +14,10 @@ namespace VavilichevGD.LocalizationFramework.Example {
 
         private IEnumerator InitializeRoutine() {
             LocalizationRepository repository = new LocalizationRepository();
-            yield return repository.Initialize();
+            yield return repository.InitializeAsync();
             
             LocalizationInteractor interactor = new LocalizationInteractor();
-            yield return interactor.Initialize();
+            yield return interactor.InitializeAsync();
         }
 
         

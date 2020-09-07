@@ -1,7 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using VavilichevGD.Tools;
+using UnityEngine.Events;
+using VavilichevGD.Architecture.Scenes;
 
 namespace VavilichevGD.Architecture {
 
@@ -12,18 +12,20 @@ namespace VavilichevGD.Architecture {
     }
     
     public abstract class Game {
+
+        #region DELEGATES
+
+        public delegate void GameHandler();
+        public static event GameHandler OnGameInitializedEvent;
+
+        #endregion
+        
         protected static Game instance;
         public static State state { get; private set; }
         public static bool isInitialized => state == State.Initialized;
+        public static ISceneManager sceneManager { get; private set; }
 
-        public delegate void GameInitializedHandler();
-        public static event GameInitializedHandler OnGameInitializedEvent;
-
-        public delegate void GameInitializingStatusHandler(Game game, string statusText);
-        public static event GameInitializingStatusHandler OnGameInitializingStatusChangedEvemt;
-
-        protected RepositoriesBase repositoriesBase;
-        protected InteractorsBase interactorsBase;
+       
 
         // TODO: You should write your own Game*name* script and past something like that:
 //        protected static void Run() {
@@ -38,110 +40,46 @@ namespace VavilichevGD.Architecture {
         }
 
         public void Initialize() {
-            GameVersionStorage.Initialize();
             state = State.Initializing;
-            CreateBases();
-            Coroutines.StartRoutine(InitializeRoutine());
+
+            sceneManager = this.CreateSceneManager();
+            this.LoadFirstScene(this.OnSceneLoadCompleted);
         }
 
-        protected abstract void CreateBases();
+        protected abstract SceneManager CreateSceneManager();
+        protected abstract void LoadFirstScene(UnityAction<ISceneConfig> callback);
 
-        private IEnumerator InitializeRoutine() {
-            repositoriesBase.OnRepositoryBaseStatusChanged += OnRepositoryBaseStatusChanged;
-            interactorsBase.OnInteractorBaseStatusChanged += OnInteractorBaseStatusChanged;
-            
-            repositoriesBase.CreateAllRepositories();
-            yield return null;
-            interactorsBase.CreateAllInteractors();
-            yield return null;
-
-            yield return repositoriesBase.InitializeAllRepositories();
-            yield return interactorsBase.InitializeAllInteractors();
-
-            repositoriesBase.OnRepositoryBaseStatusChanged -= OnRepositoryBaseStatusChanged;
-            interactorsBase.OnInteractorBaseStatusChanged -= OnInteractorBaseStatusChanged;
-            
-            CompleteInitializing();
-        }
-
-        private void NotifyAboutStatusChanged(string statusText) {
-            OnGameInitializingStatusChangedEvemt?.Invoke(instance, statusText);
-        }
-
-        private void CompleteInitializing() {
+        private void OnSceneLoadCompleted(ISceneConfig config) {
             state = State.Initialized;
-            GameVersionStorage.UpdateToCurrentVersion();
-            
-            repositoriesBase.SendOnGameInitializedEvent();
-            interactorsBase.SendOnGameInitializedEvent();
-            
-            NotifyAboutGameInitialized();
-        }
-
-        private void NotifyAboutGameInitialized() {
             OnGameInitializedEvent?.Invoke();
         }
 
         #endregion
         
         
-        #region Events
-        
-        private void OnRepositoryBaseStatusChanged(string statusText) {
-            NotifyAboutStatusChanged(statusText);
-        }
-        
-        private void OnInteractorBaseStatusChanged(string statusText) {
-            NotifyAboutStatusChanged(statusText);
-        }
-        
-        #endregion
-
-        
         public static T GetInteractor<T>() where T : Interactor {
-            return instance.interactorsBase.GetInteractor<T>();
+            return sceneManager.sceneActual.GetInteractor<T>();
         }
 
         public static IEnumerable<T> GetInteractors<T>() where T : IInteractor {
-            return instance.interactorsBase.GetInteractors<T>();
+            return sceneManager.sceneActual.GetInteractors<T>();
         }
 
         public static T GetRepository<T>() where T : Repository {
-            return instance.repositoriesBase.GetRepository<T>();
+            return sceneManager.sceneActual.GetRepository<T>();
         }
         
         public static IEnumerable<T> GetRepositories<T>() where T : IRepository {
-            return instance.repositoriesBase.GetRepositories<T>();
-        }
-
-       
-
-        public static Coroutine WaitForInteractor<T>(object sender) where T : Interactor {
-            T interactor = GetInteractor<T>();
-            
-            string interactorName = typeof(T).Name;
-            string senderName = sender.GetType().Name;
-            Logging.Log($"{senderName}: WAITING FOR {interactorName}");
-            
-            return interactor.Initialize();
-        }
-
-        public static Coroutine WaitForRepository<T>(object sender) where T : Repository {
-            T repository = GetRepository<T>();
-
-            string repositoryName = typeof(T).Name;
-            string senderName = sender.GetType().Name;
-            Logging.Log($"{senderName}: WAITING FOR {repositoryName}");
-
-            return repository.Initialize();
+            return sceneManager.sceneActual.GetRepositories<T>();
         }
 
         public static void SaveGame() {
-            instance.interactorsBase.SaveAllInteractors();
+            sceneManager.sceneActual.Save();
         }
 
-        public static void ResetAllGame() {
-            instance.interactorsBase.ResetAllInteractors();
+        public static Coroutine SaveGameAsync(UnityAction callback) {
+            return sceneManager.sceneActual.SaveAsync(callback);
         }
+
     }
 }

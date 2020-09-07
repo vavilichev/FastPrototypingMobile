@@ -10,13 +10,12 @@ namespace VavilichevGD.LocalizationFramework {
         protected const string PREF_KEY_LOCALIZATION = "LOCALIZATION_DATA";
         
         protected override IEnumerator InitializeRoutine() {
-            LoadFromStorage();
-            
+            this.LoadFromStorage();
             // TODO: You can load settings from server here;
             yield break;
         }
 
-        protected override void LoadFromStorage() {
+        private void LoadFromStorage() {
             data = Storage.GetCustom(PREF_KEY_LOCALIZATION, LocalizationData.GetDefault());
             Logging.Log("LOCALIZATION REPOSITORY: Loaded from the Storage");
         }
@@ -27,14 +26,10 @@ namespace VavilichevGD.LocalizationFramework {
         }
 
         public override void Save() {
-            SaveToStorage();
-        }
-        
-        protected override void SaveToStorage() {
             Storage.SetCustom(PREF_KEY_LOCALIZATION, data);
             Logging.Log("LOCALIZATION REPOSITORY: Saved to the Storage");
         }
-
+        
         public SystemLanguage GetLanguage() {
             return data.language;
         }

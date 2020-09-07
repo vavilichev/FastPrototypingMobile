@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using VavilichevGD.Architecture;
+﻿using VavilichevGD.Architecture;
 using VavilichevGD.Tools;
 
 namespace VavilichevGD.Monetization {
@@ -16,16 +15,12 @@ namespace VavilichevGD.Monetization {
 
         #region Initialize
 
-        protected override IEnumerator InitializeRoutine() {
-            LoadFromStorage();
-
-            yield return null;
-            // TODO: You can load data from server here.
-            this.CompleteInitializing();
+        protected override void Initialize() {
+            this.LoadFromStorage();
         }
 
-        protected override void LoadFromStorage() {
 
+        private void LoadFromStorage() {
             this.softCurrency = new SoftCurrency();
             this.hardCurrency = new HardCurrency();
             
@@ -39,14 +34,10 @@ namespace VavilichevGD.Monetization {
 
         #endregion
         
-        protected override void SaveToStorage() {
+        public override void Save() {
             BankCurrencyData data = new BankCurrencyData(this.softCurrency, this.hardCurrency);
             Storage.SetCustom(PREF_KEY_CURRENCY_DATA, data);
             Logging.Log($"BANK REPOSITORY: Saved to storage. Soft: {this.softCurrency} and Hard: {this.hardCurrency}");
-        }
-        
-        public override void Save() {
-            this.SaveToStorage();
         }
     }
 }

@@ -14,8 +14,8 @@ namespace VavilichevGD.Core {
         private AllLevelStates allLevelStates;
         private Dictionary<string, Level> levelsMapWithIds;
         private Dictionary<int, Level> levelsMapWithIndexes;
-        
-        protected override void OnInitialzied() {
+
+        protected override void Initialize() {
             this.levelsLoader = new LevelsLoaderSimple();
             this.levelsRepository = this.GetRepository<LevelsRepository>();
             this.allLevelStates = this.levelsRepository.allLevelsStates;
@@ -61,8 +61,5 @@ namespace VavilichevGD.Core {
             return true;
         }
         
-        public override void Save() {
-            this.levelsRepository.Save();
-        }
     }
 }

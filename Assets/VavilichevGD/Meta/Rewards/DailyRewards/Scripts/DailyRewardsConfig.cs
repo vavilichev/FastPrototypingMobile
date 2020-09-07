@@ -9,7 +9,6 @@ namespace VavilichevGD.Meta.DailyRewards {
         [Space] 
         [SerializeField] private RewardInfo[] m_rewards;
         
-
         public bool loop => m_loop;
         public bool resetAfter24HoursOfMissing => m_resetAfter24HoursOfMissing;
         public bool nextAtMidnight => m_nextAtMidnight;

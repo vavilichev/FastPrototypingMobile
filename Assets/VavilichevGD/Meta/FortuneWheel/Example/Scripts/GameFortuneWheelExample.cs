@@ -1,4 +1,6 @@
-﻿using VavilichevGD.Architecture;
+﻿using UnityEngine.Events;
+using VavilichevGD.Architecture;
+using VavilichevGD.Architecture.Scenes;
 
 namespace VavilichevGD.Meta.FortuneWheel.Examples {
     public class GameFortuneWheelExample : Game {
@@ -10,9 +12,12 @@ namespace VavilichevGD.Meta.FortuneWheel.Examples {
             instance.Initialize();
         }
         
-        protected override void CreateBases() {
-            this.interactorsBase = new FortuneWheelExampleInteractorsBase();
-            this.repositoriesBase = new FortuneWheelExampleRepositoriesBase();
+        protected override SceneManager CreateSceneManager() {
+            return new SceneManagerFortuneWheelExample();
+        }
+
+        protected override void LoadFirstScene(UnityAction<ISceneConfig> callback) {
+            sceneManager.LoadScene(SceneConfigFortuneWheelExample.SCENE_NAME, callback);
         }
     }
 }

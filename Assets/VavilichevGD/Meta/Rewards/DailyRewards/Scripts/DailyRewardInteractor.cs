@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using UnityEngine;
 using VavilichevGD.Architecture;
 using VavilichevGD.Tools;
@@ -35,16 +34,16 @@ namespace VavilichevGD.Meta.DailyRewards {
 
         private DailyRewardsConfig m_config;
 
-        protected override IEnumerator InitializeRoutine() {
-            if (!GameTime.isInitialized)
-                yield return Game.WaitForInteractor<GameTimeInteractor>(this);
-            
-            this.repository = new DailyRewardRepository();
+        protected override void Initialize() {
+            this.repository = this.GetRepository<DailyRewardRepository>();
             this.m_config = Resources.Load<DailyRewardsConfig>(PATH_CONFIG);
-            yield return this.repository.Initialize();
-            
-            this.CompleteInitializing();
         }
+
+        protected override void OnStart() {
+            if (!GameTime.isInitialized)
+                throw new Exception("To complete setupping daily rewards the GameTime interactor must be initialized.");
+        }
+
 
         public bool AllRewardsReceived() {
             if (this.config.loop)
@@ -155,8 +154,5 @@ namespace VavilichevGD.Meta.DailyRewards {
             this.repository.SetLastDailyRewardData(newData);
         }
         
-        public override void Save() {
-            this.repository.Save();
-        }
     }
 }

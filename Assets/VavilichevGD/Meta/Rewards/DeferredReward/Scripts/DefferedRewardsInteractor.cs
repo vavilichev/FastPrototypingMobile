@@ -20,17 +20,15 @@ namespace VavilichevGD.Meta.DefferedRewards {
 
         #region INIT
 
-        protected override IEnumerator InitializeRoutine() {
+        public override void OnCreate() {
             this.activeRewardsList = new List<DefferedReward>();
-            
-            this.defferedRewardsRepository = new DefferedRewardsRepository();
-            yield return this.defferedRewardsRepository.Initialize();
-
-            this.InitActiveRewards();
-            this.CompleteInitializing();
-            Logging.Log("DEFFERED REWARDS INTERACTOR: is initialized");
         }
-        
+
+        protected override void Initialize() {
+            this.defferedRewardsRepository = this.GetRepository<DefferedRewardsRepository>();
+            this.InitActiveRewards();
+        }
+
         private void InitActiveRewards() {
             var statesList = this.defferedRewardsRepository.statesList;
             var rewardsInfo = Resources.LoadAll<DefferedRewardInfo>(FOLDER_DEFFERED_REWARDS);
@@ -79,14 +77,15 @@ namespace VavilichevGD.Meta.DefferedRewards {
             return false;
         }
 
-        public override void Save() {
-            List<DefferedRewardState> statesList = new List<DefferedRewardState>();
-            foreach (var reward in this.activeRewardsList)
-                statesList.Add(reward.state);
-            
-            this.defferedRewardsRepository.SetStates(statesList);
-            this.defferedRewardsRepository.Save();
-        }
+        // TODO: Transit to repository;
+//        public override void Save() {
+//            List<DefferedRewardState> statesList = new List<DefferedRewardState>();
+//            foreach (var reward in this.activeRewardsList)
+//                statesList.Add(reward.state);
+//            
+//            this.defferedRewardsRepository.SetStates(statesList);
+//            this.defferedRewardsRepository.Save();
+//        }
 
         #region EVENTS
 
