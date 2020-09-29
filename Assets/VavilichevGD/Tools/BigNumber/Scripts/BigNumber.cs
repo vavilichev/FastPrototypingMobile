@@ -439,6 +439,8 @@ namespace VavilichevGD.Tools.Numerics {
 		}
 
 		private string Format(string format, IBigNumberDictionary dictionary = null) {
+			if (string.IsNullOrEmpty(format))
+				return this.ToString();
 			
 			format = format.ToUpperInvariant();
 

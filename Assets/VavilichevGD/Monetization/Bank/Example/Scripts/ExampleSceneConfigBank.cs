@@ -12,10 +12,13 @@ namespace VavilichevGD.Architecture.Scenes {
 
         #endregion
 
+        public override string sceneName { get; }
 
-        public ExampleSceneConfigBank(string sceneName) : base(sceneName) { }
-        
-        
+
+        public ExampleSceneConfigBank() {
+            this.sceneName = SCENE_NAME;
+        }
+
         public override Dictionary<Type, IRepository> CreateAllRepositories() {
             var repositoriesMap = new Dictionary<Type, IRepository>();
 

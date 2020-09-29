@@ -5,16 +5,12 @@ using VavilichevGD.UI;
 namespace VavilichevGD.Architecture.Scenes {
     public abstract class SceneConfigBase : ISceneConfig{
         
-        public string sceneName { get; }
+        public abstract string sceneName { get; }
 
         public abstract Dictionary<Type, IRepository> CreateAllRepositories();
         public abstract Dictionary<Type, IInteractor> CreateAllInteractors();
         public abstract Dictionary<Type, IUIElement> CreateAllUIElements(UIController uiController);
 
-        public SceneConfigBase(string sceneName) {
-            this.sceneName = sceneName;
-        }
-        
         protected T CreateRepository<T>(ref Dictionary<Type, IRepository> repositoriesMap) where T : IRepository, new() {
             var createdRepository = new T();
             var type = typeof(T);

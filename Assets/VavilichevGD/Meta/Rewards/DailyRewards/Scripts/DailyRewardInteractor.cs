@@ -2,7 +2,7 @@
 using UnityEngine;
 using VavilichevGD.Architecture;
 using VavilichevGD.Tools;
-using VavilichevGD.Tools.Time;
+using VavilichevGD.Tools.GameTime;
 
 namespace VavilichevGD.Meta.DailyRewards {
     public class DailyRewardInteactor : Interactor {

@@ -4,7 +4,7 @@ using System.Globalization;
 using UnityEngine;
 using UnityEngine.Networking;
 
-namespace VavilichevGD.Tools.Time {
+namespace VavilichevGD.Tools.GameTime {
 	public class TimeLoader {
 
 		#region CONSTANTS
@@ -25,39 +25,34 @@ namespace VavilichevGD.Tools.Time {
 
 		#endregion
 
+		public bool isLoading { get; private set; }
 
-		public bool isLoading => this.routineLoadTime.isActive;
-
-		private RoutineWithArg<int> routineLoadTime;
-
-		
-		public TimeLoader() {
-			this.routineLoadTime = new RoutineWithArg<int>(this.LoadTimeRoutine);
-		}
-		
 		public Coroutine LoadTime(int breakTime = BREAK_TIME_DEFAULT) {
 			if (!this.isLoading)
-				return this.routineLoadTime.Start(breakTime);
+				return Coroutines.StartRoutine(this.LoadTimeRoutine(breakTime));
 			return null;
 		}
 
 		private IEnumerator LoadTimeRoutine(int breakTime) {
-			
+			this.isLoading = true;
 			var request = new UnityWebRequest(SERVER_URL);
 			request.downloadHandler = new DownloadHandlerBuffer();
 			request.timeout = breakTime;
 
 			yield return request.SendWebRequest();
-			if (this.NotValidResponse(request))
+			if (this.NotValidResponse(request)) {
 				yield break;
-			
+			}
+
 			var todaysDates = request.GetResponseHeaders()["date"];
-			DateTime downloadedTime = DateTime.ParseExact(todaysDates,
+			var downloadedTime = DateTime.ParseExact(todaysDates,
 									   "ddd, dd MMM yyyy HH:mm:ss 'GMT'",
 									   CultureInfo.InvariantCulture.DateTimeFormat,
 									   DateTimeStyles.AdjustToUniversal);
 
-			this.NotifyAboutDownloadedTime(downloadedTime, NO_ERROR, null, LOADED_FROM_INTERNET);
+			this.isLoading = false;
+			var downloadedTimeArgs = new DownloadedTimeArgs(downloadedTime, NO_ERROR, null, LOADED_FROM_INTERNET);
+			OnTimeDownloadedEvent?.Invoke(this, downloadedTimeArgs);
 		}
 
 		private bool NotValidResponse(UnityWebRequest request) {
@@ -73,13 +68,10 @@ namespace VavilichevGD.Tools.Time {
 			if (string.IsNullOrEmpty(errorText))
 				return false;
 
-			this.NotifyAboutDownloadedTime(new DateTime(), HAS_ERROR, errorText, LOADED_FROM_LOCAL);
+			this.isLoading = false;
+			var notDownloadedTimeArgs = new DownloadedTimeArgs(new DateTime(), HAS_ERROR, errorText, LOADED_FROM_LOCAL);
+			OnTimeDownloadedEvent?.Invoke(this, notDownloadedTimeArgs);
 			return true;
-		}
-
-		private void NotifyAboutDownloadedTime(DateTime downloadedTime, bool error, string errorText, bool downloadedFromServer) {
-			DownloadedTimeArgs downloadedTimeArgs = new DownloadedTimeArgs(downloadedTime, error, errorText, downloadedFromServer);
-			OnTimeDownloadedEvent?.Invoke(this, downloadedTimeArgs);
 		}
 	}
 }

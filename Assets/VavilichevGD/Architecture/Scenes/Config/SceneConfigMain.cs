@@ -4,9 +4,19 @@ using VavilichevGD.UI;
 
 namespace VavilichevGD.Architecture.Scenes {
     public class SceneConfigMain : SceneConfigBase {
+
+        #region CONSTANTS
+
+        public const string SCENE_NAME = "MainScene";
+
+        #endregion
         
-        public SceneConfigMain(string sceneName) : base(sceneName) { }
-        
+        public override string sceneName { get; }
+
+        public SceneConfigMain() {
+            this.sceneName = SCENE_NAME;
+        }
+
         public override Dictionary<Type, IRepository> CreateAllRepositories() {
             //TODO: Make a list of repositories by
             //this.CreateRepository<RepositoryType>();

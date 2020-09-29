@@ -11,9 +11,14 @@ namespace VavilichevGD.Architecture.Scenes {
         public const string SCENE_NAME = "ExampleLevels";
 
         #endregion
-
-        public ExampleSceneConfigLevels(string sceneName) : base(sceneName) { }
         
+        public override string sceneName { get; }
+
+        public ExampleSceneConfigLevels() {
+            this.sceneName = SCENE_NAME;
+        }
+
+
         public override Dictionary<Type, IRepository> CreateAllRepositories() {
             var repositoriesMap = new Dictionary<Type, IRepository>();
 

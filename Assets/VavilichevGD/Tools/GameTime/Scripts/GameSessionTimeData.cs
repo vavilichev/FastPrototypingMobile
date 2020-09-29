@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace VavilichevGD.Tools.Time {
+namespace VavilichevGD.Tools.GameTime {
 	[Serializable]
 	public class GameSessionTimeData {
 		public DateTimeSerialized sessionStartSerializedFromServer;
@@ -9,14 +9,18 @@ namespace VavilichevGD.Tools.Time {
 		public long timeValueActiveDeviceAtEnd;
 		public double sessionDuration;
 
-		public bool timeReceivedFromServer => this.sessionStartSerializedFromServer.GetDateTime() != new DateTime();
-
-		public DateTime sessionStartTime => this.GetSessionStartTime();
-		public DateTime sessionOverTime => this.GetSessionOverTime();
+		public bool timeReceivedFromServer => string.IsNullOrEmpty(this.sessionStartSerializedFromServer.dateTimeStr);
+		public DateTime sessionStartTime { get; private set; }
+		public DateTime sessionOverTime { get; private set; }
 
 		public GameSessionTimeData() {
 			this.sessionStartSerializedFromServer = new DateTimeSerialized();
 			this.sessionStartSerializedFromDevice = new DateTimeSerialized();
+		}
+
+		public void Initialize() {
+			this.sessionStartTime = this.GetSessionStartTime();
+			this.sessionOverTime = this.GetSessionOverTime();
 		}
 
 		private DateTime GetSessionStartTime() {
@@ -26,8 +30,8 @@ namespace VavilichevGD.Tools.Time {
 		}
 
 		private DateTime GetSessionOverTime() {
-			DateTime start = this.sessionStartTime;
-			return start.AddSeconds(this.sessionDuration);
+			var startTime = this.sessionStartTime;
+			return startTime.AddSeconds(this.sessionDuration);
 		}
 
 		public override string ToString() {

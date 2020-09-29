@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using VavilichevGD.Tools;
-using VavilichevGD.Tools.Time;
+using VavilichevGD.Tools.GameTime;
 
 namespace VavilichevGD.Meta.DailyRewards.Example {
     public class DailyRewardsExample : MonoBehaviour {

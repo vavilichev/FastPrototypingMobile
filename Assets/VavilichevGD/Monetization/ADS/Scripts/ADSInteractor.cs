@@ -1,52 +1,64 @@
-﻿using VavilichevGD.Architecture;
+﻿using UnityEngine;
+using VavilichevGD.Architecture;
 using VavilichevGD.Monetization.Unity;
-using VavilichevGD.Tools;
 
 namespace VavilichevGD.Monetization {
     public class ADSInteractor : Interactor {
 
+        #region DELEGATES
+
+        public delegate void ADSInteractorHandler(bool adsIsActive);
+        public event ADSInteractorHandler OnADSStateChangedEvent;
+
+        #endregion
+        
         protected ADSBehavior behavior;
         protected ADSRepository adsRepository;
 
-        public bool isActive => adsRepository.stateCurrent.isActive;
+        public bool isActive => this.adsRepository.repoEntity.isActive;
 
         protected override void Initialize() {
-            // TODO: You can change ADS behavior here!
-            behavior = new ADSBehaviorUnity();
+            // You can change ADS behavior here!
+            this.behavior = new ADSBehaviorUnity();
             
             ADS.Initialize(this);
-            Logging.Log("ADS INTERACTOR: initialized");
+            
+#if DEBUG
+            Debug.Log("ADS INTERACTOR: initialized");
+#endif
         }
 
 
         public void ShowRewardedVideo(ADSResultsHandler callback) {
-            behavior.ShowRewardedVideo(callback);
+            this.behavior.ShowRewardedVideo(callback);
         }
 
         public void ShowInterstitial(ADSResultsHandler callback = null) {
-            if (!isActive) {
+            if (!this.isActive) {
                 callback?.Invoke(false, "ADS disabled");
                 return;
             }
             
-            behavior.ShowInterstitial(callback);
+            this.behavior.ShowInterstitial(callback);
         }
 
         public void ShowBanner() {
-            if (!isActive)
+            if (!this.isActive)
                 return;
             
             behavior.ShowBanner();
         }
 
         public void ActivateADS() {
-            adsRepository.ActivateADS();
-            adsRepository.Save();
+            this.adsRepository.repoEntity.isActive = true;
+            this.adsRepository.Save();
+            this.OnADSStateChangedEvent?.Invoke(this.adsRepository.repoEntity.isActive);
         }
 
         public void DeactivateADS() {
-            adsRepository.DeactivateADS();
-            adsRepository.Save();
+            this.adsRepository.repoEntity.isActive = false;
+            this.adsRepository.Save();
+            this.OnADSStateChangedEvent?.Invoke(this.adsRepository.repoEntity.isActive);
         }
     }
 }

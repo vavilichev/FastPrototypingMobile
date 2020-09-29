@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using VavilichevGD.Architecture;
+using VavilichevGD.Architecture.Storage;
 using VavilichevGD.Tools;
 
 namespace VavilichevGD.Meta.DefferedRewards {
@@ -11,6 +12,9 @@ namespace VavilichevGD.Meta.DefferedRewards {
         private const string PREF_KEY = "DEFFERED_REWARDS_DATA";
 
         #endregion
+
+        public override string id => PREF_KEY;
+
         
         private DefferedRewardsData data;
 
@@ -31,7 +35,8 @@ namespace VavilichevGD.Meta.DefferedRewards {
         public void SetStates(System.Collections.Generic.List<DefferedRewardState> statesList) {
             this.data.statesList = statesList;
         }
-        
+
+
         public override void Save() {
             Storage.SetCustom(PREF_KEY, this.data);
             
@@ -39,5 +44,16 @@ namespace VavilichevGD.Meta.DefferedRewards {
                 Logging.Log($"DEFFERED REWARDS REPOSITORY: saved to storage: {this.data}");
         }
 
+        public override RepoData GetRepoData() {
+            throw new System.NotImplementedException();
+        }
+
+        public override RepoData GetRepoDataDefault() {
+            throw new System.NotImplementedException();
+        }
+
+        public override void UploadRepoData(RepoData repoData) {
+            throw new System.NotImplementedException();
+        }
     }
 }

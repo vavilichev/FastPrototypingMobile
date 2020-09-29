@@ -11,23 +11,23 @@ namespace VavilichevGD.Core {
         public ILevelsLoader levelsLoader { get; private set; }
 
         private LevelsRepository levelsRepository;
-        private AllLevelStates allLevelStates;
+        private AllLevelStatesEntity _allLevelStatesEntity;
         private Dictionary<string, Level> levelsMapWithIds;
         private Dictionary<int, Level> levelsMapWithIndexes;
 
         protected override void Initialize() {
             this.levelsLoader = new LevelsLoaderSimple();
             this.levelsRepository = this.GetRepository<LevelsRepository>();
-            this.allLevelStates = this.levelsRepository.allLevelsStates;
-            this.InitLevelsMap(this.allLevelStates);
+            this._allLevelStatesEntity = this.levelsRepository.allLevelsStatesEntity;
+            this.InitLevelsMap(this._allLevelStatesEntity);
             Logging.Log("LEVELS INTERACTOR: Initialized");
         }
 
-        private void InitLevelsMap(AllLevelStates allLevelStates) {
+        private void InitLevelsMap(AllLevelStatesEntity allLevelStatesEntity) {
             this.levelsMapWithIds = new Dictionary<string, Level>();
             this.levelsMapWithIndexes = new Dictionary<int, Level>();
             
-            foreach (LevelState levelState in allLevelStates.allStates) {
+            foreach (LevelState levelState in allLevelStatesEntity.allStates) {
                 var info = this.levelsRepository.GetLevelInfo(levelState.levelIndex);
                 var level = new Level(info, levelState);
                 this.levelsMapWithIds[info.id] = level;

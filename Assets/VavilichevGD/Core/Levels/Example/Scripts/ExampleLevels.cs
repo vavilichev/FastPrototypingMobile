@@ -6,7 +6,7 @@ using VavilichevGD.Core.Loadging;
 namespace VavilichevGD.Core.Levels.Example {
     public class ExampleLevels : MonoBehaviour {
         private void Start() {
-            Loading.ShowLoadingScreen();
+            LoadingScreen.Show();
             
             ExampleGameLevels.Run();
             Game.OnGameInitializedEvent += this.OnGameInitialized;
@@ -18,6 +18,7 @@ namespace VavilichevGD.Core.Levels.Example {
             
             Level firstLevel = levelsInteractor.GetLevel(0);
             levelsInteractor.levelsLoader.LoadLevel(firstLevel);
+            LoadingScreen.Hide();
         }
 
 

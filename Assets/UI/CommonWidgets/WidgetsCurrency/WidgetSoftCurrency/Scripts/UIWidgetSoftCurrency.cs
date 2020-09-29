@@ -20,17 +20,17 @@ namespace VavilichevGD.UI {
 
         private void InitializeBankInteractor() {
             this.bankInteractor = this.GetInteractor<BankInteractor>();
-            this.bankInteractor.softCurrency.OnChangedEvent += this.OnSoftCurrencyChanged;
+            this.bankInteractor.softCurrency.OnValueChangedEvent += this.OnSoftCurrencyChanged;
             this.UpdateVisual();
         }
 
         private void UpdateVisual() {
             this.properties.textCurrencyValue.text =
-                this.bankInteractor.softCurrency.value.ToString(BigNumber.FORMAT_DYNAMIC_4C);
+                this.bankInteractor.softCurrency.ToString(BigNumber.FORMAT_DYNAMIC_4C);
         }
 
         private void OnDestroy() {
-            this.bankInteractor.softCurrency.OnChangedEvent -= this.OnSoftCurrencyChanged;
+            this.bankInteractor.softCurrency.OnValueChangedEvent -= this.OnSoftCurrencyChanged;
         }
 
         #region EVENTS
@@ -40,7 +40,7 @@ namespace VavilichevGD.UI {
             this.InitializeBankInteractor();
         }
         
-        private void OnSoftCurrencyChanged(object sender, BigNumber oldvalue, BigNumber newvalue) {
+        private void OnSoftCurrencyChanged(object sender, ICurrency oldValue, ICurrency newValue) {
             this.UpdateVisual();
         }
 

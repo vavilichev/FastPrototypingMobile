@@ -2,7 +2,7 @@
     public static class ADS {
 
         public static bool isActive => interactor.isActive;
-
+        
         private static ADSInteractor interactor;
         
         public static void Initialize(ADSInteractor _interactor) {

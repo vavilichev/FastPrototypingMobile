@@ -1,11 +1,19 @@
 ﻿using System;
 using VavilichevGD.Architecture;
+using VavilichevGD.Architecture.Storage;
 using VavilichevGD.Tools;
 
 namespace VavilichevGD.Meta.FortuneWheel {
     public class FortuneWheelRepositotyFreeAndAD : Repository {
 
+        #region CONSTANTS
+
         private const string PREF_KEY = "FORTUNE_WHEEL_SPIN_TIME";
+
+        #endregion
+
+        public override string id => PREF_KEY;
+
         
         public DateTime lastFreeSpinTime { get; private set; }
 
@@ -19,9 +27,21 @@ namespace VavilichevGD.Meta.FortuneWheel {
             this.lastFreeSpinTime = newLastFreeSpinTime;
         }
 
+
         public override void Save() {
             Storage.SetDateTime(PREF_KEY, this.lastFreeSpinTime);
         }
-        
+
+        public override RepoData GetRepoData() {
+            throw new NotImplementedException();
+        }
+
+        public override RepoData GetRepoDataDefault() {
+            throw new NotImplementedException();
+        }
+
+        public override void UploadRepoData(RepoData repoData) {
+            throw new NotImplementedException();
+        }
     }
 }

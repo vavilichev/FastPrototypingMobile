@@ -1,6 +1,6 @@
 ﻿using System;
 using UnityEngine;
-using VavilichevGD.Tools.Time;
+using VavilichevGD.Tools.GameTime;
 
 namespace VavilichevGD.Meta.DefferedRewards {
     [Serializable]

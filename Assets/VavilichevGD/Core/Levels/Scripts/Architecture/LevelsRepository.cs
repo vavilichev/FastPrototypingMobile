@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using VavilichevGD.Architecture;
+using VavilichevGD.Architecture.Storage;
 using VavilichevGD.Tools;
 
 namespace VavilichevGD.Core {
@@ -13,7 +14,7 @@ namespace VavilichevGD.Core {
 
         #endregion
         
-        public AllLevelStates allLevelsStates { get; private set; }
+        public AllLevelStatesEntity allLevelsStatesEntity { get; private set; }
 
         protected override void Initialize() {
             this.LoadFromStorage();
@@ -29,7 +30,7 @@ namespace VavilichevGD.Core {
 
             Resources.UnloadUnusedAssets();
             
-            Logging.Log($"LEVELS REPOSITORY: Loaded. States: {this.allLevelsStates}");
+            Logging.Log($"LEVELS REPOSITORY: Loaded. States: {this.allLevelsStatesEntity}");
         }
 
         private void LoadFromStorageFirstTime(LevelInfo[] levelInfos) {
@@ -40,26 +41,26 @@ namespace VavilichevGD.Core {
                 allStates.Add(levelState);
             }
                 
-            this.allLevelsStates = new AllLevelStates(allStates.ToArray());
-            Storage.SetCustom(PREF_LEVELSTATES, this.allLevelsStates);
+            this.allLevelsStatesEntity = new AllLevelStatesEntity(allStates.ToArray());
+            Storage.SetCustom(PREF_LEVELSTATES, this.allLevelsStatesEntity);
         }
 
         private void LoadFromStorageSecondTime(LevelInfo[] levelInfos) {
-            this.allLevelsStates = Storage.GetCustom(PREF_LEVELSTATES, this.allLevelsStates);
+            this.allLevelsStatesEntity = Storage.GetCustom(PREF_LEVELSTATES, this.allLevelsStatesEntity);
 
-            if (this.allLevelsStates.allStates.Count == levelInfos.Length)
+            if (this.allLevelsStatesEntity.allStates.Count == levelInfos.Length)
                 return;
                 
             var matchedStates = new List<LevelState>();
             foreach (var info in levelInfos) {
-                LevelState levelState = this.allLevelsStates.GetLevelState(info.levelIndex);
+                LevelState levelState = this.allLevelsStatesEntity.GetLevelState(info.levelIndex);
                 if (levelState == null)
                     levelState = new LevelState(info.levelIndex, info.id);
                 matchedStates.Add(levelState);
             }
             
-            Logging.Log($"LEVELS REPOSITORY: Rematched. OldStatesCount: {this.allLevelsStates.allStates.Count} and new Count: {matchedStates.Count}");
-            this.allLevelsStates.Resetup(matchedStates.ToArray());
+            Logging.Log($"LEVELS REPOSITORY: Rematched. OldStatesCount: {this.allLevelsStatesEntity.allStates.Count} and new Count: {matchedStates.Count}");
+            this.allLevelsStatesEntity.Resetup(matchedStates.ToArray());
         }
 
         public LevelInfo GetLevelInfo(int levelIndex) {
@@ -67,8 +68,31 @@ namespace VavilichevGD.Core {
             return Resources.Load<LevelInfo>(path);
         }
 
+        public override string id { get; }
+
         public override void Save() {
-            Storage.SetCustom(PREF_LEVELSTATES, this.allLevelsStates);
+            Storage.SetCustom(PREF_LEVELSTATES, this.allLevelsStatesEntity);
+        }
+
+        public override RepoData GetRepoData() {
+            throw new System.NotImplementedException();
+        }
+
+        public override RepoData GetRepoDataDefault() {
+            var levelInfos = Resources.LoadAll<LevelInfo>(PATH_LEVELINFO);
+            var allStates = new List<LevelState>();
+                
+            foreach (LevelInfo info in levelInfos) {
+                var levelState = new LevelState(info.levelIndex, info.id);
+                allStates.Add(levelState);
+            }
+            var allLevelsStatesDefault = new AllLevelStatesEntity(allStates.ToArray());
+            var repoDataDefault = new RepoData(PREF_LEVELSTATES, allLevelsStatesDefault.ToJson());
+            return repoDataDefault;
+        }
+
+        public override void UploadRepoData(RepoData repoData) {
+            throw new System.NotImplementedException();
         }
     }
 }

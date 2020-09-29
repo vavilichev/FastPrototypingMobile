@@ -11,9 +11,14 @@ namespace VavilichevGD.Architecture.Scenes {
         public const string SCENE_NAME = "FortuneWheelExample";
 
         #endregion
-        
-        public SceneConfigFortuneWheelExample(string sceneName) : base(sceneName) { }
-        
+
+        public override string sceneName { get; }
+
+        public SceneConfigFortuneWheelExample() {
+            this.sceneName = SCENE_NAME;
+        }
+
+
         public override Dictionary<Type, IRepository> CreateAllRepositories() {
             var repositoriesMap = new Dictionary<Type, IRepository>();
             

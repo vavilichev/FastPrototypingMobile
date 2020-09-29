@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace VavilichevGD.Tools.Time {
+namespace VavilichevGD.Tools.GameTime {
 	public struct DownloadedTimeArgs {
 		public DateTime downloadedTime { get; }
 		public bool error { get; }

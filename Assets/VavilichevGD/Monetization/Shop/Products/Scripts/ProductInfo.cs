@@ -2,65 +2,45 @@
 using VavilichevGD.Architecture;
 
 namespace VavilichevGD.Monetization {
-    public abstract class ProductInfo<T> : ScriptableObject, IProductInfo where T : ICurrency {
+    public abstract class ProductInfo<T> : ScriptableObject, IProductInfo {
         
-        [SerializeField] protected string id;
-        [SerializeField] protected string titleCode;
-        [SerializeField] protected string descriptionCode;
-        [SerializeField] protected Sprite spriteIcon;
-        [SerializeField] protected PaymentType m_paymentType;
+        [SerializeField] private string m_id;
+        [SerializeField] private string m_titleCode;
+        [SerializeField] private string m_descriptionCode;
+        [SerializeField] private Sprite m_spriteIcon;
+        [SerializeField] private PaymentType m_paymentType;
         [SerializeField] protected T m_price;
-        [SerializeField] protected bool m_isConsumable = true;
+        [SerializeField] private bool m_isConsumable = true;
 
-        public bool isADSPayment => m_paymentType == PaymentType.ADS;
-        public T price => m_price;
+        public string id => this.m_id;
+        public string titleCode => this.m_titleCode;
+        public string descriptionCode => this.m_descriptionCode;
+        public bool isConsumable => this.m_isConsumable;
+        public ICurrency price => this.GetPrice();
+        public Sprite spriteIcon => this.m_spriteIcon;
+        
+        public PaymentType paymentType => this.m_paymentType;
+        public bool isRealPayment => this.paymentType == PaymentType.Real;
+        public bool isAdPayment => this.paymentType == PaymentType.ADS;
+        public string priceString => this.GetPriceToString();
 
-        public virtual string GetTitle() {
-            return titleCode;
-        }
 
-        public virtual string GetDesctiption() {
-            return descriptionCode;
-        }
-
-        public virtual Sprite GetSpriteIcon() {
-            return spriteIcon;
-        }
-
-        public virtual string GetPriceToString() {
-            if (!IsRealPayment() && !isADSPayment)
-                return m_price.ToString();
+        protected virtual string GetPriceToString() {
+            if (!isRealPayment && !isAdPayment)
+                return price.ToString();
             
-            if (IsRealPayment()) {
-                RealPaymentInteractor paymentInteractor = Game.GetInteractor<RealPaymentInteractor>();
+            if (isRealPayment) {
+                IAPInteractor paymentInteractor = Game.GetInteractor<IAPInteractor>();
                 return paymentInteractor.GetPriceOfProduct(this);
             }
 
             return "0";
         }
 
-        public ICurrency GetPrice() {
-            return m_price;
-        }
-
-        public PaymentType GetPaymentType() {
-            return m_paymentType;
-        }
-
-        public string GetId() {
-            return id;
-        }
-
         public abstract ProductHandler CreateHandler(Product product);
         public abstract ProductState CreateState(string stateJson);
         public abstract ProductState CreateDefaultState();
-
-        public bool IsConsumable() {
-            return m_isConsumable;
-        }
-
-        public bool IsRealPayment() {
-            return m_paymentType == PaymentType.Real;
-        }
+        
+        protected abstract ICurrency GetPrice();
     }
 }

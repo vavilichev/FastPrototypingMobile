@@ -1,12 +1,24 @@
 ﻿namespace VavilichevGD.Monetization {
-    public interface ICurrency {
-        string ToJson();
-        void Add<T>(object sender, T value) where T : ICurrency;
-        void Spend<T>(object sender, T value) where T : ICurrency;
-        void SetValue<T>(object sender, T value) where T : ICurrency;
 
-        int CompareTo<T>(T value) where T : ICurrency;
-        bool Equals<T>(T value) where T : ICurrency;
-        bool IsEnough<T>(T value) where T : ICurrency;
+    public delegate void CurrencyHandler(object sender, ICurrency oldValue, ICurrency newValue);
+    
+    public interface ICurrency {
+
+        #region DELEGATES
+
+        event CurrencyHandler OnAddedEvent;
+        event CurrencyHandler OnSpentEvent;
+        event CurrencyHandler OnValueChangedEvent;
+
+        #endregion
+
+        void Add<T>(object sender, T value);
+        void Spend<T>(object sender, T value);
+        void SetValue<T>(object sender, T value);
+        int CompareTo<P>(P value);
+        ICurrency Clone();
+
+        string GetSerializableValue();
+        string ToString(string format);
     }
 }

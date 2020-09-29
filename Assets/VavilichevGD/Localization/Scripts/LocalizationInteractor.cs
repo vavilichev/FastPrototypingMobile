@@ -25,8 +25,7 @@ namespace VavilichevGD.LocalizationFramework {
         }
 
         protected override IEnumerator InitializeRoutine() {
-            var language = localizationRepository.GetLanguage();
-            this.settings = LoadSettings(language);
+            this.settings = LoadSettings(this.localizationRepository.language);
             this.entities = LocalizationParser.Parse(this.settings.tableAsset.text);
             Localization.Initialize(this);
             
@@ -57,7 +56,7 @@ namespace VavilichevGD.LocalizationFramework {
             LocalizationSettings localizationSettings = Resources.Load<LocalizationSettings>(PATH_SETTINGS);
 
             if (localizationSettings.IsValidLanguage(language)) {
-                localizationRepository.SetLanguage(language);
+                this.localizationRepository.language = language;
                 localizationRepository.Save();
                 settings = LoadSettings(language);
                 entities = LocalizationParser.Parse(settings.tableAsset.text);
@@ -70,7 +69,7 @@ namespace VavilichevGD.LocalizationFramework {
       
         public void SwitchToNextLanguage() {
             LocalizationSettings localizationSettings = Resources.Load<LocalizationSettings>(PATH_SETTINGS);
-            SystemLanguage languageCurrent = localizationRepository.GetLanguage();
+            SystemLanguage languageCurrent = this.localizationRepository.language;
             SystemLanguage languageNext = localizationSettings.GetNextLanguageOf(languageCurrent);
             SetLanguage(languageNext);
         }
@@ -78,7 +77,7 @@ namespace VavilichevGD.LocalizationFramework {
         
         public void SwitchToPreviousLanguage() {
             LocalizationSettings localizationSettings = Resources.Load<LocalizationSettings>(PATH_SETTINGS);
-            SystemLanguage languageCurrent = localizationRepository.GetLanguage();
+            SystemLanguage languageCurrent = this.localizationRepository.language;
             SystemLanguage languagePrevious = localizationSettings.GetPreviousLanguageOf(languageCurrent);
             SetLanguage(languagePrevious);
         }
@@ -93,7 +92,7 @@ namespace VavilichevGD.LocalizationFramework {
 
         
         public SystemLanguage GetCurrentLanguage() {
-            return localizationRepository.GetLanguage();
+            return localizationRepository.language;
         }
     }
 }

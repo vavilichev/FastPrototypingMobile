@@ -1,41 +1,28 @@
 ﻿using System;
+using UnityEngine;
 
 namespace VavilichevGD.Monetization {
     [Serializable]
-    public class ProductState {
+    public sealed class ProductState {
         public string id;
         public bool isPurchased;
         public bool isViewed;
 
-
-        public ProductState(string stateJson) {
-            this.SetState(stateJson);
-        }
-
-        public ProductState(IProductInfo info) {
-            this.id = info.GetId();
+        public ProductState(string id) {
+            this.id = id;
             this.isPurchased = false;
             this.isViewed = false;
         }
 
-        public virtual void SetState(string stateJson) {
-            throw new NotImplementedException();
+        public ProductState(IProductInfo info) {
+            this.id = info.id;
+            this.isPurchased = false;
+            this.isViewed = false;
         }
 
-        public virtual void SetState(ProductState state) {
-            throw new NotImplementedException();
-        }
-
-        public virtual string GetStateJson() {
-            throw new NotImplementedException();
-        }
-
-        public void MarkAsPurchased() {
-            isPurchased = true;
-        }
-
-        public void MarkAsViewed() {
-            isViewed = true;
+        
+        public string ToJson() {
+            return JsonUtility.ToJson(this);
         }
     }
 }

@@ -2,7 +2,9 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Assets/VavilichevGD/Tools" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/Assets/VavilichevGD/Tools/BigNumber" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/Assets/VavilichevGD/Tools/Storage" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Assets/VavilichevGD/UI/Loading" vcs="Git" />
   </component>
 </project>

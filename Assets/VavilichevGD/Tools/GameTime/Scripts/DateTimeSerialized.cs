@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace VavilichevGD.Tools.Time {
+namespace VavilichevGD.Tools.GameTime {
 	[Serializable]
 	public class DateTimeSerialized {
 		public string dateTimeStr;

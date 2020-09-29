@@ -32,7 +32,7 @@ namespace VavilichevGD.Core.Levels {
             this.OnLevelLoadStartEvent?.Invoke(level);
             double timeStartLoading = Time.time;
             
-            Loading.ShowLoadingScreen();
+            LoadingScreen.Show();
             yield return null;
             
             this.builder.Destroy();
@@ -45,7 +45,7 @@ namespace VavilichevGD.Core.Levels {
             if (loadingTime < 1f)
                 yield return new WaitForSeconds((float) (1f - loadingTime));
             
-            Loading.HideLoadingScreen();
+            LoadingScreen.Hide();
             
             this.OnLevelLoadCompleteEvent?.Invoke(level);
         }

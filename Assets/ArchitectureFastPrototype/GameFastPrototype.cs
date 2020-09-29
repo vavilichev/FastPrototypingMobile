@@ -26,7 +26,7 @@ namespace VavilichevGD.Architecture {
 
         private static void OnGameInitialized() {
             OnGameInitializedEvent -= OnGameInitialized;
-            Loading.HideLoadingScreen();
+            LoadingScreen.Hide();
         }
 
         #endregion
@@ -36,7 +36,7 @@ namespace VavilichevGD.Architecture {
         }
 
         protected override void LoadFirstScene(UnityAction<ISceneConfig> callback) {
-            Loading.ShowLoadingScreen();
+            LoadingScreen.Show();
             sceneManager.LoadScene(SceneManagerFastPrototype.SCENE_MAIN, callback);
         }
     }

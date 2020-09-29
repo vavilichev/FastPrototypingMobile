@@ -7,20 +7,21 @@
     }
 
     public static class PaymentsHandlerFactory {
-        public static PaymentHandler CreatePaymentHandler(Product product) {
+        
+        public static PaymentHandlerBase CreatePaymentHandler(Product product) {
             return CreatePaymentHandler(product.info);
         }
 
-        public static PaymentHandler CreatePaymentHandler(IProductInfo info) {
-            switch (info.GetPaymentType()) {
+        public static PaymentHandlerBase CreatePaymentHandler(IProductInfo info) {
+            switch (info.paymentType) {
                 case PaymentType.SoftCurrency:
                     return  new PaymentHandlerSoftCurrency();
                 case PaymentType.HardCurrency:
                     return new PaymentHandlerHardCurrency();
                 case PaymentType.ADS:
-                    return new PaymentHandlerADS();
+                    return new PaymentHandlerAds();
                 case PaymentType.Real:
-                    return new PaymentHandlerRealCurrency();
+                    return new PaymentHandlerIAP();
                 default:
                     return new PaymentHandlerSoftCurrency();
             }

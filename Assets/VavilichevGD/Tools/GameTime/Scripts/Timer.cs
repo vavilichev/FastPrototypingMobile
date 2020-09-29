@@ -1,9 +1,9 @@
 ﻿using System;
 
-namespace VavilichevGD.Tools.Time {
+namespace VavilichevGD.Tools.GameTime {
     public class Timer {
 
-        #region DEDLEGATES
+        #region DELEGATES
 
         public delegate void TimerHandler(Timer timer);
         public event TimerHandler OnTimerValueChangedEvent;
@@ -82,7 +82,7 @@ namespace VavilichevGD.Tools.Time {
        
        
         public override string ToString() {
-            return TimeConverter.ToMinSecFormat(this.remainingSeconds);
+            return TimeConverter.ToHMSFormat(this.remainingSeconds);
         }
     }
 }

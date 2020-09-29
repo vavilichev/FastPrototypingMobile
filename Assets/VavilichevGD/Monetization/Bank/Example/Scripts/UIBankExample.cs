@@ -43,8 +43,8 @@ namespace VavilichevGD.Monetization.Examples {
 
         private void Initialize() {
             this.bankInteractor = this.GetInteractor<BankInteractor>();
-            this.bankInteractor.softCurrency.OnChangedEvent += this.OnSoftCurrencyChanged;
-            this.bankInteractor.hardCurrency.OnChangedEvent += this.OnHardCurrencyChanged;
+            this.bankInteractor.softCurrency.OnValueChangedEvent += this.OnSoftCurrencyChanged;
+            this.bankInteractor.hardCurrency.OnValueChangedEvent += this.OnHardCurrencyChanged;
             
             this.currencyParamsHard.textCurrencyValue.text = $"Hard Currency: {this.bankInteractor.hardCurrency}";
             this.currencyParamsSoft.textCurrencyValue.text = $"Soft Currency: {this.bankInteractor.softCurrency}";
@@ -53,8 +53,8 @@ namespace VavilichevGD.Monetization.Examples {
         
 
         private void OnDestroy() {
-            this.bankInteractor.softCurrency.OnChangedEvent -= this.OnSoftCurrencyChanged;
-            this.bankInteractor.hardCurrency.OnChangedEvent -= this.OnHardCurrencyChanged;
+            this.bankInteractor.softCurrency.OnValueChangedEvent -= this.OnSoftCurrencyChanged;
+            this.bankInteractor.hardCurrency.OnValueChangedEvent -= this.OnHardCurrencyChanged;
         }
 
 
@@ -75,44 +75,44 @@ namespace VavilichevGD.Monetization.Examples {
 
         #region Events
         
-        private void OnHardCurrencyChanged(object sender, int oldvalue, int newvalue) {
+        private void OnHardCurrencyChanged(object sender, ICurrency oldValue, ICurrency newValue) {
             this.currencyParamsHard.textCurrencyValue.text = $"Hard Currency: {this.bankInteractor.hardCurrency}";
         }
 
-        private void OnSoftCurrencyChanged(object sender, BigNumber oldvalue, BigNumber newvalue) {
-            this.currencyParamsSoft.textCurrencyValue.text = $"Soft Currency: {this.bankInteractor.softCurrency.value.ToString(BigNumber.FORMAT_DYNAMIC_4_C)}";
+        private void OnSoftCurrencyChanged(object sender, ICurrency oldValue, ICurrency newValue) {
+            var softCurrency = (CurrencyBigNumber) this.bankInteractor.softCurrency;
+            this.currencyParamsSoft.textCurrencyValue.text = $"Soft Currency: {softCurrency.value.ToString(BigNumber.FORMAT_DYNAMIC_4_C)}";
         }
 
         private void OnAddHardCurrencyBtnClicked() {
             int count = Convert.ToInt32(currencyParamsHard.inputFieldCurrencyAdd.text);
-            var hardCurrency = new HardCurrency(count);
-            this.bankInteractor.hardCurrency.Add(this, hardCurrency);
-            Logging.Log($"Added HARD currency: {hardCurrency}");
+            this.bankInteractor.hardCurrency.Add(this, count);
+            Logging.Log($"Added HARD currency: {count}");
         }
 
         private void OnSpendHardCurrencyBtnClicked() {
             int count = Convert.ToInt32(currencyParamsHard.inputFieldCurrencySpend.text);
-            var hardCurrency = new HardCurrency(count);
-            if (this.bankInteractor.hardCurrency.IsEnough(hardCurrency)) {
-                this.bankInteractor.hardCurrency.Spend(this, hardCurrency);
-                Logging.Log($"Spent HARD currency: {hardCurrency}");
+            if (this.bankInteractor.IsEnoughHardCurrency(count)) {
+                this.bankInteractor.hardCurrency.Spend(this, count);
+                Logging.Log($"Spent HARD currency: {count}");
                 return;
             }
             
-            Logging.Log($"Cannot spend HARD currency: {hardCurrency}, you have only: {this.bankInteractor.hardCurrency}");
+            Logging.Log($"Cannot spend HARD currency: {count}, you have only: {this.bankInteractor.hardCurrency}");
         }
 
         private void OnAddSoftCurrencyBtnClicked() {
             int count = Convert.ToInt32(currencyParamsSoft.inputFieldCurrencyAdd.text);
-            var  softCurrency = new SoftCurrency(count);
+            var  softCurrency = new BigNumber(count);
             this.bankInteractor.softCurrency.Add(this, softCurrency);
+            
             Logging.Log($"Added SOFT currency: {softCurrency}");
         }
 
         private void OnSpendSoftCurrencyBtnClicked() {
             int count = Convert.ToInt32(currencyParamsSoft.inputFieldCurrencySpend.text);
-            var softCurrency = new SoftCurrency(count);
-            if (this.bankInteractor.softCurrency.IsEnough(softCurrency)) {
+            var softCurrency = new BigNumber(count);
+            if (this.bankInteractor.IsEnoughSoftCurrency(softCurrency)) {
                 this.bankInteractor.softCurrency.Spend(this, softCurrency);
                 Logging.Log($"Spent SOFT currency: {softCurrency}");
                 return;

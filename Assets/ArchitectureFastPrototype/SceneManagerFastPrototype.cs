@@ -10,7 +10,7 @@ namespace FastPrototype.Architecture {
         #endregion
         
         protected override void InitializeSceneConfigs() {
-                this.scenesConfigMap[SCENE_MAIN] = new SceneConfigFastPrototype(SCENE_MAIN);
+                this.scenesConfigMap[SCENE_MAIN] = new SceneConfigFastPrototype();
         }
     }
 }

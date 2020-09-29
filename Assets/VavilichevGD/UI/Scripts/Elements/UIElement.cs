@@ -9,7 +9,8 @@ namespace VavilichevGD.UI {
 
         public delegate void UIElementHandler(UIElement uiElement);
         public event UIElementHandler OnElementShownEvent;
-        public event UIElementHandler OnElementHiddenEvent;
+        public event UIElementHandler OnElementStartHideEvent;
+        public event UIElementHandler OnElementHiddenCompletelyEvent;
 
         #endregion
         
@@ -102,7 +103,8 @@ namespace VavilichevGD.UI {
         public virtual void Hide() {
             if (!isActive)
                 return;
-
+            
+            this.NotifyAboutElementStartHide();
             this.HideInstantly();
         }
 
@@ -112,7 +114,7 @@ namespace VavilichevGD.UI {
             
             this.isActive = false;
             this.gameObject.SetActive(false);        
-            this.NotifyAboutElementHidden();
+            this.NotifyAboutElementHiddenCompletely();
         }
 
 
@@ -143,8 +145,12 @@ namespace VavilichevGD.UI {
             this.OnElementShownEvent?.Invoke(this);
         }
 
-        protected void NotifyAboutElementHidden() {
-            this.OnElementHiddenEvent?.Invoke(this);
+        protected void NotifyAboutElementStartHide() {
+            this.OnElementStartHideEvent?.Invoke(this);
+        }
+
+        protected void NotifyAboutElementHiddenCompletely() {
+            this.OnElementHiddenCompletelyEvent?.Invoke(this);
         }
         
     }

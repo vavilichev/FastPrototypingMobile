@@ -1,5 +1,6 @@
 ﻿using UnityEngine.Events;
 using VavilichevGD.Monetization;
+using VavilichevGD.Tools.Numerics;
 
 namespace VavilichevGD.Meta {
     public class RewardHandlerSoftCurrency : RewardHandler {
@@ -7,7 +8,7 @@ namespace VavilichevGD.Meta {
         public override void ApplyReward(UnityAction<bool> callback) {
             var rewardInfo = this.reward.GetInfo<IRewardInfoBigNumber>();
             var bankInteractor = this.GetInteractor<BankInteractor>();
-            var softReward = new SoftCurrency(rewardInfo.GetValue());
+            var softReward = new BigNumber(rewardInfo.GetValue());
             bankInteractor.softCurrency.Add(this, softReward);
             
             this.NotifyAboutSuccess(callback);

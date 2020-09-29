@@ -1,37 +1,66 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 using VavilichevGD.Architecture;
+using VavilichevGD.Architecture.Storage;
 using VavilichevGD.Tools;
 
 namespace VavilichevGD.LocalizationFramework {
-    public class LocalizationRepository : Repository {
+    public sealed class LocalizationRepository : Repository {
 
-        protected LocalizationData data;
-        protected const string PREF_KEY_LOCALIZATION = "LOCALIZATION_DATA";
+        #region CONSTANTS
+
+        private const string PREF_KEY_LOCALIZATION = "LOCALIZATION_DATA";
+
+        #endregion
+
+        public override string id => PREF_KEY_LOCALIZATION;
+
+        public SystemLanguage language {
+            get => this.localizationRepoEntity.language;
+            set => this.localizationRepoEntity.language = value;
+        }
+
+        private LocalizationRepoEntity localizationRepoEntity;
+
         
-        protected override IEnumerator InitializeRoutine() {
+        #region INITIALIZING
+
+        protected override void Initialize() {
             this.LoadFromStorage();
-            // TODO: You can load settings from server here;
-            yield break;
         }
 
         private void LoadFromStorage() {
-            data = Storage.GetCustom(PREF_KEY_LOCALIZATION, LocalizationData.GetDefault());
-            Logging.Log("LOCALIZATION REPOSITORY: Loaded from the Storage");
+            var repoDataLoaded = Storage.GetCustom(this.id, this.GetRepoDataDefault());
+            this.localizationRepoEntity = repoDataLoaded.GetEntity<LocalizationRepoEntity>();
+
+#if DEBUG
+            Debug.Log($"LOCALIZATION REPOSITORY: Loaded from the Storage. Current language: {this.localizationRepoEntity.language}");
+#endif
         }
 
+        #endregion
 
-        public void SetLanguage(SystemLanguage language) {
-            data.language = language;
-        }
 
         public override void Save() {
-            Storage.SetCustom(PREF_KEY_LOCALIZATION, data);
-            Logging.Log("LOCALIZATION REPOSITORY: Saved to the Storage");
+            Storage.SetCustom(this.id, this.GetRepoData());
+
+#if DEBUG
+            Debug.Log($"LOCALIZATION REPOSITORY: Saved to the Storage. Current language: {this.language}");
+#endif
+        }
+
+        public override RepoData GetRepoData() {
+            return new RepoData(this.id, this.localizationRepoEntity);
+        }
+
+        public override RepoData GetRepoDataDefault() {
+            var repoEntityDefault = new LocalizationRepoEntity();
+            var repoDataDefault = new RepoData(this.id, repoEntityDefault);
+            return repoDataDefault;
+        }
+
+        public override void UploadRepoData(RepoData repoData) {
+            this.localizationRepoEntity = repoData.GetEntity<LocalizationRepoEntity>();
         }
         
-        public SystemLanguage GetLanguage() {
-            return data.language;
-        }
     }
 }

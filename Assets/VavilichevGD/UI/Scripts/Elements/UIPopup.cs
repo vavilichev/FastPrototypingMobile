@@ -21,6 +21,7 @@ namespace VavilichevGD.UI {
 
         [Space]
         [SerializeField] protected bool preCached = false;
+        [SerializeField] protected bool canvasStatic = false;
         [SerializeField] protected bool hideWhenBackClicked = false;
 
         public bool isPreCached => this.preCached;
@@ -37,7 +38,7 @@ namespace VavilichevGD.UI {
             if (!this.canvas)
                 this.canvas = this.gameObject.AddComponent<Canvas>();
             
-            GraphicRaycaster raycaster = this.gameObject.GetComponent<GraphicRaycaster>();
+            var raycaster = this.gameObject.GetComponent<GraphicRaycaster>();
             if (!raycaster)
                 this.gameObject.AddComponent<GraphicRaycaster>();
         }
@@ -50,7 +51,8 @@ namespace VavilichevGD.UI {
 
             if (this.isPreCached) {
                 this.myTransform.SetAsLastSibling();
-                this.gameObject.SetActive(true);
+                if(!this.canvasStatic)
+                    this.gameObject.SetActive(true);
                 this.canvas.enabled = true;
             }
             
@@ -64,14 +66,14 @@ namespace VavilichevGD.UI {
             
             if (this.isPreCached) {
                 this.canvas.enabled = false;
-                this.gameObject.SetActive(false);
+                if (!this.canvasStatic)
+                    this.gameObject.SetActive(false);
             }
             else
                 Destroy(gameObject);
 
-            
             this.isActive = false;
-            this.NotifyAboutElementHidden();
+            this.NotifyAboutElementHiddenCompletely();
         }
 
         protected virtual void NotifyAboutHiddenWithResults(UIPopupResult result) {

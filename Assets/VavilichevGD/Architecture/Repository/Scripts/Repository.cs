@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using VavilichevGD.Architecture.Storage;
 using VavilichevGD.Tools;
 
 namespace VavilichevGD.Architecture {
@@ -18,6 +19,7 @@ namespace VavilichevGD.Architecture {
         
         public State state { get; private set; }
         public bool isInitialized => this.state == State.Initialized;
+        public abstract string id { get; }
         
         public Repository() {
             state = State.NotInitialized;
@@ -88,15 +90,9 @@ namespace VavilichevGD.Architecture {
             yield break;
         }
 
-        public string GetStateJson() {
-            throw new NotImplementedException();
-        }
-
-        public void UploadState(string stateJson) {
-            throw new NotImplementedException();
-        }
-
-        
+        public abstract RepoData GetRepoData();
+        public abstract RepoData GetRepoDataDefault();
+        public abstract void UploadRepoData(RepoData repoData);
 
         #endregion
 
@@ -117,7 +113,14 @@ namespace VavilichevGD.Architecture {
 
         #endregion
        
-        
+
+        protected virtual T GetAdaptedVersion<T>() {
+            throw new NotImplementedException();
+        }
+
+        protected virtual IRepoEntityAdapter CreateAdapter() {
+            throw new NotImplementedException();
+        }
 
         public T GetInteractor<T>() where T : Interactor {
             return Game.GetInteractor<T>();
@@ -134,6 +137,5 @@ namespace VavilichevGD.Architecture {
         protected IEnumerable<T> GetRepositories<T>() where T : IRepository {
             return Game.GetRepositories<T>();
         }
-        
     }
 }

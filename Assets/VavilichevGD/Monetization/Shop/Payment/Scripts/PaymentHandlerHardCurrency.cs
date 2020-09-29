@@ -1,18 +1,18 @@
-﻿using System.Collections;
+﻿using UnityEngine;
 using VavilichevGD.Architecture;
-using VavilichevGD.Tools;
 
 namespace VavilichevGD.Monetization {
-    public class PaymentHandlerHardCurrency : PaymentHandler {
-        
-        protected override IEnumerator PaymentRoutine(Product product, PaymentResultHandler callback) {
-            var price = product.GetPrice<HardCurrency>();
+    public class PaymentHandlerHardCurrency : PaymentHandlerBase {
+
+        public override void Purchase(Product product, PaymentResultHandler callback) {
             var bankInteractor = Game.GetInteractor<BankInteractor>();
+            var price = product.GetPrice<int>();
             
-            if (!bankInteractor.hardCurrency.IsEnough(price)) {
+            if (!bankInteractor.IsEnoughHardCurrency(price)) {
                 callback?.Invoke(product, FAIL);
-                Logging.Log("PAYMENT HANDLER HARD CURRENCY: Not enough HARD currency");
-                yield break;
+#if DEBUG
+                Debug.Log("PAYMENT HANDLER HARD CURRENCY: Not enough HARD currency");
+#endif
             }
             
             bankInteractor.hardCurrency.Spend(this, price);

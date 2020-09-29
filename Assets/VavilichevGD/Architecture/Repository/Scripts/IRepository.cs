@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
+using VavilichevGD.Architecture.Storage;
 
 namespace VavilichevGD.Architecture {
     public interface IRepository {
         
         bool isInitialized { get; }
+        string id { get; }
         
         void OnCreate();
         Coroutine InitializeAsync();
@@ -11,8 +13,9 @@ namespace VavilichevGD.Architecture {
         
         void Save();
         Coroutine SaveAsync();
-        string GetStateJson();
-        void UploadState(string stateJson);
+        RepoData GetRepoData();
+        RepoData GetRepoDataDefault();
+        void UploadRepoData(RepoData repoData);
 
         string GetStatusStartInitializing();
         string GetStatusCompleteInitializing();
