@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using VavilichevGD.UI;
 
-namespace VavilichevGD.Architecture.Scenes {
+namespace VavilichevGD.Architecture {
     public abstract class SceneConfigBase : ISceneConfig{
         
         public abstract string sceneName { get; }

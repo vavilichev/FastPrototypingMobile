@@ -4,10 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
-using VavilichevGD.Architecture.Scenes;
 using VavilichevGD.Tools;
 
-namespace VavilichevGD.Architecture.Scenes {
+namespace VavilichevGD.Architecture {
     public class RepositoriesBase {
 
         #region DELEGATES

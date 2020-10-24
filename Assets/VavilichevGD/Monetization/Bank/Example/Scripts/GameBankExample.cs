@@ -13,7 +13,7 @@ namespace VavilichevGD.Monetization.Examples {
         }
 
 
-        protected override SceneManager CreateSceneManager() {
+        protected override SceneManagerBase CreateSceneManager() {
             return new ExampleSceneManagerBank();
         }
 

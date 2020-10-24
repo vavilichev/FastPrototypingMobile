@@ -9,18 +9,20 @@ namespace VavilichevGD.Meta.FortuneWheel {
         #region CONSTANTS
 
         private const string PREF_KEY = "FORTUNE_WHEEL_SPIN_TIME";
+        private const int VERSION = 1;
 
         #endregion
 
         public override string id => PREF_KEY;
+        public override int version => VERSION;
 
-        
+
         public DateTime lastFreeSpinTime { get; private set; }
 
         private static readonly DateTime defaultFreeSpinTime = new DateTime();
 
         protected override void Initialize() {
-            this.lastFreeSpinTime = Storage.GetDateTime(PREF_KEY, defaultFreeSpinTime);
+            //this.lastFreeSpinTime = Storage.GetDateTime(PREF_KEY, defaultFreeSpinTime);
         }
 
         public void SetLastFreeSpinTime(DateTime newLastFreeSpinTime) {
@@ -29,7 +31,7 @@ namespace VavilichevGD.Meta.FortuneWheel {
 
 
         public override void Save() {
-            Storage.SetDateTime(PREF_KEY, this.lastFreeSpinTime);
+            PrefsStorage.SetDateTime(PREF_KEY, this.lastFreeSpinTime);
         }
 
         public override RepoData GetRepoData() {

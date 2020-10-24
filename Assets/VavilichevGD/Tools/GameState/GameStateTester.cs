@@ -12,7 +12,7 @@ namespace VavilichevGD.Tools {
         
         [ContextMenu("Load Game")]
         public void LoadGame() {
-            if (!Storage.HasKey(PREF_KEY)) {
+            if (!PrefsStorage.HasKey(PREF_KEY)) {
                 this.gameState = new GameState();
                 
                 var testEntity = new TestEntity();
@@ -20,7 +20,7 @@ namespace VavilichevGD.Tools {
                 Debug.Log($"GameState created: {this.gameState}");
             }
             else {
-                this.gameState = Storage.GetCustom(PREF_KEY, new GameState());
+                this.gameState = PrefsStorage.GetCustom(PREF_KEY, new GameState());
                 this.gameState.Initialize();
                 Debug.Log($"GameState loaded: {this.gameState}");
             }
@@ -44,7 +44,7 @@ namespace VavilichevGD.Tools {
         [ContextMenu("Save Game")]
         public void SaveGame() {
             var jsonGameState = gameState.ToJson();
-            Storage.SetString(PREF_KEY, jsonGameState);
+            PrefsStorage.SetString(PREF_KEY, jsonGameState);
             Debug.Log($"GameState saved: {this.gameState}");
             this.LogEntity();
         }
@@ -55,7 +55,7 @@ namespace VavilichevGD.Tools {
         }
 
         private void JsonDefinedAsync(string jsonGameState) {
-            Storage.SetString(PREF_KEY, jsonGameState);
+            PrefsStorage.SetString(PREF_KEY, jsonGameState);
             Debug.Log($"GameState saved async: {this.gameState}");
             this.LogEntity();
         }

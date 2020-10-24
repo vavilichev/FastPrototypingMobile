@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
-using Boo.Lang;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace VavilichevGD.Architecture.Scenes {
+namespace VavilichevGD.Architecture {
     public delegate void SceneManagerHandler(ISceneConfig config);
     
     public interface ISceneManager {

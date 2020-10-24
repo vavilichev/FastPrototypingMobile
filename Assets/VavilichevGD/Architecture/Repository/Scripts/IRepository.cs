@@ -6,6 +6,7 @@ namespace VavilichevGD.Architecture {
         
         bool isInitialized { get; }
         string id { get; }
+        int version { get; }
         
         void OnCreate();
         Coroutine InitializeAsync();

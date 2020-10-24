@@ -1,6 +1,5 @@
 ﻿using FastPrototype.Architecture;
 using UnityEngine.Events;
-using VavilichevGD.Architecture.Scenes;
 using VavilichevGD.Core.Loadging;
 
 namespace VavilichevGD.Architecture {
@@ -31,7 +30,7 @@ namespace VavilichevGD.Architecture {
 
         #endregion
 
-        protected override SceneManager CreateSceneManager() {
+        protected override SceneManagerBase CreateSceneManager() {
             return new SceneManagerFastPrototype();
         }
 

@@ -9,11 +9,20 @@ namespace VavilichevGD.Monetization {
         #region CONSTANTS
 
         private const string PREF_KEY_ADS_STATE = "ADS_REPOSITORY_DATA";
+        private const int VERSION = 1;
 
         #endregion
 
         public ADSRepoEntity repoEntity { get; protected set; }
         public override string id => PREF_KEY_ADS_STATE;
+        public override int version => VERSION;
+
+
+        public ADSRepository() {
+            
+        }
+        
+        
 
         #region INITIALIZE
 
@@ -22,7 +31,7 @@ namespace VavilichevGD.Monetization {
         }
 
         private void LoadFromStorage() {
-            var repoData = Storage.GetCustom(id, this.GetRepoDataDefault());
+            var repoData = PrefsStorage.GetCustom(id, this.GetRepoDataDefault());
             this.repoEntity = repoData.GetEntity<ADSRepoEntity>();
             
 #if DEBUG
@@ -34,7 +43,7 @@ namespace VavilichevGD.Monetization {
        
 
         public override void Save() {
-            Storage.SetCustom(id, this.GetRepoData());
+            PrefsStorage.SetCustom(id, this.GetRepoData());
             
 #if DEBUG
             Debug.Log("ADS REPOSITORY: Saved to the Storage");
@@ -42,12 +51,12 @@ namespace VavilichevGD.Monetization {
         }
 
         public override RepoData GetRepoData() {
-            return new RepoData(this.id, this.repoEntity);
+            return new RepoData(this.id, this.repoEntity, this.version);
         }
 
         public override RepoData GetRepoDataDefault() {
             var repoEntityDefault = new ADSRepoEntity();
-            return new RepoData(id, repoEntityDefault);
+            return new RepoData(id, repoEntityDefault, this.version);
         }
 
         public override void UploadRepoData(RepoData repoData) {

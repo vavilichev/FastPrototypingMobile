@@ -12,7 +12,7 @@ namespace VavilichevGD.Core.Levels.Example {
             instance.Initialize();
         }
         
-        protected override SceneManager CreateSceneManager() {
+        protected override SceneManagerBase CreateSceneManager() {
             return new ExampleSceneManagerLevels();            
         }
 

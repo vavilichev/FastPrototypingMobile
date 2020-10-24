@@ -20,6 +20,7 @@ namespace VavilichevGD.Architecture {
         public State state { get; private set; }
         public bool isInitialized => this.state == State.Initialized;
         public abstract string id { get; }
+        public abstract int version { get; }
         
         public Repository() {
             state = State.NotInitialized;

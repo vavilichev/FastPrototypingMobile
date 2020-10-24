@@ -8,13 +8,14 @@ namespace VavilichevGD.Architecture {
         #region CONSTANTS
 
         protected const string PREF_KEY = "QUEST_STATES";
+        protected const int VERSION = 1;
 
         #endregion
 
 
         public override string id => PREF_KEY;
+        public override int version { get; }
 
-        
 
         public string[] stateJsons => states.listOfStates.ToArray();
         protected QuestStates states;
@@ -31,7 +32,7 @@ namespace VavilichevGD.Architecture {
         }
         
         private void LoadFromStorage() {
-            states = VavilichevGD.Tools.Storage.GetCustom(PREF_KEY, QuestStates.empty);
+            states = VavilichevGD.Tools.PrefsStorage.GetCustom(PREF_KEY, QuestStates.empty);
             Logging.Log("QUEST REPOSITORY: Loaded from the Storage");
         }
 
@@ -42,7 +43,7 @@ namespace VavilichevGD.Architecture {
 
 
         public override void Save() {
-            VavilichevGD.Tools.Storage.SetCustom(PREF_KEY, states);
+            VavilichevGD.Tools.PrefsStorage.SetCustom(PREF_KEY, states);
             Logging.Log("QUEST REPOSITORY: Saved to the Storage");
         }
 

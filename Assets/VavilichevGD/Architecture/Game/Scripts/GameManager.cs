@@ -1,21 +1,33 @@
 ﻿using UnityEngine;
+using VavilichevGD.Tools;
 
 namespace VavilichevGD.Architecture {
     public abstract class GameManager : MonoBehaviour {
-        
+
+        [SerializeField] protected bool saveOnPause;
+        [SerializeField] protected bool saveOnUnfocus = true;
+        [SerializeField] protected bool saveOnExit = true;
+
         private void Start() {
             DontDestroyOnLoad(this.gameObject);
-            this.OnStart();
+            
+            Logging.Log("GAME LAUNCHED {0}", Application.productName);
+            
+            this.OnGameLaunched();
         }
 
-        protected abstract void OnStart();
+        protected abstract void OnGameLaunched();
 
         private void OnApplicationPause(bool pauseStatus) {
             if (pauseStatus) {
-                Game.SaveGame();
+                Logging.Log("GAME PAUSED");
+                
+                if (this.saveOnPause)
+                    Game.SaveGame();
                 this.OnApplicationPaused();    
             }
             else {
+                Logging.Log("GAME UNPAUSED");
                 this.OnApplicationUnpaused();
             }
         }
@@ -27,10 +39,14 @@ namespace VavilichevGD.Architecture {
         
         private void OnApplicationFocus(bool hasFocus) {
             if (!hasFocus) {
-                Game.SaveGame();
+                Logging.Log("GAME UNFOCUSED");
+                
+                if (this.saveOnUnfocus)
+                    Game.SaveGame();
                 this.OnApplicationUnfocused();    
             }
             else {
+                Logging.Log("GAME FOCUSED");
                 this.OnApplicationFocused();
             }
         }
@@ -41,10 +57,13 @@ namespace VavilichevGD.Architecture {
 
         
         private void OnApplicationQuit() {
-            Game.SaveGame();
+            Logging.Log("GAME EXITTED");
+            if (this.saveOnExit)
+                Game.SaveGame();
             this.OnApplicationQuitted();
         }
 
         protected virtual void OnApplicationQuitted() { }
+
     }
 }

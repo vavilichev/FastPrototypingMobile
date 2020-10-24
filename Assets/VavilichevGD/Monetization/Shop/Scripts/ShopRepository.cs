@@ -12,10 +12,12 @@ namespace VavilichevGD.Monetization {
 
         private const string PRODUCTS_FOLDER_PATH = "Products";
         private const string PREF_KEY = "PRODUCTS_STATES";
+        private const int VERSION = 1;
 
         #endregion
 
         public override string id => PREF_KEY;
+        public override int version => VERSION;
         public Product[] products => this.productsMap.Values.ToArray();
 
         private Dictionary<string, Product> productsMap;
@@ -53,7 +55,7 @@ namespace VavilichevGD.Monetization {
 
         private Dictionary<string, ProductState> LoadProductStatesMap() {
             var productStatesMap = new Dictionary<string, ProductState>();
-            var repoData = Storage.GetCustom(id, this.GetRepoDataDefault());
+            var repoData = PrefsStorage.GetCustom(id, this.GetRepoDataDefault());
             var repoEntity = repoData.GetEntity<ShopRepoEntity>();
 
             foreach (var stateJson in repoEntity.listOfStates) {
@@ -68,7 +70,7 @@ namespace VavilichevGD.Monetization {
 
 
         public override void Save() {
-            Storage.SetCustom(id, this.GetRepoData());
+            PrefsStorage.SetCustom(id, this.GetRepoData());
 #if DEBUG
             Debug.Log($"PRODUCT REPOSITORY: Saved to storage");
 #endif
@@ -76,12 +78,12 @@ namespace VavilichevGD.Monetization {
 
         public override RepoData GetRepoData() {
             var repoEntity = new ShopRepoEntity(products);
-            return new RepoData(this.id, repoEntity);
+            return new RepoData(this.id, repoEntity, this.version);
         }
 
         public override RepoData GetRepoDataDefault() {
             var repoEntityDefault = new ShopRepoEntity();
-            var repoDataDefault = new RepoData(this.id, repoEntityDefault);
+            var repoDataDefault = new RepoData(this.id, repoEntityDefault, this.version);
             return repoDataDefault;
         }
 
