@@ -20,7 +20,8 @@ namespace VavilichevGD.Architecture {
         public State state { get; private set; }
         public bool isInitialized => this.state == State.Initialized;
         public abstract string id { get; }
-        public abstract int version { get; }
+        public virtual int version { get; } = 1;
+        
         
         public Repository() {
             state = State.NotInitialized;
@@ -42,8 +43,7 @@ namespace VavilichevGD.Architecture {
 
             return Coroutines.StartRoutine(InitializeRoutineBase());
         }
-
-
+        
         protected IEnumerator InitializeRoutineBase() {
             this.state = State.Initializing;
             this.Initialize();
@@ -88,14 +88,23 @@ namespace VavilichevGD.Architecture {
 
         protected virtual IEnumerator SaveAsyncRoutine() {
             this.Save();
-            yield break;
+            yield return null;
         }
 
         public abstract RepoData GetRepoData();
         public abstract RepoData GetRepoDataDefault();
-        public abstract void UploadRepoData(RepoData repoData);
 
-        #endregion
+        public abstract void UploadRepoData(RepoData repoData);
+            // if (repoData.version < this.version) {
+            //     var repoDataAdapter = new RepoDataAdapter();
+            //     var newRepoData = repoDataAdapter.Adapt(); // Don't forget to change version.
+            //     this.UploadRepoData(newRepoData);
+            // }
+            // else {
+            //     // ApplyRepoData(repoData);
+            // }
+
+            #endregion
 
 
         #region STATUS
@@ -113,15 +122,7 @@ namespace VavilichevGD.Architecture {
         }
 
         #endregion
-       
 
-        protected virtual T GetAdaptedVersion<T>() {
-            throw new NotImplementedException();
-        }
-
-        protected virtual IRepoEntityAdapter CreateAdapter() {
-            throw new NotImplementedException();
-        }
 
         public T GetInteractor<T>() where T : Interactor {
             return Game.GetInteractor<T>();

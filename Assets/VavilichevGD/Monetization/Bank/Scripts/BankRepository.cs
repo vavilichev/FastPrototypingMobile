@@ -13,7 +13,6 @@ namespace VavilichevGD.Monetization {
         #endregion
 
         public override string id => PREF_KEY_CURRENCY_DATA;
-        public override int version => 1;
 
         public ICurrency softCurrency { get; private set; }
         public ICurrency hardCurrency { get; private set; }
