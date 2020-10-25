@@ -23,7 +23,7 @@ namespace VavilichevGD.Sounds {
             if (isInitialized)
                 return;
             
-            data = Storage.GetCustom(PREF_KEY, SoundSettingsData.GetDefaultValue());
+            data = PrefsStorage.GetCustom(PREF_KEY, SoundSettingsData.GetDefaultValue());
             NotifyAboutSoundSettingsChanged();
         }
 
@@ -81,7 +81,7 @@ namespace VavilichevGD.Sounds {
         }
 
         private static void Save() {
-            Storage.SetCustom(PREF_KEY, data);
+            PrefsStorage.SetCustom(PREF_KEY, data);
         }
         
     }

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using VavilichevGD.Architecture.Scenes;
+using VavilichevGD.Tools;
 
 namespace VavilichevGD.Architecture {
 
@@ -28,7 +28,7 @@ namespace VavilichevGD.Architecture {
        
 
         // TODO: You should write your own Game*name* script and past something like that:
-//        protected static void Run() {
+//        public static void Run() {
 //            // Create instance.
 //            // Initialize instance.
 //        }
@@ -40,18 +40,22 @@ namespace VavilichevGD.Architecture {
         }
 
         public void Initialize() {
+            Logging.Log("GAME START INITIALIZING");
             state = State.Initializing;
 
             sceneManager = this.CreateSceneManager();
+            Logging.Log("GAME: Scene manager created: {0}", sceneManager.GetType());
+            
             this.LoadFirstScene(this.OnSceneLoadCompleted);
         }
 
-        protected abstract SceneManager CreateSceneManager();
+        protected abstract SceneManagerBase CreateSceneManager();
         protected abstract void LoadFirstScene(UnityAction<ISceneConfig> callback);
 
         private void OnSceneLoadCompleted(ISceneConfig config) {
             state = State.Initialized;
             OnGameInitializedEvent?.Invoke();
+            Logging.Log("GAME FULLY INITIALIZED");
         }
 
         #endregion
@@ -74,10 +78,12 @@ namespace VavilichevGD.Architecture {
         }
 
         public static void SaveGame() {
+            Logging.Log("GAME SAVE INSTANTLY");
             sceneManager.sceneActual.Save();
         }
 
         public static Coroutine SaveGameAsync(UnityAction callback) {
+            Logging.Log("GAME SAVE ASYNC");
             return sceneManager.sceneActual.SaveAsync(callback);
         }
 

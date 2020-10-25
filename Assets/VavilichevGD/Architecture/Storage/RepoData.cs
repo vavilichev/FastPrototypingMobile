@@ -5,15 +5,18 @@ namespace VavilichevGD.Architecture.Storage {
     [Serializable]
     public class RepoData {
         public string id;
+        public int version;
         public string json;
 
-        public RepoData(string id, string json) {
+        public RepoData(string id, string json, int version) {
             this.id = id;
+            this.version = version;
             this.json = json;
         }
         
-        public RepoData(string id, IRepoEntity dataEntity) {
+        public RepoData(string id, IRepoEntity dataEntity, int version) {
             this.id = id;
+            this.version = version;
             this.json = dataEntity.ToJson();
         }
 

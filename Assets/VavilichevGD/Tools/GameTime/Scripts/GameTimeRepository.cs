@@ -10,6 +10,7 @@ namespace VavilichevGD.Tools.GameTime {
         #region CONSTANTS
 
         private const string PREF_KEY_GAME_TIME_DATA = "PREF_KEY_GAME_TIME_DATA";
+        private const int VERSION = 1;
 
         #endregion
 
@@ -18,7 +19,8 @@ namespace VavilichevGD.Tools.GameTime {
         public GameSessionTimeData sessionTimeDataCurrent { get; private set; }
         public float timeBetweenSessionsSec { get; private set; }
         public override string id => PREF_KEY_GAME_TIME_DATA;
-        
+        public override int version => VERSION;
+
         private GameTimeRepoEntity repoEntity;
 
 
@@ -73,7 +75,7 @@ namespace VavilichevGD.Tools.GameTime {
         
         
         private void LoadFromStorage() {
-            var repoDataLoaded = Storage.GetCustom(id, this.GetRepoDataDefault());
+            var repoDataLoaded = PrefsStorage.GetCustom(id, this.GetRepoDataDefault());
             this.repoEntity = repoDataLoaded.GetEntity<GameTimeRepoEntity>();
             this.firstPlayDateTime = this.repoEntity.firstPlayDateTimeSerialized.GetDateTime();
             Logging.Log($"GAME TIME REPOSITORY: Loaded last data from the Storage. \n{this.repoEntity}");
@@ -92,7 +94,7 @@ namespace VavilichevGD.Tools.GameTime {
         
         
         public override void Save() {
-            Storage.SetCustom(id, this.GetRepoData());
+            PrefsStorage.SetCustom(id, this.GetRepoData());
 #if DEBUG
             Logging.Log($"GAME TIME REPOSITORY: Saved current data in the Storage. \n{this.repoEntity}");
 #endif
@@ -101,7 +103,7 @@ namespace VavilichevGD.Tools.GameTime {
         public override RepoData GetRepoData() {
             this.sessionTimeDataCurrent.timeValueActiveDeviceAtEnd = this.GetDeviceWorkTimeInSeconds();
             var actualRepoEntity = new GameTimeRepoEntity(this.firstPlayDateTime, this.sessionTimeDataCurrent);
-            return new RepoData(id, actualRepoEntity);
+            return new RepoData(id, actualRepoEntity, this.version);
         }
 
         public override RepoData GetRepoDataDefault() {
@@ -112,7 +114,7 @@ namespace VavilichevGD.Tools.GameTime {
             else
                 repoEntityDefault = new GameTimeRepoEntity(DateTime.Now.ToUniversalTime());
             
-            return new RepoData(id, repoEntityDefault);
+            return new RepoData(id, repoEntityDefault, this.version);
         }
 
         public override void UploadRepoData(RepoData repoData) {

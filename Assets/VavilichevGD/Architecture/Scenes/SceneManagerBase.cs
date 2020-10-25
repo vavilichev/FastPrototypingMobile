@@ -5,8 +5,8 @@ using UnityEngine;
 using UnityEngine.Events;
 using VavilichevGD.Tools;
 
-namespace VavilichevGD.Architecture.Scenes {
-    public abstract class SceneManager : ISceneManager{
+namespace VavilichevGD.Architecture {
+    public abstract class SceneManagerBase : ISceneManager{
 
         #region DELEGATES
 
@@ -19,7 +19,7 @@ namespace VavilichevGD.Architecture.Scenes {
         public IScene sceneActual { get; private set; }
         public bool isLoading { get; private set; }
 
-        public SceneManager() {
+        public SceneManagerBase() {
             this.scenesConfigMap = new Dictionary<string, ISceneConfig>();
             // ReSharper disable once VirtualMemberCallInConstructor
             this.InitializeSceneConfigs();
@@ -38,7 +38,6 @@ namespace VavilichevGD.Architecture.Scenes {
             return this.LoadAndInitializeScene(sceneName, sceneLoadedCallback, false);
         }
 
-        
         
         protected Coroutine LoadAndInitializeScene(string sceneName, UnityAction<ISceneConfig> sceneLoadedCallback,
             bool loadNewScene) {

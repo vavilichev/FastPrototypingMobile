@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 using VavilichevGD.Tools;
 
-namespace VavilichevGD.Architecture.Scenes {
+namespace VavilichevGD.Architecture {
     public class InteractorsBase {
 
         #region DELEGATES
@@ -63,12 +63,6 @@ namespace VavilichevGD.Architecture.Scenes {
 
         #endregion
 
-        public void Clear() {
-            this.interactorsMap.Clear();
-            this.sceneConfig = null;
-        }
-        
-        
         public T GetInteractor<T>() where T : IInteractor {
             Type type = typeof(T);
             var founded = interactorsMap.TryGetValue(type, out IInteractor resultInteractor);

@@ -12,7 +12,7 @@ namespace VavilichevGD.Meta.FortuneWheel.Examples {
             instance.Initialize();
         }
         
-        protected override SceneManager CreateSceneManager() {
+        protected override SceneManagerBase CreateSceneManager() {
             return new SceneManagerFortuneWheelExample();
         }
 

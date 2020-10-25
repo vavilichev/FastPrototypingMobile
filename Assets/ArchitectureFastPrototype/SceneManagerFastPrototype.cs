@@ -1,7 +1,7 @@
-﻿using VavilichevGD.Architecture.Scenes;
+﻿using VavilichevGD.Architecture;
 
 namespace FastPrototype.Architecture {
-    public class SceneManagerFastPrototype : SceneManager {
+    public class SceneManagerFastPrototype : SceneManagerBase {
 
         #region CONSTANTS
 
@@ -10,7 +10,7 @@ namespace FastPrototype.Architecture {
         #endregion
         
         protected override void InitializeSceneConfigs() {
-                this.scenesConfigMap[SCENE_MAIN] = new SceneConfigFastPrototype();
+                this.scenesConfigMap[SceneConfigFastPrototype.SCENE_NAME] = new SceneConfigFastPrototype();
         }
     }
 }

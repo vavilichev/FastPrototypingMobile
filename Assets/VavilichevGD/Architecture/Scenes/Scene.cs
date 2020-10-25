@@ -5,7 +5,7 @@ using UnityEngine.Events;
 using VavilichevGD.Tools;
 using VavilichevGD.UI;
 
-namespace VavilichevGD.Architecture.Scenes {
+namespace VavilichevGD.Architecture {
     public sealed class Scene : IScene {
         public ISceneConfig sceneConfig { get; }
         public RepositoriesBase repositoriesBase { get; }

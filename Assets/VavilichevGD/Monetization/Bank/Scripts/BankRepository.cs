@@ -1,5 +1,4 @@
-﻿using UnityEngine;
-using VavilichevGD.Architecture;
+﻿using VavilichevGD.Architecture;
 using VavilichevGD.Architecture.Storage;
 using VavilichevGD.Tools;
 
@@ -9,15 +8,18 @@ namespace VavilichevGD.Monetization {
         #region Constants
 
         private const string PREF_KEY_CURRENCY_DATA = "BANK_REPOSITORY_DATA";
+        private const int VERSION = 1;
 
         #endregion
 
         public override string id => PREF_KEY_CURRENCY_DATA;
+        public override int version => 1;
 
         public ICurrency softCurrency { get; private set; }
         public ICurrency hardCurrency { get; private set; }
 
         private BankCurrencyRepoEntity repoEntity;
+        
 
         #region Initialize
 
@@ -30,7 +32,7 @@ namespace VavilichevGD.Monetization {
 
         
         private void LoadFromStorage() {
-            var repoData = Storage.GetCustom(PREF_KEY_CURRENCY_DATA, this.GetRepoDataDefault());
+            var repoData = PrefsStorage.GetCustom(PREF_KEY_CURRENCY_DATA, this.GetRepoDataDefault());
             this.repoEntity = repoData.GetEntity<BankCurrencyRepoEntity>();
 
             var softCurrencyLoaded = CurrencyBigNumber.Parse(this.repoEntity.stringSoftCurrency);
@@ -48,7 +50,7 @@ namespace VavilichevGD.Monetization {
         
         public override void Save() {
             var repoData = this.GetRepoData();
-            Storage.SetCustom(PREF_KEY_CURRENCY_DATA, repoData);
+            PrefsStorage.SetCustom(PREF_KEY_CURRENCY_DATA, repoData);
             
 #if DEBUG
             Logging.Log($"BANK REPOSITORY: Saved to storage. Soft: {this.softCurrency.GetSerializableValue()} and Hard: {this.hardCurrency.GetSerializableValue()}");
@@ -56,7 +58,7 @@ namespace VavilichevGD.Monetization {
         }
 
         public override RepoData GetRepoData() {
-            return new RepoData(PREF_KEY_CURRENCY_DATA, this.repoEntity);
+            return new RepoData(PREF_KEY_CURRENCY_DATA, this.repoEntity, this.version);
         }
 
         public override void UploadRepoData(RepoData repoData) {
@@ -69,7 +71,7 @@ namespace VavilichevGD.Monetization {
             var dataEntityDefault = new BankCurrencyRepoEntity(softCurrencyDefault, hardCurrencyDefault);
 
             var id = PREF_KEY_CURRENCY_DATA;
-            var repoDataDefauit = new RepoData(id, dataEntityDefault.ToJson());
+            var repoDataDefauit = new RepoData(id, dataEntityDefault.ToJson(), this.version);
             return repoDataDefauit;
         }
 

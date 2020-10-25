@@ -11,10 +11,13 @@ namespace VavilichevGD.Core {
 
         private const string PATH_LEVELINFO = "LevelsList";
         private const string PREF_LEVELSTATES = "PREF_LEVEL_STATES";
+        private const int VERSION = 1;
 
         #endregion
         
         public AllLevelStatesEntity allLevelsStatesEntity { get; private set; }
+        public override string id { get; }
+        public override int version => VERSION;
 
         protected override void Initialize() {
             this.LoadFromStorage();
@@ -22,7 +25,7 @@ namespace VavilichevGD.Core {
 
         private void LoadFromStorage() {
             LevelInfo[] levelInfos = Resources.LoadAll<LevelInfo>(PATH_LEVELINFO);
-            bool firstPlay = !Storage.HasObject(PREF_LEVELSTATES);
+            bool firstPlay = !PrefsStorage.HasKey(PREF_LEVELSTATES);
             if (firstPlay)
                 this.LoadFromStorageFirstTime(levelInfos);
             else
@@ -42,11 +45,11 @@ namespace VavilichevGD.Core {
             }
                 
             this.allLevelsStatesEntity = new AllLevelStatesEntity(allStates.ToArray());
-            Storage.SetCustom(PREF_LEVELSTATES, this.allLevelsStatesEntity);
+            PrefsStorage.SetCustom(PREF_LEVELSTATES, this.allLevelsStatesEntity);
         }
 
         private void LoadFromStorageSecondTime(LevelInfo[] levelInfos) {
-            this.allLevelsStatesEntity = Storage.GetCustom(PREF_LEVELSTATES, this.allLevelsStatesEntity);
+            this.allLevelsStatesEntity = PrefsStorage.GetCustom(PREF_LEVELSTATES, this.allLevelsStatesEntity);
 
             if (this.allLevelsStatesEntity.allStates.Count == levelInfos.Length)
                 return;
@@ -68,10 +71,9 @@ namespace VavilichevGD.Core {
             return Resources.Load<LevelInfo>(path);
         }
 
-        public override string id { get; }
 
         public override void Save() {
-            Storage.SetCustom(PREF_LEVELSTATES, this.allLevelsStatesEntity);
+            PrefsStorage.SetCustom(PREF_LEVELSTATES, this.allLevelsStatesEntity);
         }
 
         public override RepoData GetRepoData() {
@@ -87,7 +89,7 @@ namespace VavilichevGD.Core {
                 allStates.Add(levelState);
             }
             var allLevelsStatesDefault = new AllLevelStatesEntity(allStates.ToArray());
-            var repoDataDefault = new RepoData(PREF_LEVELSTATES, allLevelsStatesDefault.ToJson());
+            var repoDataDefault = new RepoData(PREF_LEVELSTATES, allLevelsStatesDefault.ToJson(), this.version);
             return repoDataDefault;
         }
 

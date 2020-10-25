@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using VavilichevGD.UI;
 
-namespace VavilichevGD.Architecture.Scenes {
+namespace VavilichevGD.Architecture {
     public interface IScene {
         ISceneConfig sceneConfig { get; }
         RepositoriesBase repositoriesBase { get; }

@@ -10,10 +10,12 @@ namespace VavilichevGD.Meta {
         #region CONSTANTS
 
         protected const string PREF_KEY_LAST_REWARD_DATA = "DAILY_REWARD_DATA";
+        protected const int VERSION = 1;
 
         #endregion
 
         public override string id => PREF_KEY_LAST_REWARD_DATA;
+        public override int version => VERSION;
 
 
         private DailyRewardsData dailyRewardsData;
@@ -23,7 +25,7 @@ namespace VavilichevGD.Meta {
         public bool lastRewardExist => this.dailyRewardsData.lastRewardExist;
 
         protected override void Initialize() {
-            this.dailyRewardsData = Storage.GetCustom(PREF_KEY_LAST_REWARD_DATA, DailyRewardsData.defaultValue);
+            this.dailyRewardsData = PrefsStorage.GetCustom(PREF_KEY_LAST_REWARD_DATA, DailyRewardsData.defaultValue);
             Logging.Log($"REPOSITORY DAILY REWARD: loaded data. Last date = " +
                         $"{this.lastDailyRewardReceivedTime}, the day index is " +
                         $"{this.lastRewardDayIndex}");
@@ -35,7 +37,7 @@ namespace VavilichevGD.Meta {
 
 
         public override void Save() {
-            Storage.SetCustom(PREF_KEY_LAST_REWARD_DATA, this.dailyRewardsData);
+            PrefsStorage.SetCustom(PREF_KEY_LAST_REWARD_DATA, this.dailyRewardsData);
             Logging.Log($"REPOSITORY DAILY REWARD: Saved data. Last date = " +
                         $"{this.lastDailyRewardReceivedTime}, the day index is " +
                         $"{this.lastRewardDayIndex}");

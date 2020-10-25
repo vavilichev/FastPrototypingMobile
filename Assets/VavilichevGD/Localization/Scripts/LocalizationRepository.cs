@@ -9,10 +9,12 @@ namespace VavilichevGD.LocalizationFramework {
         #region CONSTANTS
 
         private const string PREF_KEY_LOCALIZATION = "LOCALIZATION_DATA";
+        private const int VERSION = 1;
 
         #endregion
 
         public override string id => PREF_KEY_LOCALIZATION;
+        public override int version => VERSION;
 
         public SystemLanguage language {
             get => this.localizationRepoEntity.language;
@@ -29,7 +31,7 @@ namespace VavilichevGD.LocalizationFramework {
         }
 
         private void LoadFromStorage() {
-            var repoDataLoaded = Storage.GetCustom(this.id, this.GetRepoDataDefault());
+            var repoDataLoaded = PrefsStorage.GetCustom(this.id, this.GetRepoDataDefault());
             this.localizationRepoEntity = repoDataLoaded.GetEntity<LocalizationRepoEntity>();
 
 #if DEBUG
@@ -41,7 +43,7 @@ namespace VavilichevGD.LocalizationFramework {
 
 
         public override void Save() {
-            Storage.SetCustom(this.id, this.GetRepoData());
+            PrefsStorage.SetCustom(this.id, this.GetRepoData());
 
 #if DEBUG
             Debug.Log($"LOCALIZATION REPOSITORY: Saved to the Storage. Current language: {this.language}");
@@ -49,12 +51,12 @@ namespace VavilichevGD.LocalizationFramework {
         }
 
         public override RepoData GetRepoData() {
-            return new RepoData(this.id, this.localizationRepoEntity);
+            return new RepoData(this.id, this.localizationRepoEntity, this.version);
         }
 
         public override RepoData GetRepoDataDefault() {
             var repoEntityDefault = new LocalizationRepoEntity();
-            var repoDataDefault = new RepoData(this.id, repoEntityDefault);
+            var repoDataDefault = new RepoData(this.id, repoEntityDefault, this.version);
             return repoDataDefault;
         }
 
