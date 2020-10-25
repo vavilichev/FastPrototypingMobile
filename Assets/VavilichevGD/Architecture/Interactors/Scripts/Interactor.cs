@@ -92,11 +92,11 @@ namespace VavilichevGD.Architecture {
         #endregion
 
         
-        public T GetInteractor<T>() where T : Interactor {
+        protected T GetInteractor<T>() where T : Interactor {
             return Game.GetInteractor<T>();
         }
 
-        public T GetRepository<T>() where T : Repository {
+        protected T GetRepository<T>() where T : Repository {
             return Game.GetRepository<T>();
         }
 

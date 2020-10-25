@@ -12,7 +12,7 @@ namespace VavilichevGD.Tools {
         
         [ContextMenu("Load Game")]
         public void LoadGame() {
-            if (!Storage.HasKey(PREF_KEY)) {
+            if (!Storage.HasObject(PREF_KEY)) {
                 this.gameState = new GameState();
                 
                 var testEntity = new TestEntity();

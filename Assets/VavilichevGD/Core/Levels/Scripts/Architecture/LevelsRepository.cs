@@ -22,7 +22,7 @@ namespace VavilichevGD.Core {
 
         private void LoadFromStorage() {
             LevelInfo[] levelInfos = Resources.LoadAll<LevelInfo>(PATH_LEVELINFO);
-            bool firstPlay = !Storage.HasKey(PREF_LEVELSTATES);
+            bool firstPlay = !Storage.HasObject(PREF_LEVELSTATES);
             if (firstPlay)
                 this.LoadFromStorageFirstTime(levelInfos);
             else

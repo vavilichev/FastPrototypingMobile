@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using UnityEngine.Events;
 using VavilichevGD.Meta.FortuneWheel.UI;
 using VavilichevGD.Monetization;
@@ -45,7 +46,10 @@ namespace VavilichevGD.Meta.FortuneWheel {
         }
 
         private double GetFreeAdRemainingTimeSec() {
-            var lastFreeSpinTime = this.repository.lastFreeSpinTime;
+            if (this.repository.lastFreeSpinTime == null)
+                throw new Exception("LastFreeSpinTime is null");
+            
+            var lastFreeSpinTime = (DateTime)this.repository.lastFreeSpinTime;
             var now = DateTime.Now;
             var differenceSec = (now - lastFreeSpinTime).TotalSeconds;
             return FREE_SPIN_COOLDOWN_SEC - differenceSec;

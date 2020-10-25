@@ -15,7 +15,7 @@ namespace VavilichevGD.Meta.FortuneWheel {
         public override string id => PREF_KEY;
 
         
-        public DateTime lastFreeSpinTime { get; private set; }
+        public DateTime? lastFreeSpinTime { get; private set; }
 
         private static readonly DateTime defaultFreeSpinTime = new DateTime();
 
