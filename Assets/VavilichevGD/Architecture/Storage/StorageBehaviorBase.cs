@@ -5,6 +5,7 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 using UnityEngine;
+using UnityEngine.Events;
 using VavilichevGD.Tools;
 
 namespace VavilichevGD.Architecture.StorageSystem {
@@ -26,7 +27,7 @@ namespace VavilichevGD.Architecture.StorageSystem {
 
         public Dictionary<string, RepoData> repoDataMap { get; }
         public bool isInitialized { get; protected set; }
-        public bool isInitializingProcess { get; protected set; }
+        public bool isOnProcess { get; protected set; }
 
         protected Scene currentScene;
 
@@ -112,7 +113,7 @@ namespace VavilichevGD.Architecture.StorageSystem {
 
 
         public virtual void Load(Scene scene) {
-            this.isInitializingProcess = true;
+            this.isOnProcess = true;
             this.isInitialized = false;
             this.currentScene = scene;
             this.repoDataMap.Clear();
@@ -129,7 +130,7 @@ namespace VavilichevGD.Architecture.StorageSystem {
             }
 
             this.isInitialized = true;
-            this.isInitializingProcess = false;
+            this.isOnProcess = false;
             this.OnStorageLoadedEvent?.Invoke();
         }
 
@@ -138,12 +139,12 @@ namespace VavilichevGD.Architecture.StorageSystem {
         }
 
         protected virtual IEnumerator LoadAsyncRoutine(Scene scene) {
-            if (this.isInitializingProcess) {
-                Debug.LogError("You cannot load scene while another is loading");
+            if (this.isOnProcess) {
+                Debug.LogError("You cannot load scene while another process is running");
                 yield break;
             }
 
-            this.isInitializingProcess = true;
+            this.isOnProcess = true;
             this.isInitialized = false;
             this.currentScene = scene;
             this.repoDataMap.Clear();
@@ -161,7 +162,7 @@ namespace VavilichevGD.Architecture.StorageSystem {
             }
 
             this.isInitialized = true;
-            this.isInitializingProcess = false;
+            this.isOnProcess = false;
             this.OnStorageLoadedEvent?.Invoke();
         }
 
@@ -171,7 +172,7 @@ namespace VavilichevGD.Architecture.StorageSystem {
 
         public abstract void ClearAll();
 
-        public virtual void SaveAll() {
+        public virtual void SaveAllRepositories() {
             var repositories = this.currentScene.GetRepositories<IRepository>();
             foreach (var repository in repositories) {
                 var repoData = repository.GetRepoData();
@@ -180,6 +181,29 @@ namespace VavilichevGD.Architecture.StorageSystem {
                 Debug.Log($"STORAGE PREFS: Save Key: {repoData.id}, value: {repoData.json}");
 #endif
             }
+        }
+
+        public Coroutine SaveAllRepositoriesAsync(UnityAction callback = null) {
+            return Coroutines.StartRoutine(this.SaveAllRepositoriesAsyncRoutine(callback));
+        }
+
+        protected IEnumerator SaveAllRepositoriesAsyncRoutine(UnityAction callback) {
+            if (this.isOnProcess) {
+                Debug.LogError("STORAGE: You cannot save anything while another process is running");
+                yield break;
+            }
+            
+            var repositories = this.currentScene.GetRepositories<IRepository>();
+            foreach (var repository in repositories) {
+                var repoData = repository.GetRepoData();
+                this.SetRepoData(repoData.id, repoData);
+#if DEBUG
+                Debug.Log($"STORAGE PREFS: Save Key: {repoData.id}, value: {repoData.json}");
+#endif
+                yield return null;
+            }
+            
+            callback?.Invoke();
         }
 
 

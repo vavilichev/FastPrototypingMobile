@@ -70,23 +70,11 @@ namespace VavilichevGD.Architecture {
         #region SAVE
 
         public void SaveAllRepositories() {
-            IRepository[] allRepositories = repositoriesMap.Values.ToArray();
-            foreach (IRepository repository in allRepositories)
-                repository.Save();
-            Storage.SaveAll();
+            Storage.SaveAllRepositories();
         }
 
-        public Coroutine SaveAllRepositoriesAsync(UnityAction callback) {
-            return Coroutines.StartRoutine(this.SaveAllRepositoriesAsyncRoutine(callback));
-        }
-
-        private IEnumerator SaveAllRepositoriesAsyncRoutine(UnityAction callback) {
-            IRepository[] allRepositories = repositoriesMap.Values.ToArray();
-            foreach (var repository in allRepositories)
-                yield return repository.SaveAsync();
-            Storage.SaveAll();
-            
-            callback?.Invoke();
+        public Coroutine SaveAllRepositoriesAsync(UnityAction callback = null) {
+            return Storage.SaveAllRepositoriesAsync(callback);
         }
 
         #endregion

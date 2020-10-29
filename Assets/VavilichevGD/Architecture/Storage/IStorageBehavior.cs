@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace VavilichevGD.Architecture.StorageSystem {
 	
@@ -15,7 +16,7 @@ namespace VavilichevGD.Architecture.StorageSystem {
 
 		Dictionary<string, RepoData> repoDataMap { get; }
 		bool isInitialized { get; }
-		bool isInitializingProcess { get; }
+		bool isOnProcess { get; }
 		
 		void Load(Scene scene);
 		Coroutine LoadAsync(Scene scene);
@@ -25,7 +26,8 @@ namespace VavilichevGD.Architecture.StorageSystem {
 		void ClearKey(string key);
 		void ClearAll();
 
-		void SaveAll();
+		void SaveAllRepositories();
+		Coroutine SaveAllRepositoriesAsync(UnityAction callback = null);
 
 		
 		#region SET

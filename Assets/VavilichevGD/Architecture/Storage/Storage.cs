@@ -1,5 +1,7 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.Scripting;
 
 namespace VavilichevGD.Architecture.StorageSystem {
 	public delegate void StorageHandler();
@@ -56,8 +58,12 @@ namespace VavilichevGD.Architecture.StorageSystem {
 	        behavior.ClearAll();
         }
 
-        public static void SaveAll() {
-	        behavior.SaveAll();
+        public static void SaveAllRepositories() {
+	        behavior.SaveAllRepositories();
+        }
+
+        public static Coroutine SaveAllRepositoriesAsync(UnityAction callback) {
+	        return behavior.SaveAllRepositoriesAsync(callback);
         }
 
 

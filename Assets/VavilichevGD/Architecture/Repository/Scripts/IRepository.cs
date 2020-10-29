@@ -12,8 +12,6 @@ namespace VavilichevGD.Architecture {
         Coroutine InitializeAsync();
         void Start();
         
-        void Save();
-        Coroutine SaveAsync();
         RepoData GetRepoData();
         RepoData GetRepoDataDefault();
         void UploadRepoData(RepoData repoData);

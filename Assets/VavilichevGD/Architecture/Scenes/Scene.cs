@@ -70,7 +70,7 @@ namespace VavilichevGD.Architecture {
         }
 
         public Coroutine SaveAsync(UnityAction callback) {
-            return Coroutines.StartRoutine(this.SaveAsyncRoutine(callback));
+            return this.repositoriesBase.SaveAllRepositoriesAsync(callback);
         }
 
         private IEnumerator SaveAsyncRoutine(UnityAction callback) {
