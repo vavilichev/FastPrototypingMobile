@@ -1,6 +1,6 @@
 ﻿using System;
 using UnityEngine;
-using VavilichevGD.Architecture.Storage;
+using VavilichevGD.Architecture.StorageSystem;
 
 namespace VavilichevGD.Tools.GameTime {
     [Serializable]

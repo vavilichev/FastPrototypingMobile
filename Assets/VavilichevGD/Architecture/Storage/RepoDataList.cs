@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace VavilichevGD.Architecture.Storage {
+namespace VavilichevGD.Architecture.StorageSystem {
     [Serializable]
     public class RepoDataList {
         public List<RepoData> values;

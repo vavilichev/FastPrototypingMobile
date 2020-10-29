@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using VavilichevGD.Architecture.Storage;
+using VavilichevGD.Architecture.StorageSystem;
 using VavilichevGD.Tools;
 
 namespace VavilichevGD.Architecture {
@@ -95,16 +95,8 @@ namespace VavilichevGD.Architecture {
         public abstract RepoData GetRepoDataDefault();
 
         public abstract void UploadRepoData(RepoData repoData);
-            // if (repoData.version < this.version) {
-            //     var repoDataAdapter = new RepoDataAdapter();
-            //     var newRepoData = repoDataAdapter.Adapt(); // Don't forget to change version.
-            //     this.UploadRepoData(newRepoData);
-            // }
-            // else {
-            //     // ApplyRepoData(repoData);
-            // }
 
-            #endregion
+        #endregion
 
 
         #region STATUS

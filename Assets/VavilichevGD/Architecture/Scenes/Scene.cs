@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using VavilichevGD.Architecture.StorageSystem;
 using VavilichevGD.Tools;
 using VavilichevGD.UI;
 
@@ -44,6 +45,7 @@ namespace VavilichevGD.Architecture {
         }
 
         private IEnumerator InitializeAsyncRoutine() {
+            yield return Storage.LoadAsync(this);
             yield return this.repositoriesBase.InitializeAllRepositories();
             yield return this.interactorsBase.InitializeAllInteractors();
         }
@@ -93,6 +95,6 @@ namespace VavilichevGD.Architecture {
         public IEnumerable<T> GetInteractors<T>() where T : IInteractor {
             return this.interactorsBase.GetInteractors<T>();
         }
-        
+
     }
 }

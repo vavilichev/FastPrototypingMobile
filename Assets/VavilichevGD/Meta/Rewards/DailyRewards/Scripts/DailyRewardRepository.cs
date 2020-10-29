@@ -1,6 +1,6 @@
 ﻿using System;
 using VavilichevGD.Architecture;
-using VavilichevGD.Architecture.Storage;
+using VavilichevGD.Architecture.StorageSystem;
 using VavilichevGD.Meta.DailyRewards;
 using VavilichevGD.Tools;
 

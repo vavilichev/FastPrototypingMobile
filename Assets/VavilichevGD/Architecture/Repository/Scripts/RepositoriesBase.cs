@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
+using VavilichevGD.Architecture.StorageSystem;
 using VavilichevGD.Tools;
 
 namespace VavilichevGD.Architecture {
@@ -72,6 +73,7 @@ namespace VavilichevGD.Architecture {
             IRepository[] allRepositories = repositoriesMap.Values.ToArray();
             foreach (IRepository repository in allRepositories)
                 repository.Save();
+            Storage.SaveAll();
         }
 
         public Coroutine SaveAllRepositoriesAsync(UnityAction callback) {
@@ -82,6 +84,8 @@ namespace VavilichevGD.Architecture {
             IRepository[] allRepositories = repositoriesMap.Values.ToArray();
             foreach (var repository in allRepositories)
                 yield return repository.SaveAsync();
+            Storage.SaveAll();
+            
             callback?.Invoke();
         }
 

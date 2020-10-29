@@ -25,9 +25,9 @@ namespace FastPrototype.Architecture {
         public override Dictionary<Type, IRepository> CreateAllRepositories() {
             var repositoriesMap = new Dictionary<Type, IRepository>();
             
-            this.CreateRepository<GameTimeRepository>(ref repositoriesMap);
-            this.CreateRepository<ADSRepository>(ref repositoriesMap);
-            this.CreateRepository<ShopRepository>(ref repositoriesMap);
+            this.CreateRepository<GameTimeRepository>(repositoriesMap);
+            this.CreateRepository<ADSRepository>(repositoriesMap);
+            this.CreateRepository<ShopRepository>(repositoriesMap);
             
             return repositoriesMap;
         }
@@ -35,11 +35,11 @@ namespace FastPrototype.Architecture {
         public override Dictionary<Type, IInteractor> CreateAllInteractors() {
             var interactorsMap = new Dictionary<Type, IInteractor>();
 
-            this.CreateInteractor<GameTimeInteractor>(ref interactorsMap);
-            this.CreateInteractor<ADSInteractor>(ref interactorsMap);
-            this.CreateInteractor<ShopInteractor>(ref interactorsMap);
-            this.CreateInteractor<IAPInteractor>(ref interactorsMap);
-            this.CreateInteractor<UIInteractorFastPrototype>(ref interactorsMap);
+            this.CreateInteractor<GameTimeInteractor>(interactorsMap);
+            this.CreateInteractor<ADSInteractor>(interactorsMap);
+            this.CreateInteractor<ShopInteractor>(interactorsMap);
+            this.CreateInteractor<IAPInteractor>(interactorsMap);
+            this.CreateInteractor<UIInteractorFastPrototype>(interactorsMap);
 
             return interactorsMap;
         }

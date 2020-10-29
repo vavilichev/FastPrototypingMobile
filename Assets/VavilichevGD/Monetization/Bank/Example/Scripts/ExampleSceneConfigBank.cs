@@ -21,16 +21,16 @@ namespace VavilichevGD.Architecture.Scenes {
 
         public override Dictionary<Type, IRepository> CreateAllRepositories() {
             var repositoriesMap = new Dictionary<Type, IRepository>();
-
-            this.CreateRepository<BankRepository>(ref repositoriesMap);
-
+            
+            this.CreateRepository<BankRepository>(repositoriesMap);
+            
             return repositoriesMap;
         }
 
         public override Dictionary<Type, IInteractor> CreateAllInteractors() {
             var interactorsMap = new Dictionary<Type, IInteractor>();
 
-            this.CreateInteractor<BankInteractor>(ref interactorsMap);
+            this.CreateInteractor<BankInteractor>(interactorsMap);
 
             return interactorsMap;
         }

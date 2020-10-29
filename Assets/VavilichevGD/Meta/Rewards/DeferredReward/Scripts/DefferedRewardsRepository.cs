@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using VavilichevGD.Architecture;
-using VavilichevGD.Architecture.Storage;
+using VavilichevGD.Architecture.StorageSystem;
 using VavilichevGD.Tools;
 
 namespace VavilichevGD.Meta.DefferedRewards {

@@ -11,20 +11,18 @@ namespace VavilichevGD.Architecture {
         public abstract Dictionary<Type, IInteractor> CreateAllInteractors();
         public abstract Dictionary<Type, IUIElement> CreateAllUIElements(UIController uiController);
 
-        protected T CreateRepository<T>(ref Dictionary<Type, IRepository> repositoriesMap) where T : IRepository, new() {
+        protected T CreateRepository<T>(Dictionary<Type, IRepository> repositoriesMap) where T : IRepository, new() {
             var createdRepository = new T();
             var type = typeof(T);
             
-            repositoriesMap[type] = createdRepository;
             createdRepository.OnCreate();
             return createdRepository;
         }
 
-        protected T CreateInteractor<T>(ref Dictionary<Type, IInteractor> interactorsMap) where T : IInteractor, new() {
+        protected T CreateInteractor<T>(Dictionary<Type, IInteractor> interactorsMap) where T : IInteractor, new() {
             var createdInteractor = new T();
             var type = typeof(T);
 
-            interactorsMap[type] = createdInteractor;
             createdInteractor.OnCreate();
             return createdInteractor;
         }

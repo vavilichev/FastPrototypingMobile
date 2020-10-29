@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using VavilichevGD.Monetization;
 using VavilichevGD.UI;
 
 namespace VavilichevGD.Architecture.Scenes {
@@ -21,19 +22,21 @@ namespace VavilichevGD.Architecture.Scenes {
         public override Dictionary<Type, IRepository> CreateAllRepositories() {
             //TODO: Make a list of repositories by
 
-            for (int i = 0; i < 7; i++)
-                Debug.Log($"GAME EXAMPLE: Create repository {i}");
-            
-            return new Dictionary<Type, IRepository>();
+            var createdReposisories = new Dictionary<Type, IRepository>();
+            this.CreateRepository<BankRepository>(createdReposisories);
+            this.CreateRepository<ADSRepository>(createdReposisories);
+
+            return createdReposisories;
         }
 
         public override Dictionary<Type, IInteractor> CreateAllInteractors() {
             //TODO: Make a list of interactors by
+            
+            var createdInteractors = new Dictionary<Type, IInteractor>();
+            this.CreateInteractor<BankInteractor>(createdInteractors);
+            this.CreateInteractor<ADSInteractor>(createdInteractors);
 
-            for (int i = 0; i < 6; i++)
-                Debug.Log($"GAME EXAMPLE: Create interactor {i}");
-
-            return new Dictionary<Type, IInteractor>();
+            return createdInteractors;
         }
 
         public override Dictionary<Type, IUIElement> CreateAllUIElements(UIController uiController) {

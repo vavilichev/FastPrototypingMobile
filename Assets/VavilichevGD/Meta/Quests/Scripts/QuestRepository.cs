@@ -1,4 +1,4 @@
-﻿using VavilichevGD.Architecture.Storage;
+﻿using VavilichevGD.Architecture.StorageSystem;
 using VavilichevGD.Meta;
 using VavilichevGD.Tools;
 

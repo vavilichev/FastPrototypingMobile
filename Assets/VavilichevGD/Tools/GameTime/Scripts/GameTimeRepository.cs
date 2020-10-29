@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine;
 using VavilichevGD.Architecture;
-using VavilichevGD.Architecture.Storage;
+using VavilichevGD.Architecture.StorageSystem;
 
 namespace VavilichevGD.Tools.GameTime {
     public sealed class GameTimeRepository : Repository {

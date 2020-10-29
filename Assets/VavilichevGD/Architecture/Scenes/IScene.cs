@@ -5,11 +5,13 @@ using VavilichevGD.UI;
 
 namespace VavilichevGD.Architecture {
     public interface IScene {
+        
         ISceneConfig sceneConfig { get; }
         RepositoriesBase repositoriesBase { get; }
         InteractorsBase interactorsBase { get; }
         UIController uiController { get; }
 
+        
         void CreateInstances();
         Coroutine InitializeAsync();
         void Start();

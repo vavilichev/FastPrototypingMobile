@@ -1,4 +1,4 @@
-﻿namespace VavilichevGD.Architecture.Storage {
+﻿namespace VavilichevGD.Architecture.StorageSystem {
     public interface IRepoEntity {
         string ToJson();
     }

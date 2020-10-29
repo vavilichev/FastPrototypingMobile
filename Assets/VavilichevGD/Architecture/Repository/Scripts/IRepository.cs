@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using VavilichevGD.Architecture.Storage;
+using VavilichevGD.Architecture.StorageSystem;
 
 namespace VavilichevGD.Architecture {
     public interface IRepository {

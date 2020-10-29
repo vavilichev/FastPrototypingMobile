@@ -22,7 +22,7 @@ namespace VavilichevGD.Architecture.Scenes {
         public override Dictionary<Type, IRepository> CreateAllRepositories() {
             var repositoriesMap = new Dictionary<Type, IRepository>();
 
-            this.CreateRepository<LevelsRepository>(ref repositoriesMap);
+            this.CreateRepository<LevelsRepository>(repositoriesMap);
 
             return repositoriesMap;
         }
@@ -30,7 +30,7 @@ namespace VavilichevGD.Architecture.Scenes {
         public override Dictionary<Type, IInteractor> CreateAllInteractors() {
             var interactorsMap = new Dictionary<Type, IInteractor>();
 
-            this.CreateInteractor<LevelsInteractor>(ref interactorsMap);
+            this.CreateInteractor<LevelsInteractor>(interactorsMap);
 
             return interactorsMap;
         }

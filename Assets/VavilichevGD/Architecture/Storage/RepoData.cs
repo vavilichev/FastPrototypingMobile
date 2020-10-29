@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace VavilichevGD.Architecture.Storage {
+namespace VavilichevGD.Architecture.StorageSystem {
     [Serializable]
     public class RepoData {
         public string id;
