@@ -1,4 +1,5 @@
-﻿using VavilichevGD.Architecture;
+﻿using UnityEngine;
+using VavilichevGD.Architecture;
 using VavilichevGD.Architecture.StorageSystem;
 using VavilichevGD.Tools;
 
@@ -31,7 +32,7 @@ namespace VavilichevGD.Monetization {
 
         
         private void LoadFromStorage() {
-            var repoData = PrefsStorage.GetCustom(PREF_KEY_CURRENCY_DATA, this.GetRepoDataDefault());
+            var repoData = Storage.GetRepoData(PREF_KEY_CURRENCY_DATA, this.GetRepoDataDefault());
             this.repoEntity = repoData.GetEntity<BankCurrencyRepoEntity>();
 
             var softCurrencyLoaded = CurrencyBigNumber.Parse(this.repoEntity.stringSoftCurrency);
@@ -41,7 +42,7 @@ namespace VavilichevGD.Monetization {
             this.hardCurrency = new CurrencyInteger(hardCurrencyLoaded.value);
 
 #if DEBUG
-            Logging.Log($"BANK REPOSITORY: Loaded. Soft: {this.softCurrency.GetSerializableValue()} and Hard: {this.hardCurrency.GetSerializableValue()}");
+            Debug.Log($"BANK REPOSITORY: Loaded. Soft: {this.softCurrency.GetSerializableValue()} and Hard: {this.hardCurrency.GetSerializableValue()}");
 #endif
         }
 
@@ -49,10 +50,10 @@ namespace VavilichevGD.Monetization {
         
         public override void Save() {
             var repoData = this.GetRepoData();
-            PrefsStorage.SetCustom(PREF_KEY_CURRENCY_DATA, repoData);
+            Storage.SetRepoData(PREF_KEY_CURRENCY_DATA, repoData);
             
 #if DEBUG
-            Logging.Log($"BANK REPOSITORY: Saved to storage. Soft: {this.softCurrency.GetSerializableValue()} and Hard: {this.hardCurrency.GetSerializableValue()}");
+            Debug.Log($"BANK REPOSITORY: Saved to storage. Soft: {this.softCurrency.GetSerializableValue()} and Hard: {this.hardCurrency.GetSerializableValue()}");
 #endif
         }
 

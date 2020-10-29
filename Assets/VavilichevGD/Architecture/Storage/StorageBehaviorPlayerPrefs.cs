@@ -57,6 +57,7 @@ namespace VavilichevGD.Architecture.StorageSystem {
 		public override void SetCustom<T>(string key, T value) {
 			var json = JsonUtility.ToJson(value);
 			var jsonEncrypted = this.Encrypt(json);
+			//Debug.Log($"Saved Key: {key}, value: {json}");
 			PlayerPrefs.SetString(key, jsonEncrypted);
 		}
 

@@ -64,7 +64,7 @@ namespace VavilichevGD.Architecture {
         #endregion
 
         public T GetInteractor<T>() where T : IInteractor {
-            Type type = typeof(T);
+            var type = typeof(T);
             var founded = interactorsMap.TryGetValue(type, out IInteractor resultInteractor);
             if (founded)
                 return (T) resultInteractor;
@@ -74,7 +74,7 @@ namespace VavilichevGD.Architecture {
                     return (T) interactor;
             }
 
-            return (T) interactorsMap[type];
+            throw new KeyNotFoundException($"Key: {type}");
         }
 
         public IEnumerable<T> GetInteractors<T>() where T : IInteractor {

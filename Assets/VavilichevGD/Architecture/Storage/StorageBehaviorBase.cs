@@ -120,7 +120,7 @@ namespace VavilichevGD.Architecture.StorageSystem {
             var repositories = scene.GetRepositories<IRepository>();
             foreach (var repository in repositories) {
                 var key = repository.id;
-                var repoData = this.GetRepoData(key, repository.GetRepoDataDefault());
+                var repoData = this.GetCustom(key, repository.GetRepoDataDefault());
                 this.repoDataMap[key] = repoData;
                 
 #if DEBUG
@@ -151,7 +151,7 @@ namespace VavilichevGD.Architecture.StorageSystem {
             var repositories = scene.GetRepositories<IRepository>();
             foreach (var repository in repositories) {
                 var key = repository.id;
-                var repoData = this.GetRepoData(key, repository.GetRepoDataDefault());
+                var repoData = this.GetCustom(key, repository.GetRepoDataDefault());
                 this.repoDataMap[key] = repoData;
                 
 #if DEBUG

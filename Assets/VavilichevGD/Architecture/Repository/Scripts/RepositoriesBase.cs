@@ -106,7 +106,7 @@ namespace VavilichevGD.Architecture {
                     return (T) repository;
             }
 
-            return (T) repositoriesMap[type];
+            throw new KeyNotFoundException($"Key: {type}");
         }
         
         public IEnumerable<T> GetRepositories<T>() where T : IRepository {
