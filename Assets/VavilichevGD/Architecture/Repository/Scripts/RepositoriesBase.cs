@@ -65,22 +65,8 @@ namespace VavilichevGD.Architecture {
 
         #endregion
 
-        
-        
-        #region SAVE
-
-        public void SaveAllRepositories() {
-            Storage.SaveAllRepositories();
-        }
-
-        public Coroutine SaveAllRepositoriesAsync(UnityAction callback = null) {
-            return Storage.SaveAllRepositoriesAsync(callback);
-        }
-
-        #endregion
 
 
-        
         public T GetRepository<T>() where T : IRepository {
             var type = typeof(T);
             IRepository resultRepository;

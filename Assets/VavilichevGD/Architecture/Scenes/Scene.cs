@@ -66,15 +66,11 @@ namespace VavilichevGD.Architecture {
         #region SAVE
 
         public void Save() {
-            this.repositoriesBase.SaveAllRepositories();
+            Storage.SaveAllRepositories(this);
         }
 
-        public Coroutine SaveAsync(UnityAction callback) {
-            return this.repositoriesBase.SaveAllRepositoriesAsync(callback);
-        }
-
-        private IEnumerator SaveAsyncRoutine(UnityAction callback) {
-            yield return this.repositoriesBase.SaveAllRepositoriesAsync(callback);
+        public Coroutine SaveAsync(UnityAction callback = null) {
+            return Storage.SaveAllRepositoriesAsync(this, callback);
         }
 
         #endregion

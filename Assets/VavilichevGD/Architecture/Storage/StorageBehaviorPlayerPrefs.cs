@@ -29,7 +29,7 @@ namespace VavilichevGD.Architecture.StorageSystem {
 			
 			Debug.Log("STORAGE PREFS: All prefs deleted");
 		}
-
+		
 
 		
 		#region SET

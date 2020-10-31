@@ -29,8 +29,6 @@ namespace VavilichevGD.Architecture.StorageSystem {
         public bool isInitialized { get; protected set; }
         public bool isOnProcess { get; protected set; }
 
-        protected Scene currentScene;
-
 
         public StorageBehaviorBase() {
             this.repoDataMap = new Dictionary<string, RepoData>();
@@ -115,7 +113,6 @@ namespace VavilichevGD.Architecture.StorageSystem {
         public virtual void Load(Scene scene) {
             this.isOnProcess = true;
             this.isInitialized = false;
-            this.currentScene = scene;
             this.repoDataMap.Clear();
 
             var repositories = scene.GetRepositories<IRepository>();
@@ -146,7 +143,6 @@ namespace VavilichevGD.Architecture.StorageSystem {
 
             this.isOnProcess = true;
             this.isInitialized = false;
-            this.currentScene = scene;
             this.repoDataMap.Clear();
 
             var repositories = scene.GetRepositories<IRepository>();
@@ -172,8 +168,8 @@ namespace VavilichevGD.Architecture.StorageSystem {
 
         public abstract void ClearAll();
 
-        public virtual void SaveAllRepositories() {
-            var repositories = this.currentScene.GetRepositories<IRepository>();
+        public virtual void SaveAllRepositories(Scene scene) {
+            var repositories = scene.GetRepositories<IRepository>();
             foreach (var repository in repositories) {
                 var repoData = repository.GetRepoData();
                 this.SetRepoData(repoData.id, repoData);
@@ -183,17 +179,17 @@ namespace VavilichevGD.Architecture.StorageSystem {
             }
         }
 
-        public Coroutine SaveAllRepositoriesAsync(UnityAction callback = null) {
-            return Coroutines.StartRoutine(this.SaveAllRepositoriesAsyncRoutine(callback));
+        public Coroutine SaveAllRepositoriesAsync(Scene scene, UnityAction callback = null) {
+            return Coroutines.StartRoutine(this.SaveAllRepositoriesAsyncRoutine(scene, callback));
         }
 
-        protected IEnumerator SaveAllRepositoriesAsyncRoutine(UnityAction callback) {
+        protected IEnumerator SaveAllRepositoriesAsyncRoutine(Scene scene, UnityAction callback) {
             if (this.isOnProcess) {
                 Debug.LogError("STORAGE: You cannot save anything while another process is running");
                 yield break;
             }
             
-            var repositories = this.currentScene.GetRepositories<IRepository>();
+            var repositories = scene.GetRepositories<IRepository>();
             foreach (var repository in repositories) {
                 var repoData = repository.GetRepoData();
                 this.SetRepoData(repoData.id, repoData);

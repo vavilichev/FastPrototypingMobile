@@ -1,7 +1,6 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Scripting;
 
 namespace VavilichevGD.Architecture.StorageSystem {
 	public delegate void StorageHandler();
@@ -13,7 +12,8 @@ namespace VavilichevGD.Architecture.StorageSystem {
 		public static event StorageHandler OnStorageLoadedEvent;
 
 		#endregion
-		
+
+		public static bool isInitialized => behavior != null && behavior.isInitialized;
 
 		private static IStorageBehavior behavior;
 
@@ -58,12 +58,12 @@ namespace VavilichevGD.Architecture.StorageSystem {
 	        behavior.ClearAll();
         }
 
-        public static void SaveAllRepositories() {
-	        behavior.SaveAllRepositories();
+        public static void SaveAllRepositories(Scene scene) {
+	        behavior.SaveAllRepositories(scene);
         }
 
-        public static Coroutine SaveAllRepositoriesAsync(UnityAction callback) {
-	        return behavior.SaveAllRepositoriesAsync(callback);
+        public static Coroutine SaveAllRepositoriesAsync(Scene scene, UnityAction callback) {
+	        return behavior.SaveAllRepositoriesAsync(scene, callback);
         }
 
 

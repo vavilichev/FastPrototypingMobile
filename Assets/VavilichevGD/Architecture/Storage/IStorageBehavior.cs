@@ -26,8 +26,8 @@ namespace VavilichevGD.Architecture.StorageSystem {
 		void ClearKey(string key);
 		void ClearAll();
 
-		void SaveAllRepositories();
-		Coroutine SaveAllRepositoriesAsync(UnityAction callback = null);
+		void SaveAllRepositories(Scene scene);
+		Coroutine SaveAllRepositoriesAsync(Scene scene, UnityAction callback = null);
 
 		
 		#region SET
@@ -50,7 +50,7 @@ namespace VavilichevGD.Architecture.StorageSystem {
 		bool GetBool(string key, bool defaultValue = false);
 		string GetString(string key, string defaultValue = "");
 		T GetEnum<T>(string key, T defaultValue) where T : Enum;
-		T GetCustom<T>(string key, T defaultValue = default);
+		T GetCustom<T>(string key, T defaultValue);
 		RepoData GetRepoData(string key, RepoData defaultValue);
 
 		#endregion
